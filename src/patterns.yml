@@ -1,0 +1,272 @@
+rainbow:
+  permission: 'chatcolor.rainbow' #the "permission:" tag is optional
+  mode: "LINEAR_IGNORE_SPACES" #Valid arguments: RANDOM, LINEAR, LINEAR_IGNORE_SPACES, SINGLE
+  colors:
+    - '4'
+    - 'c'
+    - '6'
+    - 'e'
+    - '2'
+    - 'a'
+    - 'b'
+    - '3'
+    - '1'
+    - '9'
+    - 'd'
+    - '5'
+  gui-item:
+    slot: 10
+    has-permission:
+      type: INK_SACK:11
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&aClick to equip {pattern_name}!"
+      actions:
+        - "SET-PATTERN:{pattern_name}"
+        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
+        - "CLOSE-INVENTORY"
+    has-not-permission:
+      type: STAINED_GLASS_PANE:14
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&cYou don't have permissions to do that!"
+      actions:
+        - "MESSAGE:&cYou do not have permission to use this pattern!"
+        - "CLOSE-INVENTORY"
+
+
+
+rainbow2:
+  permission: 'chatcolor.rainbow2'
+  mode: "RANDOM"
+  colors:
+    - '4'
+    - 'c'
+    - '6'
+    - 'e'
+    - '2'
+    - 'a'
+    - 'b'
+    - '3'
+    - '1'
+    - '9'
+    - 'd'
+    - '5'
+  gui-item:
+    slot: 11
+    has-permission:
+      type: INK_SACK:14
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&aClick to equip {pattern_name}!"
+      actions:
+        - "SET-PATTERN:{pattern_name}"
+        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
+        - "CLOSE-INVENTORY"
+    has-not-permission:
+      type: STAINED_GLASS_PANE:14
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&cYou don't have permissions to do that!"
+      actions:
+        - "MESSAGE:&cYou do not have permission to use this pattern!"
+        - "CLOSE-INVENTORY"
+
+
+
+black:
+  permission: chatcolor.black
+  mode: "LINEAR"
+  colors:
+    - '0'
+    - '8'
+    - '7'
+    - 'f'
+    - '7'
+    - '8'
+  gui-item:
+    slot: 12
+    has-permission:
+      type: INK_SACK
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&aClick to equip {pattern_name}!"
+      actions:
+        - "SET-PATTERN:{pattern_name}"
+        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
+        - "CLOSE-INVENTORY"
+    has-not-permission:
+      type: STAINED_GLASS_PANE:14
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&cYou don't have permissions to do that!"
+      actions:
+        - "MESSAGE:&cYou do not have permission to use this pattern!"
+        - "CLOSE-INVENTORY"
+
+
+
+halloween:
+  permission: chatcolor.halloween
+  mode: "LINEAR_IGNORE_SPACES"
+  colors:
+    - '#b900ff'
+    - '#ce7e00'
+  gui-item:
+    slot: 13
+    has-permission:
+      type: INK_SACK:5
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&aClick to equip {pattern_name}!"
+      actions:
+        - "SET-PATTERN:{pattern_name}"
+        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
+        - "CLOSE-INVENTORY"
+    has-not-permission:
+      type: STAINED_GLASS_PANE:14
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&cYou don't have permissions to do that!"
+      actions:
+        - "MESSAGE:&cYou do not have permission to use this pattern!"
+        - "CLOSE-INVENTORY"
+
+
+red:
+  mode: "SINGLE"
+  colors:
+    - 'c'
+  gui-item:
+    slot: 14
+    has-permission:
+      type: INK_SACK:1
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&aClick to equip {pattern_name}!"
+      actions:
+        - "SET-PATTERN:{pattern_name}"
+        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
+        - "CLOSE-INVENTORY"
+    has-not-permission:
+      type: STAINED_GLASS_PANE:14
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&cYou don't have permissions to do that!"
+      actions:
+        - "MESSAGE:&cYou do not have permission to use this pattern!"
+        - "CLOSE-INVENTORY"
+
+
+
+#For this to work you need AdvancedColorAPI (https://www.spigotmc.org/resources/advancedcolorapi.92021/)
+#You just have to install it in your /plugins/ folder
+gradient:
+  mode: "GRADIENT"
+  color-merging: 0.08
+  colors: #You can add more than 2 colors
+    - '#0ff1ce'
+    - '#ff80ed'
+  gui-item:
+    slot: 15
+    has-permission:
+      type: INK_SACK:12
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&aClick to equip {pattern_name}!"
+      actions:
+        - "SET-PATTERN:{pattern_name}"
+        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
+        - "CLOSE-INVENTORY"
+    has-not-permission:
+      type: STAINED_GLASS_PANE:14
+      amount: 1
+      name: "&7Equip: {pattern_name_formatted}"
+      lore:
+        - "&8ChatColor Pattern"
+        - ""
+        - "&7This is a ChatColor pattern"
+        - "&7This pattern would look like this:"
+        - "&7{example_text}"
+        - ""
+        - "&cYou don't have permissions to do that!"
+      actions:
+        - "MESSAGE:&cYou do not have permission to use this pattern!"
+        - "CLOSE-INVENTORY"

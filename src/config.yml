@@ -1,0 +1,27 @@
+config:
+  # The plugin will check if there is a new version available
+  update-checker: true
+
+  # The patterns shown in /chatcolor list will only be the ones that the player can use
+  show-pattern-in-list-only-if-has-permissions: true
+
+  # When writing in the chat it will only show the pattern if the player has the permission of that pattern
+  show-pattern-only-if-has-permissions: false
+
+  show-pattern-on:
+    list: true
+    selected-message: true
+    already-in-use-message: true
+    pattern-disabled-message: true
+  custom-pattern-list:
+    enable: false
+    list:
+      - '&4--&c--&6--&e--&2--&a--&b--&8[ &7Custom List &8]&b--&3--&b--&a--&2--&e--&6--&c--&4--'
+      - '&7This list is a custom list,'
+      - '&7you can use it if you want more customization'
+      - ''
+      - '&7Example:'
+      - '&8> &7/chatcolor color3 &8- &b[MVP]'
+      - '&8> &7/chatcolor color2 &8- &a[VIP]'
+      - '&8> &7/chatcolor color &8- &a[VIP]'
+      - '&4---&c---&6---&e---&2---&a---&b---&3----&b---&a---&2---&e---&6---&c---&4---'

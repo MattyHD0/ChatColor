@@ -1,0 +1,55 @@
+messages:
+  prefix: "&8[&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr&8]"
+  commands:
+    chatcolor:
+      unknown-command: "%prefix% &7Unknown command, try &a/chatcolor help&7."
+      help:
+        - '&4--&c--&6--&e--&2--&a--&b--&8[ &7ChatColor Help &8]&b--&a--&2--&e--&6--&c--&4--'
+        - '&8>> &7/chatcolor set <color/pattern> &8- &7It enables you a pattern'
+        - '&8>> &7/chatcolor list &8- &7It shows you the list of patterns'
+        - '&8>> &7/chatcolor disable &8- &7Deactivate your equipped pattern'
+        - '&8>> &7/chatcolor gui &8- &7Open the chatcolor gui'
+        - '&4---&c---&6---&e---&2---&a---&b---&3--&b--&a---&2---&e---&6---&c---&4---'
+      set:
+        selected-pattern: "%prefix% &7You have selected the pattern &a%pattern%&7."
+        pattern-not-exist: "%prefix% &7The pattern &c%pattern% &7does not exist."
+        already-in-use: "%prefix% &7You already have the color &a%pattern%&7 equipped."
+      list:
+        no-patterns: "%prefix% &7There is no pattern or you do not have permissions to see any."
+        header: '&4--&c--&6--&e--&2--&a--&b--&8[ &7Patterns List &8]&b--&3--&b--&a--&2--&e--&6--&c--&4--'
+        pattern: '&8> &7/chatcolor set &a%pattern%'
+        footer: '&4---&c---&6---&e---&2---&a---&b---&3----&b---&a---&2---&e---&6---&c---&4---'
+      disable:
+        pattern-disabled: "%prefix% &7You have &cdisabled&7 the pattern &a%pattern%&7."
+        no-pattern-in-use: "%prefix% &7You do not have any pattern in use."
+      gui:
+        gui-opened: "%prefix% &7The patterns gui was opened."
+    chatcoloradmin:
+      unknown-command: "%prefix% &7Unknown command, try &c/chatcoloradmin help&7."
+      help:
+        - '&4--&c--&6--&e--&2--&a--&b--&8[ &7ChatColor Admin &8]&b--&a--&2--&e--&6--&c--&4--'
+        - '&8>> &7/chatcoloradmin set <player> <color/pattern> &8- &7Equip the pattern to a player'
+        - '&8>> &7/chatcoloradmin disable <player> &8- &7Unequip a player''s pattern'
+        - '&8>> &7/chatcoloradmin gui <player> &8- &7Open the chatcolor gui to a player'
+        - '&8>> &7/chatcoloradmin reload &8- &7Reload the plugin'
+        - '&4---&c---&6---&e---&2---&a---&b---&3--&b--&a---&2---&e---&6---&c---&4---'
+      set:
+        pattern-not-exist: "%prefix% &7The pattern &c%pattern% &7does not exist."
+        selected-pattern-sender: "%prefix% &7Equipped the &a%pattern% &7pattern to &a%player%&7."
+        selected-pattern-target: "%prefix% &a%sender% &7has equipped you with the &a%pattern% &7pattern."
+        already-in-use: "%prefix% &7Player %player% already has the %pattern% pattern in use."
+      disable:
+        pattern-disabled-sender: "%prefix% &7You have disabled the %player% pattern."
+        pattern-disabled-target: "%prefix% &7Your pattern &a%pattern% &7was disabled by &a%sender%&7."
+        no-pattern-in-use: "%prefix% &a%player% &7does not have any pattern equipped."
+      gui:
+        gui-opened-sender: "%prefix% &7You opened the gui to the player &a%player%&7."
+        gui-opened-target: "%prefix% &7The patterns gui was opened by &a%sender%"
+      reload:
+        reloading-plugin: "%prefix% &7Reloading Plugin..."
+        plugin-reloaded: "%prefix% &7The configuration was reloaded."
+  other:
+    no-permission: "%prefix% &cYou do not have permissions to do that."
+    unknown-player: "%prefix% &7The player &c%player%&7 is not online."
+    bad-executor: "%prefix% &7Only players can use this command."
+    correct-usage: "%prefix% &7Correct usage: &a%command%&7"
