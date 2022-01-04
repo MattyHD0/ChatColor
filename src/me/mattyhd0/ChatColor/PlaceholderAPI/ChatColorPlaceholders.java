@@ -35,27 +35,22 @@ public class ChatColorPlaceholders extends PlaceholderExpansion
         return "1.0";
     }
     
-    public String onPlaceholderRequest(final Player player, final String identifier) {
-
-        if (player == null) {
-            return "";
-        }
+    public String onPlaceholderRequest(Player player, String identifier) {
 
         Pattern pattern = new CPlayer(player).getPattern();
 
+        if(pattern == null){
+            return "";
+        }
+
         if (identifier.equals("pattern_name")) {
-            if (pattern != null) {
 
-                return pattern.getName(false);
-
-            }
+            return pattern.getName(false);
 
         } else if (identifier.equals("pattern_name_formatted")) {
-            if (pattern != null) {
 
-                return pattern.getName(true);
+            return pattern.getName(true);
 
-            }
         }
 
         return "";

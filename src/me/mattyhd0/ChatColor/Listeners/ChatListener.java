@@ -3,6 +3,7 @@ package me.mattyhd0.ChatColor.Listeners;
 import me.mattyhd0.ChatColor.CPlayer;
 import me.mattyhd0.ChatColor.Configuration.Config;
 import me.mattyhd0.ChatColor.PatternAPI.Pattern;
+import me.mattyhd0.ChatColor.PatternAPI.PatternLoader;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.entity.Player;
@@ -24,9 +25,9 @@ public class ChatListener implements Listener {
             boolean showPatternIfHasPerm = Config.getBoolean("config.show-pattern-only-if-has-permissions");
             String message = ChatColor.stripColor(event.getMessage());
 
-            if(showPatternIfHasPerm && cPlayer.canUsePattern(pattern)){
+            if (showPatternIfHasPerm && cPlayer.canUsePattern(pattern)) {
                 event.setMessage(pattern.getText(message));
-            } else if (!showPatternIfHasPerm){
+            } else if (!showPatternIfHasPerm) {
                 event.setMessage(pattern.getText(message));
             }
 
