@@ -22,13 +22,13 @@ Plugin for Spigot that allows you to create patterns and colors for the chat
 
 ##Pattern Modes
 
-| Identifier           | Description                                                       |
-|:---------------------|:------------------------------------------------------------------|
-| SINGLE               | Use only the first color                                          |
-| RANDOM               | Use the colors randomly                                           |
-| LINEAR               | Utiliza todos los colores de manera linear                        |
-| LINEAR_IGNORE_SPACES | Utiliza todos los colores de manera linear ignorando los espacios |
-| GRADIENT             | Hace un gradiente con los colores ingresados                      |
+| Identifier           | Description                                            |
+|:---------------------|:-------------------------------------------------------|
+| SINGLE               | Use only the first color                               |
+| RANDOM               | Use the colors randomly                                |
+| LINEAR               | Use all colors in a linear fashion                     |
+| LINEAR_IGNORE_SPACES | Use all the colors in a linear way ignoring the spaces |
+| GRADIENT             | Makes a gradient with the colors entered               |
 
 ## Placeholders
 
