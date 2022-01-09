@@ -11,16 +11,35 @@ public class SinglePattern implements Pattern {
     private List<String> colors;
     private String permission;
 
-    public SinglePattern(String name, List<String> colors, String permission) {
+    private boolean bold;
+    private boolean italic;
+    private boolean underline;
+    private boolean magic;
+    private boolean strikethrough;
+
+    public SinglePattern(String name, List<String> colors, String permission, boolean bold, boolean italic, boolean underline, boolean magic, boolean strikethrough) {
 
         this.name = name;
         this.colors = colors;
         this.permission = permission;
 
+        this.bold = bold;
+        this.italic = italic;
+        this.underline = underline;
+        this.magic = magic;
+        this.strikethrough = strikethrough;
+
     }
 
     @Override
     public String getText(String text) {
+
+        if(bold) text = net.md_5.bungee.api.ChatColor.BOLD+text;
+        if(italic) text = net.md_5.bungee.api.ChatColor.ITALIC+text;
+        if(underline) text = net.md_5.bungee.api.ChatColor.UNDERLINE+text;
+        if(magic) text = net.md_5.bungee.api.ChatColor.MAGIC+text;
+        if(strikethrough) text = net.md_5.bungee.api.ChatColor.STRIKETHROUGH+text;
+        
         return Util.color("&"+colors.get(0)+text);
     }
 

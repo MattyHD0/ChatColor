@@ -3,7 +3,6 @@ package me.mattyhd0.ChatColor.Listeners;
 import me.mattyhd0.ChatColor.CPlayer;
 import me.mattyhd0.ChatColor.Configuration.Config;
 import me.mattyhd0.ChatColor.PatternAPI.Pattern;
-import me.mattyhd0.ChatColor.PatternAPI.PatternLoader;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.entity.Player;

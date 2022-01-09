@@ -1,11 +1,10 @@
 package me.mattyhd0.ChatColor.Patterns;
 
-import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
-import me.NitkaNikita.AdvancedColorAPI.api.types.GradientedText;
 import me.mattyhd0.ChatColor.PatternAPI.Pattern;
-import org.bukkit.Bukkit;
-import org.bukkit.inventory.ItemStack;
+import me.mattyhd0.ChatColor.Utility.Util;
+import net.md_5.bungee.api.ChatColor;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,33 +13,40 @@ public class GradientPattern implements Pattern {
     private String name;
     private List<String> colors;
     private String permission;
-    private double colorMerging;
 
-    public GradientPattern(String name, List<String> colors, String permission, double colorMerging) {
+    private boolean bold;
+    private boolean italic;
+    private boolean underline;
+    private boolean magic;
+    private boolean strikethrough;
+
+    public GradientPattern(String name, List<String> colors, String permission, boolean bold, boolean italic, boolean underline, boolean magic, boolean strikethrough) {
 
         this.name = name;
         this.colors = colors;
         this.permission = permission;
-        this.colorMerging = colorMerging;
+
+        this.bold = bold;
+        this.italic = italic;
+        this.underline = underline;
+        this.magic = magic;
+        this.strikethrough = strikethrough;
 
     }
 
     @Override
     public String getText(String text) {
 
-        if(Bukkit.getPluginManager().getPlugin("AdvancedColorAPI") != null) {
+        List<Color> colorsList = new ArrayList<>();
+        colors.forEach(color -> {
 
-            ArrayList<AdvancedColor> advancedColors = new ArrayList<>();
+            colorsList.add(
+                    ChatColor.of(color).getColor()
+            );
 
-            for (String color : this.colors) {
-                advancedColors.add(new AdvancedColor(color.replaceAll("#", "")));
-            }
+        });
 
-            text = GradientedText.generateGradient(text, advancedColors, colorMerging).getFullText().toLegacyText();
-
-        }
-
-        return text;
+        return Util.bukkitGradient(text, colorsList, bold, italic, underline, magic, strikethrough);
     }
 
     @Override

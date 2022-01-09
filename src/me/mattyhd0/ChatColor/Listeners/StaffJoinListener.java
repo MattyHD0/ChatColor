@@ -1,9 +1,9 @@
 package me.mattyhd0.ChatColor.Listeners;
 
+import me.mattyhd0.ChatColor.UpdateChecker.UpdateChecker;
 import org.bukkit.event.EventHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
-import me.mattyhd0.ChatColor.Utility.UpdateChecker;
 import me.mattyhd0.ChatColor.Configuration.Config;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.Listener;
@@ -16,13 +16,13 @@ public class StaffJoinListener implements Listener {
 
         if (player.hasPermission("chatcolor.updatenotify") && Config.getBoolean("config.update-checker")) {
 
-            UpdateChecker updateChecker = new UpdateChecker();
+            UpdateChecker updateChecker = new UpdateChecker(me.mattyhd0.ChatColor.ChatColor.get(), 93186);
 
-            if (updateChecker.taskIsValid()) {
+            if (updateChecker.requestIsValid()) {
 
                 if (!updateChecker.isRunningLatestVersion()) {
                     String message = ChatColor.translateAlternateColorCodes('&', "&8[&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr&8] &7You are using version &a" + updateChecker.getVersion() + "&7 and the latest version is &a" + updateChecker.getLatestVersion());
-                    String message2 = ChatColor.translateAlternateColorCodes('&', "&8[&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr&8] &7You can download the latest version at: &a" + updateChecker.getSpigotUrl());
+                    String message2 = ChatColor.translateAlternateColorCodes('&', "&8[&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr&8] &7You can download the latest version at: &a" + updateChecker.getSpigotResource().getDownloadUrl());
                     player.sendMessage(message);
                     player.sendMessage(message2);
                 }

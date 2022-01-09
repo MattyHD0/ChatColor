@@ -229,20 +229,27 @@ red:
 
 
 
-#For this to work you need AdvancedColorAPI (https://www.spigotmc.org/resources/advancedcolorapi.92021/)
-#You just have to install it in your /plugins/ folder
 gradient:
   mode: "GRADIENT"
-  color-merging: 0.08
-  colors: #You can add more than 2 colors
-    - '#0ff1ce'
-    - '#ff80ed'
+  bold: true
+  italic: true
+  underline: true
+  magic: false
+  strikethrough: false
+  colors:
+    - '#FF0000'
+    - '#F4FF00'
+    - '#00FF13'
+    - '#00F2FF'
+    - '#1200FF'
+    - '#FF00FB'
   gui-item:
     slot: 15
     has-permission:
       type: INK_SACK:12
       amount: 1
       name: "&7Equip: {pattern_name_formatted}"
+      custom_model_data: 2
       lore:
         - "&8ChatColor Pattern"
         - ""

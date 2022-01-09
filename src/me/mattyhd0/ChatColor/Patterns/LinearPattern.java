@@ -13,12 +13,24 @@ public class LinearPattern implements Pattern {
     private String permission;
     private boolean ignoreSpaces;
 
-    public LinearPattern(String name, List<String> colors, String permission, boolean ignoreSpaces) {
+    private boolean bold;
+    private boolean italic;
+    private boolean underline;
+    private boolean magic;
+    private boolean strikethrough;
+
+    public LinearPattern(String name, List<String> colors, String permission, boolean ignoreSpaces, boolean bold, boolean italic, boolean underline, boolean magic, boolean strikethrough) {
 
         this.name = name;
         this.colors = colors;
         this.permission = permission;
         this.ignoreSpaces = ignoreSpaces;
+
+        this.bold = bold;
+        this.italic = italic;
+        this.underline = underline;
+        this.magic = magic;
+        this.strikethrough = strikethrough;
 
     }
 
@@ -30,6 +42,13 @@ public class LinearPattern implements Pattern {
         int index = 0;
 
         for (String character : characters) {
+
+            if(bold) character = net.md_5.bungee.api.ChatColor.BOLD+character;
+            if(italic) character = net.md_5.bungee.api.ChatColor.ITALIC+character;
+            if(underline) character = net.md_5.bungee.api.ChatColor.UNDERLINE+character;
+            if(magic) character = net.md_5.bungee.api.ChatColor.MAGIC+character;
+            if(strikethrough) character = net.md_5.bungee.api.ChatColor.STRIKETHROUGH+character;
+
             finalString = finalString + "&" + colors.get(index) + character;
             if (index < colors.size() - 1) {
 

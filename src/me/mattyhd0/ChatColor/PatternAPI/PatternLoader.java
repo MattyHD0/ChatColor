@@ -25,25 +25,55 @@ public class PatternLoader {
             String mode = patterns.getString(key+".mode");
             String permission = patterns.getString(key+".permission");
             List<String> colors = patterns.getStringList(key+".colors");
-            double colorMerging = patterns.getDouble(key+".color-merging");
+
+            boolean bold = patterns.contains(key + ".bold") && patterns.getBoolean(key + ".bold");
+            boolean italic = patterns.contains(key + ".italic") && patterns.getBoolean(key + ".italic");
+            boolean underline = patterns.contains(key + ".underline") && patterns.getBoolean(key + ".underline");
+            boolean magic = patterns.contains(key + ".magic") && patterns.getBoolean(key + ".magic");
+            boolean strikethrough = patterns.contains(key + ".strikethrough") && patterns.getBoolean(key + ".strikethrough");
 
             Pattern pattern = null;
 
             switch (mode){
                 case "RANDOM":
-                    pattern = new RandomPattern(key, colors, permission);
+                    pattern = new RandomPattern(key, colors, permission,
+                            bold,
+                            italic,
+                            underline,
+                            magic,
+                            strikethrough);
                     break;
                 case "SINGLE":
-                    pattern = new SinglePattern(key, colors, permission);
+                    pattern = new SinglePattern(key, colors, permission,
+                            bold,
+                            italic,
+                            underline,
+                            magic,
+                            strikethrough);
                     break;
                 case "LINEAR":
-                    pattern = new LinearPattern(key, colors, permission, false);
+                    pattern = new LinearPattern(key, colors, permission, false,
+                            bold,
+                            italic,
+                            underline,
+                            magic,
+                            strikethrough);
                     break;
                 case "LINEAR_IGNORE_SPACES":
-                    pattern = new LinearPattern(key, colors, permission, true);
+                    pattern = new LinearPattern(key, colors, permission, true,
+                            bold,
+                            italic,
+                            underline,
+                            magic,
+                            strikethrough);
                     break;
                 case "GRADIENT":
-                    pattern = new GradientPattern(key, colors, permission, colorMerging);
+                    pattern = new GradientPattern(key, colors, permission,
+                            bold,
+                            italic,
+                            underline,
+                            magic,
+                            strikethrough);
                     break;
 
             }

@@ -3,7 +3,7 @@ package me.mattyhd0.ChatColor;
 import me.mattyhd0.ChatColor.Commands.ChatColorAdminCommand;
 import me.mattyhd0.ChatColor.GUI.GuiListener;
 import me.mattyhd0.ChatColor.PatternAPI.PatternLoader;
-import me.mattyhd0.ChatColor.Utility.UpdateChecker;
+import me.mattyhd0.ChatColor.UpdateChecker.UpdateChecker;
 import me.mattyhd0.ChatColor.Utility.Util;
 import me.mattyhd0.ChatColor.bStats.Metrics;
 import org.bukkit.command.ConsoleCommandSender;
@@ -32,14 +32,12 @@ public class ChatColor extends JavaPlugin {
         prefix = Util.color("&8[&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr&8]");
         Bukkit.getConsoleSender().sendMessage(Util.color(prefix+" &7Enabling ChatColor v" + this.getDescription().getVersion()));
         Metrics metrics = new Metrics(this, 11648);
-        //saySupport("Vault");
         saySupport("PlaceholderAPI");
-        saySupport("AdvancedColorAPI");
         Config.loadConfiguration();
         setupConfig();
         setupListeners();
         setupCommands();
-        updateChecker();
+        updateChecker(this, 93186);
         setupPlaceholderAPI();
         PatternLoader.loadAllPatterns();
     }
@@ -83,17 +81,17 @@ public class ChatColor extends JavaPlugin {
         }
     }
     
-    private void updateChecker() {
+    private void updateChecker(Plugin plugin, int spigotId) {
         if (Config.getBoolean("config.update-checker")) {
-            UpdateChecker updateChecker = new UpdateChecker();
+            UpdateChecker updateChecker = new UpdateChecker(plugin, spigotId);
             ConsoleCommandSender console = Bukkit.getConsoleSender();
-            if (updateChecker.taskIsValid()) {
+            if (updateChecker.requestIsValid()) {
                 if (updateChecker.isRunningLatestVersion()) {
                     String message = Util.color(prefix+" &7You are using the latest version of ChatColor!");
                     console.sendMessage(message);
                 } else {
                     String message = Util.color(prefix+" &7You are using version &a" + updateChecker.getVersion() + "&7 and the latest version is &a" + updateChecker.getLatestVersion());
-                    String message2 = Util.color(prefix+" &7You can download the latest version at: &a" + updateChecker.getSpigotUrl());
+                    String message2 = Util.color(prefix+" &7You can download the latest version at: &a" + updateChecker.getSpigotResource().getDownloadUrl());
                     console.sendMessage(message);
                     console.sendMessage(message2);
                 }

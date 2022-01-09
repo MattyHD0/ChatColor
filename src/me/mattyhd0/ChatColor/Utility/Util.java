@@ -56,6 +56,117 @@ public class Util {
 
     }
 
+    public static String bukkitGradient(String text, java.awt.Color gradientStart, java.awt.Color gradientEnd, boolean bold, boolean italic, boolean underline, boolean magic, boolean strikethrough){
+
+        int r1 = gradientEnd.getRed(); int r2 = gradientStart.getRed();
+        int g1 = gradientEnd.getGreen(); int g2 = gradientStart.getGreen();
+        int b1 = gradientEnd.getBlue(); int b2 = gradientStart.getBlue();
+
+        int rMath = (r1+r2/2)/text.length(); int rMath2 = (r2-r1)/text.length();
+        int gMath = (g1+g2/2)/text.length(); int gMath2 = (g2-g1)/text.length();
+        int bMath = (b1+b2/2)/text.length(); int bMath2 = (b2-b1)/text.length();
+
+        String coloredText = "";
+
+        for(int i = 1; i < text.length()+1; i++){
+
+            int r = r1 > r2 ? rMath * i : r2-(rMath2)*i;
+            int g = g1 > g2 ? gMath * i : g2-(gMath2)*i;
+            int b = b1 > b2 ? bMath * i : b2-(bMath2)*i;
+
+            if(r > 255) r = 255;
+            if(r < 0) r = 0;
+            if(g > 255) g = 255;
+            if(g < 0) g = 0;
+            if(b > 255) b = 255;
+            if(b < 0) b = 0;
+
+            String c = Character.toString(text.charAt(i-1));
+
+            if(bold) c = net.md_5.bungee.api.ChatColor.BOLD+c;
+            if(italic) c = net.md_5.bungee.api.ChatColor.ITALIC+c;
+            if(underline) c = net.md_5.bungee.api.ChatColor.UNDERLINE+c;
+            if(magic) c = net.md_5.bungee.api.ChatColor.MAGIC+c;
+            if(strikethrough) c = net.md_5.bungee.api.ChatColor.STRIKETHROUGH+c;
+
+            coloredText = coloredText + net.md_5.bungee.api.ChatColor.of(new java.awt.Color(r, g, b)) + c;
+
+        }
+
+        return coloredText;
+    }
+
+    public static String bukkitGradient(String text, List<java.awt.Color> colors, boolean bold, boolean italic, boolean underline, boolean magic, boolean strikethrough){
+
+        int divisions = colors.size()-1;
+        int divideEveryChars = text.length()/divisions;
+        List<String> substrings = new ArrayList<>();
+        StringBuilder finalText = new StringBuilder();
+
+        for(int i = 0; i < text.length()+divideEveryChars; i += divideEveryChars){
+
+            if(i+divideEveryChars > text.length() && text.length() > 0) {
+                int lastSub = substrings.size()-1;
+                String latestStr = substrings.get(lastSub);
+                substrings.set(lastSub, latestStr+text.substring(i));
+                break;
+            }
+
+            String sub = text.substring(i, (i+divideEveryChars));
+
+            substrings.add(sub);
+
+        }
+
+        int color = 0;
+        for(String s: substrings){
+            try {
+                finalText.append(
+                        bukkitGradient(s,
+                                colors.get(color),
+                                colors.get(color + 1),
+                                bold,
+                                italic,
+                                underline,
+                                magic,
+                                strikethrough
+                        )
+                );
+            } catch (IndexOutOfBoundsException e){
+                finalText.append(
+                        bukkitGradient(s,
+                                colors.get(colors.size()-1),
+                                colors.get(colors.size()-1),
+                                bold,
+                                italic,
+                                underline,
+                                magic,
+                                strikethrough
+                        )
+                );
+            }
+            color++;
+        }
+
+        return finalText.toString();
+    }
+
+    public static String getRandomString(String characters, int length){
+
+        String[] chars = characters.split("");
+        String text = "";
+
+        for(int i = 0; i < length+1; i++){
+
+            double c = Math.random()*(chars.length-1);
+            text = text+chars[(int)Math.round(c)];
+
+        }
+
+        return text;
+
+    }
+
     public static List<String> coloredList(List<String> stringList){
 
         List<String> coloredList = new ArrayList<>();
@@ -142,6 +253,14 @@ public class Util {
                     itemMeta.setUnbreakable(unbreakable);
                 } catch (NoSuchMethodError exception){
                     error.addError("This version of Bukkit/Spigot does not support the Unbreakable tag.");
+                }
+            }
+
+            if(config.contains(key+".custom_model_data")){
+                try {
+                    itemMeta.setCustomModelData(config.getInt(key+".custom_model_data"));
+                } catch (NoSuchMethodError e){
+                    error.addError("The setCustomModelData method does not exist in this version of Spigot");
                 }
             }
 
