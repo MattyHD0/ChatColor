@@ -22,7 +22,7 @@ Plugin for Spigot that allows you to create patterns and colors for the chat
 
 ## Pattern Modes
 
-| Identifier           | Description                                            |
+| Mode                 | Description                                            |
 |:---------------------|:-------------------------------------------------------|
 | SINGLE               | Use only the first color                               |
 | RANDOM               | Use the colors randomly                                |
