@@ -1,7 +1,7 @@
 # ChatColor
 Plugin for Spigot that allows you to create patterns and colors for the chat
 
-##Commands
+## Commands
 
 | Users                    | Permission       |
 |:-------------------------|:-----------------:|
@@ -20,7 +20,7 @@ Plugin for Spigot that allows you to create patterns and colors for the chat
 | /chatcoloradmin gui [player]           | chatcolor.admin.gui     |
 | /chatcoloradmin reload                 | chatcolor.admin.reload  |
 
-##Pattern Modes
+## Pattern Modes
 
 | Identifier           | Description                                            |
 |:---------------------|:-------------------------------------------------------|
