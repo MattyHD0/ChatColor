@@ -1,7 +1,5 @@
 package me.mattyhd0.ChatColor.GUI;
 
-import me.clip.placeholderapi.PlaceholderAPI;
-import me.mattyhd0.ChatColor.ChatColor;
 import me.mattyhd0.ChatColor.Configuration.Config;
 import me.mattyhd0.ChatColor.GUI.ClickActions.API.GuiClickAction;
 import me.mattyhd0.ChatColor.GUI.ClickActions.Util.GuiClickActionManager;
