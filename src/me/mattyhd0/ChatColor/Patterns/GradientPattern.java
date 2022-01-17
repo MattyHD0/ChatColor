@@ -38,15 +38,19 @@ public class GradientPattern implements Pattern {
     public String getText(String text) {
 
         List<Color> colorsList = new ArrayList<>();
-        colors.forEach(color -> {
+        try {
+            colors.forEach(color -> {
 
-            colorsList.add(
-                    ChatColor.of(color).getColor()
-            );
+                colorsList.add(
+                        net.md_5.bungee.api.ChatColor.of(color).getColor()
+                );
 
-        });
+            });
 
-        return Util.bukkitGradient(text, colorsList, bold, italic, underline, magic, strikethrough);
+            return Util.bukkitGradient(text, colorsList, bold, italic, underline, magic, strikethrough);
+        } catch (NoSuchMethodError e){
+            return text;
+        }
     }
 
     @Override

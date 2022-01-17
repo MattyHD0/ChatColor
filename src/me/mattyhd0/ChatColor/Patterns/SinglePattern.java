@@ -2,6 +2,7 @@ package me.mattyhd0.ChatColor.Patterns;
 
 import me.mattyhd0.ChatColor.PatternAPI.Pattern;
 import me.mattyhd0.ChatColor.Utility.Util;
+import org.bukkit.ChatColor;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class SinglePattern implements Pattern {
         if(underline) text = net.md_5.bungee.api.ChatColor.UNDERLINE+text;
         if(magic) text = net.md_5.bungee.api.ChatColor.MAGIC+text;
         if(strikethrough) text = net.md_5.bungee.api.ChatColor.STRIKETHROUGH+text;
-        
+
         return Util.color("&"+colors.get(0)+text);
     }
 

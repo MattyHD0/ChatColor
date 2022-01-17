@@ -1,12 +1,71 @@
 gui:
   colored-example-text: "this is just a sample text"
-  open-sound: BLOCK_CHEST_OPEN
+  open-sound: LEVEL_UP
   gui:
-    title: "&8ChatColor GUI"
+    title: "&8Pick a ChatColor"
     rows: 6
   items:
-    decoration:
-      type: STAINED_GLASS_PANE:15
+    decoration1:
+      material: GRAY_STAINED_GLASS_PANE
+      name: " "
+      amount: 1
+      slots:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+        - 12
+        - 13
+        - 14
+        - 15
+        - 16
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+        - 30
+        - 31
+        - 32
+        - 33
+        - 34
+        - 35
+        - 36
+        - 37
+        - 38
+        - 39
+        - 40
+        - 41
+        - 42
+        - 43
+        - 44
+        - 45
+        - 46
+        - 47
+        - 48
+        - 49
+        - 50
+        - 51
+        - 52
+        - 53
+    decoration2:
+      material: BLACK_STAINED_GLASS_PANE
       name: " "
       amount: 1
       slots:
@@ -36,17 +95,12 @@ gui:
         - 51
         - 52
         - 53
-    example-item-2:
-      type: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzY5ZTNlNmU1YjJiOTJmMGJlYjM2OGI3MzhiOTkzZDdiYTIyNWJmOWJiMjc1OGJmYzlmYzJkYWJhNGE1YTdkIn19fQ==
-      name: "&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr &f&lMenu"
-      amount: 1
-      slot: 4
     example-item:
-      type: ARROW
-      name: ""
+      material: BARRIER
+      name: "&cUnequip"
       amount: 1
       lore:
-        - "&7Click to back to the main menu."
+        - "&7Click to unequip your current pattern."
       #You can use as actions:
       #
       # MESSAGE:your message
@@ -56,6 +110,7 @@ gui:
       # CLOSE-INVENTORY
       # SOUND:sound pitch yaw
       actions:
-        - "PLAYER-COMMAND:menu"
+        - "PLAYER-COMMAND:chatcolor disable"
         - "SOUND:ENTITY_PLAYER_LEVELUP 1 1"
-      slot: 45
+        - "CLOSE-INVENTORY"
+      slot: 49

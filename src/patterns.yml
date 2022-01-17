@@ -1,110 +1,662 @@
-rainbow:
-  permission: 'chatcolor.rainbow' #the "permission:" tag is optional
-  mode: "LINEAR_IGNORE_SPACES" #Valid arguments: RANDOM, LINEAR, LINEAR_IGNORE_SPACES, SINGLE
+dark_red:
+  permission: 'chatcolor.color.dark_red'
+  mode: 'SINGLE'
   colors:
     - '4'
-    - 'c'
-    - '6'
-    - 'e'
-    - '2'
-    - 'a'
-    - 'b'
-    - '3'
-    - '1'
-    - '9'
-    - 'd'
-    - '5'
   gui-item:
     slot: 10
     has-permission:
-      type: INK_SACK:11
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWZkZTNiZmNlMmQ4Y2I3MjRkZTg1NTZlNWVjMjFiN2YxNWY1ODQ2ODRhYjc4NTIxNGFkZDE2NGJlNzYyNGIifX19
       amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
+      name: '&7Equip: {pattern_name_formatted}'
       lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&aClick to equip {pattern_name}!"
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
       actions:
-        - "SET-PATTERN:{pattern_name}"
-        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
-        - "CLOSE-INVENTORY"
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
     has-not-permission:
-      type: STAINED_GLASS_PANE:14
+      material: RED_STAINED_GLASS_PANE
       amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
+      name: '&7Equip: {pattern_name_formatted}'
       lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&cYou don't have permissions to do that!"
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
       actions:
-        - "MESSAGE:&cYou do not have permission to use this pattern!"
-        - "CLOSE-INVENTORY"
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
 
 
 
-rainbow2:
-  permission: 'chatcolor.rainbow2'
-  mode: "RANDOM"
+red:
+  permission: 'chatcolor.color.red'
+  mode: 'SINGLE'
   colors:
-    - '4'
     - 'c'
-    - '6'
-    - 'e'
-    - '2'
-    - 'a'
-    - 'b'
-    - '3'
-    - '1'
-    - '9'
-    - 'd'
-    - '5'
   gui-item:
     slot: 11
     has-permission:
-      type: INK_SACK:14
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmU1NGRlZjE0NzcwNTFlMjMzM2UzMmQ1YjE2YzIyYjlkNjQwZDNhYjk5YWJiODQ0YjRlNWRmYzUyZGE3MGIzIn19fQ===
       amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
+      name: '&7Equip: {pattern_name_formatted}'
       lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&aClick to equip {pattern_name}!"
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
       actions:
-        - "SET-PATTERN:{pattern_name}"
-        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
-        - "CLOSE-INVENTORY"
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
     has-not-permission:
-      type: STAINED_GLASS_PANE:14
+      material: RED_STAINED_GLASS_PANE
       amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
+      name: '&7Equip: {pattern_name_formatted}'
       lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&cYou don't have permissions to do that!"
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
       actions:
-        - "MESSAGE:&cYou do not have permission to use this pattern!"
-        - "CLOSE-INVENTORY"
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+gold:
+  permission: 'chatcolor.color.gold'
+  mode: 'SINGLE'
+  colors:
+    - '6'
+  gui-item:
+    slot: 12
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTdjMmQ1ZWVlODRiYmExZDdlOTRmOTMzYTBhNTU2ZWQ3ZWE0ZTRmYTY1ZThlOWY1NjMyNTgxM2IifX19=
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+yellow:
+  permission: 'chatcolor.color.yellow'
+  mode: 'SINGLE'
+  colors:
+    - 'e'
+  gui-item:
+    slot: 13
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTQzYzc5Y2Q5YzJkMzE4N2VhMDMyNDVmZTIxMjhlMGQyYWJiZTc5NDUyMTRiYzU4MzRkZmE0MDNjMTM0ZTI3In19fQ===
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+green:
+  permission: 'chatcolor.color.green'
+  mode: 'SINGLE'
+  colors:
+    - '2'
+  gui-item:
+    slot: 14
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGU5YjI3ZmNjZDgwOTIxYmQyNjNjOTFkYzUxMWQwOWU5YTc0NjU1NWU2YzljYWQ1MmU4NTYyZWQwMTgyYTJmIn19fQ===
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+lime:
+  permission: 'chatcolor.color.lime'
+  mode: 'SINGLE'
+  colors:
+    - 'a'
+  gui-item:
+    slot: 15
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjJkMTQ1YzkzZTVlYWM0OGE2NjFjNmYyN2ZkYWZmNTkyMmNmNDMzZGQ2MjdiZjIzZWVjMzc4Yjk5NTYxOTcifX19===
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+aqua:
+  permission: 'chatcolor.color.aqua'
+  mode: 'SINGLE'
+  colors:
+    - 'b'
+  gui-item:
+    slot: 16
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTcwNjIyOTdmMjZlNTA5Y2U2YTI0Yzk5MjAxYThmOGI0YWUwMzBkNThmNDFlNzNjZDkzZDdiZDc3ZTY0NyJ9fX0====
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+dark_aqua:
+  permission: 'chatcolor.color.dark_aqua'
+  mode: 'SINGLE'
+  colors:
+    - '3'
+  gui-item:
+    slot: 19
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTIxOGM0OTZkZmJkZWI0NTUzYTZkMzJiMjc0Yjk5NTZiN2UxNmE5ZTRkYWZjOWIzM2ZjZjE4OTdiOCJ9fX0====
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+blue:
+  permission: 'chatcolor.color.blue'
+  mode: 'SINGLE'
+  colors:
+    - '9'
+  gui-item:
+    slot: 20
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjJkNWM3MzJhZTU4MjNlZmViZWJjMTJlYmFkNmI1NTljYmI3MWQ2YmM3ZWNlNTNiYzRhOTgzYWRhYWU0MyJ9fX0=====
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+dark_blue:
+  permission: 'chatcolor.color.dark_blue'
+  mode: 'SINGLE'
+  colors:
+    - '1'
+  gui-item:
+    slot: 21
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjU2NzYxYjU3MmNmZTIyYmEzNDVkYzdhZDA2NmEwNzliZDQ1YTczNjU1NjdjMjI2MTE0YTY3ZmQ3ZGJhODMifX19====
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+pink:
+  permission: 'chatcolor.color.pink'
+  mode: 'SINGLE'
+  colors:
+    - 'd'
+  gui-item:
+    slot: 22
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzNiMGFmODNkMGM3MjhhZWVjYTQ3MGYwOGExZDc1ZjQxY2VlMjUzYTM1NzNiYTQxNTdjYTI0MzNlNmMzNiJ9fX0======
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+purple:
+  permission: 'chatcolor.color.purple'
+  mode: 'SINGLE'
+  colors:
+    - '5'
+  gui-item:
+    slot: 23
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjYxN2QxNzEzMmQ5NWIwYjNmOWYyMDdiYTI5NGNlOTNiZDdhMjEwM2QyZmYwNjI5NjYxNmI0YWQxNzhjYyJ9fX0=====
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+white:
+  permission: 'chatcolor.color.white'
+  mode: 'SINGLE'
+  colors:
+    - 'f'
+  gui-item:
+    slot: 24
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzY2YTVjOTg5MjhmYTVkNGI1ZDViOGVmYjQ5MDE1NWI0ZGRhMzk1NmJjYWE5MzcxMTc3ODE0NTMyY2ZjIn19fQ=======
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+gray:
+  permission: 'chatcolor.color.gray'
+  mode: 'SINGLE'
+  colors:
+    - '7'
+  gui-item:
+    slot: 25
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzhlMjk1NzY5OWJjOThhNGI1ZDYzNGFiNzE4NjdlZWIxODZiOTM0YmRiNjVkMmM0YjlkY2MyYjYxM2NmNSJ9fX0======
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+dark_gray:
+  permission: 'chatcolor.color.dark_gray'
+  mode: 'SINGLE'
+  colors:
+    - '8'
+  gui-item:
+    slot: 28
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjA4ZjMyMzQ2MmZiNDM0ZTkyOGJkNjcyODYzOGM5NDRlZTNkODEyZTE2MmI5YzZiYTA3MGZjYWM5YmY5In19fQ========
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
 
 
 
 black:
-  permission: chatcolor.black
-  mode: "LINEAR"
+  permission: 'chatcolor.color.black'
+  mode: 'SINGLE'
+  colors:
+    - '0'
+  gui-item:
+    slot: 29
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTY3YTJmMjE4YTZlNmUzOGYyYjU0NWY2YzE3NzMzZjRlZjliYmIyODhlNzU0MDI5NDljMDUyMTg5ZWUifX19========
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+
+monochromatic:
+  permission: 'chatcolor.color.monochromatic'
+  mode: 'LINEAR'
   colors:
     - '0'
     - '8'
@@ -113,124 +665,146 @@ black:
     - '7'
     - '8'
   gui-item:
-    slot: 12
+    slot: 40
     has-permission:
-      type: INK_SACK
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2MyYzU5ZmNkOTI2MjVlYzRkNTc4MTU5YTVmZDViZDQyNDdlMzgyZDQ5NDcyODRjZjUwZjk5OWM4NDExNmMwIn19fQ==
       amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
+      name: '&7Equip: {pattern_name_formatted}'
       lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&aClick to equip {pattern_name}!"
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
       actions:
-        - "SET-PATTERN:{pattern_name}"
-        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
-        - "CLOSE-INVENTORY"
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
     has-not-permission:
-      type: STAINED_GLASS_PANE:14
+      material: RED_STAINED_GLASS_PANE
       amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
+      name: '&7Equip: {pattern_name_formatted}'
       lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&cYou don't have permissions to do that!"
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
       actions:
-        - "MESSAGE:&cYou do not have permission to use this pattern!"
-        - "CLOSE-INVENTORY"
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
 
 
-
-halloween:
-  permission: chatcolor.halloween
-  mode: "LINEAR_IGNORE_SPACES"
+rainbow:
+  permission: 'chatcolor.color.rainbow'
+  mode: 'LINEAR_IGNORE_SPACES'
   colors:
-    - '#b900ff'
-    - '#ce7e00'
-  gui-item:
-    slot: 13
-    has-permission:
-      type: INK_SACK:5
-      amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
-      lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&aClick to equip {pattern_name}!"
-      actions:
-        - "SET-PATTERN:{pattern_name}"
-        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
-        - "CLOSE-INVENTORY"
-    has-not-permission:
-      type: STAINED_GLASS_PANE:14
-      amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
-      lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&cYou don't have permissions to do that!"
-      actions:
-        - "MESSAGE:&cYou do not have permission to use this pattern!"
-        - "CLOSE-INVENTORY"
-
-
-red:
-  mode: "SINGLE"
-  colors:
+    - '4'
     - 'c'
+    - '6'
+    - 'e'
+    - '2'
+    - 'a'
+    - 'b'
+    - '3'
+    - '1'
+    - '9'
+    - 'd'
+    - '5'
   gui-item:
-    slot: 14
+    slot: 41
     has-permission:
-      type: INK_SACK:1
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmMyMWEwYmE5Mjg4NWUyMDNjZjI5MzM3YTE3OWE4MmU5Y2M0OTJhNDI4YzYxMmU4ZTBlZTNlZjk3MTQwMmQifX19
       amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
+      name: '&7Equip: {pattern_name_formatted}'
       lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&aClick to equip {pattern_name}!"
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
       actions:
-        - "SET-PATTERN:{pattern_name}"
-        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
-        - "CLOSE-INVENTORY"
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
     has-not-permission:
-      type: STAINED_GLASS_PANE:14
+      material: RED_STAINED_GLASS_PANE
       amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
+      name: '&7Equip: {pattern_name_formatted}'
       lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&cYou don't have permissions to do that!"
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
       actions:
-        - "MESSAGE:&cYou do not have permission to use this pattern!"
-        - "CLOSE-INVENTORY"
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
 
 
 
-gradient:
-  mode: "GRADIENT"
+rainbow_random:
+  permission: 'chatcolor.color.rainbow_random'
+  mode: 'RANDOM'
+  colors:
+    - '4'
+    - 'c'
+    - '6'
+    - 'e'
+    - '2'
+    - 'a'
+    - 'b'
+    - '3'
+    - '1'
+    - '9'
+    - 'd'
+    - '5'
+  gui-item:
+    slot: 42
+    has-permission:
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2ZmYzk3N2NjN2UxMGU1NjRhMDk2MzhhNTNiYmM0YzU0YzljOGRhYzc0NTBiYTNkZmEzYzkwOTlkOTRmNSJ9fX0=
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
+      actions:
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
+    has-not-permission:
+      material: RED_STAINED_GLASS_PANE
+      amount: 1
+      name: '&7Equip: {pattern_name_formatted}'
+      lore:
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
+      actions:
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'
+
+
+rainbow_gradient:
+  permission: 'chatcolor.color.rainbow_gradient'
+  mode: 'GRADIENT'
   bold: true
   italic: true
   underline: true
@@ -244,36 +818,35 @@ gradient:
     - '#1200FF'
     - '#FF00FB'
   gui-item:
-    slot: 15
+    slot: 43
     has-permission:
-      type: INK_SACK:12
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzY5ZTNlNmU1YjJiOTJmMGJlYjM2OGI3MzhiOTkzZDdiYTIyNWJmOWJiMjc1OGJmYzlmYzJkYWJhNGE1YTdkIn19fQ==
       amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
-      custom_model_data: 2
+      name: '&7Equip: {pattern_name_formatted}'
       lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&aClick to equip {pattern_name}!"
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&aClick to equip {pattern_name}!'
       actions:
-        - "SET-PATTERN:{pattern_name}"
-        - "MESSAGE:&7You equipped the pattern {pattern_name_formatted}"
-        - "CLOSE-INVENTORY"
+        - 'SET-PATTERN:{pattern_name}'
+        - 'MESSAGE:&7You equipped the pattern {pattern_name_formatted}'
+        - 'CLOSE-INVENTORY'
     has-not-permission:
-      type: STAINED_GLASS_PANE:14
+      material: RED_STAINED_GLASS_PANE
       amount: 1
-      name: "&7Equip: {pattern_name_formatted}"
+      name: '&7Equip: {pattern_name_formatted}'
       lore:
-        - "&8ChatColor Pattern"
-        - ""
-        - "&7This is a ChatColor pattern"
-        - "&7This pattern would look like this:"
-        - "&7{example_text}"
-        - ""
-        - "&cYou don't have permissions to do that!"
+        - '&8ChatColor Pattern'
+        - ''
+        - '&7This is a ChatColor pattern'
+        - '&7This pattern would look like this:'
+        - '&7{example_text}'
+        - ''
+        - '&cYou don''t have permissions to do that!'
       actions:
-        - "MESSAGE:&cYou do not have permission to use this pattern!"
-        - "CLOSE-INVENTORY"
+        - 'MESSAGE:&cYou do not have permission to use this pattern!'
+        - 'CLOSE-INVENTORY'

@@ -3,6 +3,7 @@ package me.mattyhd0.ChatColor.Utility;
 import com.google.common.collect.Multimap;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import me.mattyhd0.ChatColor.XSeries.XMaterial;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
@@ -13,7 +14,6 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.*;
-import org.bukkit.plugin.AuthorNagException;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -26,6 +26,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Util {
+
+    public static String capitalize(String string){
+
+        //Divide la id EJEMPLO: DIAMOND_SWORD en el array {"DIAMOND", "SWORD"}
+        String[] strings = string.split("_");
+        String finalString = "";
+
+        //Transforma el array {"DIAMOND", "SWORD"} en el String "Diamond Sword "
+        for(String str: strings){
+            str = str.toLowerCase();
+            str = str.replaceFirst(Character.toString(str.charAt(0)), Character.toString(str.charAt(0)).toUpperCase());
+            finalString = finalString+str+" ";
+        }
+
+        //Elimina el " " (espacio) al final del texto si este existe
+        if(finalString.charAt(finalString.length()-1) == ' ') finalString = finalString.substring(0, finalString.length()-1);
+
+        return finalString;
+
+    }
 
     public static String color(String text){
 
@@ -181,13 +201,7 @@ public class Util {
 
     public static ItemStack getSkullFromValue(String value){
 
-        ItemStack skull;
-        try {
-            skull = new ItemStack(Material.valueOf("PLAYER_HEAD"));
-        } catch (IllegalArgumentException exception){
-            skull = new ItemStack(Material.valueOf("SKULL_ITEM"));
-            skull.setDurability((short)3);
-        }
+        ItemStack skull = XMaterial.PLAYER_HEAD.parseItem();
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
 
         GameProfile gameProfile = new GameProfile(UUID.randomUUID(), "");
@@ -214,15 +228,15 @@ public class Util {
             material = material.replace("SKULL:", "");
             return getSkullFromValue(material);
         } else {
-            String[] mat = material.split(":");
-            Material finalMaterial = Material.getMaterial(mat[0]);
-            if(finalMaterial == null) finalMaterial = Material.STONE;
-            ItemStack baseItem = new ItemStack(finalMaterial);
-            if(mat.length == 2) {
-                short durability = Short.parseShort(mat[1]);
-                baseItem.setDurability(durability);
+            XMaterial mat;
+
+            try {
+                mat = XMaterial.valueOf(material.split(":")[0]);
+            } catch (IllegalArgumentException e){
+                mat = XMaterial.STONE;
             }
-            return baseItem;
+
+            return mat.parseItem();
         }
 
     }
@@ -232,9 +246,11 @@ public class Util {
         Error error = new Error();
         error.setDescription("These errors were encountered when trying to create an ItemStack instance.");
 
-        String material = config.getString(key+".type");
+        String material = config.getString(key+".material");
+        System.out.println(key);
+        System.out.println(material);
 
-        ItemStack itemStack = getItemStackFromString(material);
+        ItemStack itemStack = material != null ? getItemStackFromString(material) : XMaterial.STONE.parseItem();
         int amount = config.getInt(key+".amount");
         String name = config.getString(key+".name");
         List<String> lore = config.getStringList(key+".lore");
