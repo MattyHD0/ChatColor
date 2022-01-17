@@ -247,8 +247,6 @@ public class Util {
         error.setDescription("These errors were encountered when trying to create an ItemStack instance.");
 
         String material = config.getString(key+".material");
-        System.out.println(key);
-        System.out.println(material);
 
         ItemStack itemStack = material != null ? getItemStackFromString(material) : XMaterial.STONE.parseItem();
         int amount = config.getInt(key+".amount");
