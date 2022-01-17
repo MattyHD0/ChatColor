@@ -35,17 +35,20 @@ public class RandomPattern implements Pattern {
     public String getText(String text) {
 
         String finalString = "";
+        boolean format = (bold || italic || underline || magic || strikethrough);
 
         for (String character: text.split("")){
 
             int num = Math.round((float)Math.random()*(colors.size()-1));
             String randomColor = "&"+colors.get(num);
 
-            if(bold) character = net.md_5.bungee.api.ChatColor.BOLD+character;
-            if(italic) character = net.md_5.bungee.api.ChatColor.ITALIC+character;
-            if(underline) character = net.md_5.bungee.api.ChatColor.UNDERLINE+character;
-            if(magic) character = net.md_5.bungee.api.ChatColor.MAGIC+character;
-            if(strikethrough) character = net.md_5.bungee.api.ChatColor.STRIKETHROUGH+character;
+            if(format) {
+                if (bold) character = net.md_5.bungee.api.ChatColor.BOLD + character;
+                if (italic) character = net.md_5.bungee.api.ChatColor.ITALIC + character;
+                if (underline) character = net.md_5.bungee.api.ChatColor.UNDERLINE + character;
+                if (magic) character = net.md_5.bungee.api.ChatColor.MAGIC + character;
+                if (strikethrough) character = net.md_5.bungee.api.ChatColor.STRIKETHROUGH + character;
+            }
 
             finalString = finalString + randomColor + character;
 

@@ -67,6 +67,7 @@ public class Util {
         int bMath = (b1+b2/2)/text.length(); int bMath2 = (b2-b1)/text.length();
 
         String coloredText = "";
+        boolean format = (bold || italic || underline || magic || strikethrough);
 
         for(int i = 1; i < text.length()+1; i++){
 
@@ -82,12 +83,13 @@ public class Util {
             if(b < 0) b = 0;
 
             String c = Character.toString(text.charAt(i-1));
-
-            if(bold) c = net.md_5.bungee.api.ChatColor.BOLD+c;
-            if(italic) c = net.md_5.bungee.api.ChatColor.ITALIC+c;
-            if(underline) c = net.md_5.bungee.api.ChatColor.UNDERLINE+c;
-            if(magic) c = net.md_5.bungee.api.ChatColor.MAGIC+c;
-            if(strikethrough) c = net.md_5.bungee.api.ChatColor.STRIKETHROUGH+c;
+            if(format) {
+                if (bold) c = net.md_5.bungee.api.ChatColor.BOLD + c;
+                if (italic) c = net.md_5.bungee.api.ChatColor.ITALIC + c;
+                if (underline) c = net.md_5.bungee.api.ChatColor.UNDERLINE + c;
+                if (magic) c = net.md_5.bungee.api.ChatColor.MAGIC + c;
+                if (strikethrough) c = net.md_5.bungee.api.ChatColor.STRIKETHROUGH + c;
+            }
 
             coloredText = coloredText + net.md_5.bungee.api.ChatColor.of(new java.awt.Color(r, g, b)) + c;
 

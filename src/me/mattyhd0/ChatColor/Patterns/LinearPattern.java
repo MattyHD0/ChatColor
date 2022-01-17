@@ -40,14 +40,17 @@ public class LinearPattern implements Pattern {
         String[] characters = text.split("");
         String finalString = "";
         int index = 0;
+        boolean format = (bold || italic || underline || magic || strikethrough);
 
         for (String character : characters) {
 
-            if(bold) character = net.md_5.bungee.api.ChatColor.BOLD+character;
-            if(italic) character = net.md_5.bungee.api.ChatColor.ITALIC+character;
-            if(underline) character = net.md_5.bungee.api.ChatColor.UNDERLINE+character;
-            if(magic) character = net.md_5.bungee.api.ChatColor.MAGIC+character;
-            if(strikethrough) character = net.md_5.bungee.api.ChatColor.STRIKETHROUGH+character;
+            if(format) {
+                if (bold) character = net.md_5.bungee.api.ChatColor.BOLD + character;
+                if (italic) character = net.md_5.bungee.api.ChatColor.ITALIC + character;
+                if (underline) character = net.md_5.bungee.api.ChatColor.UNDERLINE + character;
+                if (magic) character = net.md_5.bungee.api.ChatColor.MAGIC + character;
+                if (strikethrough) character = net.md_5.bungee.api.ChatColor.STRIKETHROUGH + character;
+            }
 
             finalString = finalString + "&" + colors.get(index) + character;
             if (index < colors.size() - 1) {
