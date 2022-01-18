@@ -1,6 +1,6 @@
 main: me.mattyhd0.ChatColor.ChatColor
 name: ChatColor
-version: 2.4.0
+version: 2.4.1
 api-version: 1.13
 description: 'A plugin that allows you to create color patterns for the chat'
 author: MattyHD0
