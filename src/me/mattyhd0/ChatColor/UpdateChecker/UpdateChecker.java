@@ -7,19 +7,16 @@ public class UpdateChecker {
 
     private String version;
     private SpigotResource spigotResource;
-    private String latestVersion;
 
     public UpdateChecker(@NotNull Plugin plugin, int spigotResourceId){
 
         version = plugin.getDescription().getVersion();
-
         spigotResource = SpigotAPI.getSpigotResource(spigotResourceId);
-        latestVersion = spigotResource.getCurrentVersion();
 
     }
 
     public boolean isRunningLatestVersion() {
-        return version.equals(latestVersion);
+        return version.equals(spigotResource.getCurrentVersion());
     }
 
     public String getVersion() {
@@ -27,7 +24,7 @@ public class UpdateChecker {
     }
     
     public String getLatestVersion() {
-        return latestVersion;
+        return spigotResource.getCurrentVersion();
     }
 
     public SpigotResource getSpigotResource() {
