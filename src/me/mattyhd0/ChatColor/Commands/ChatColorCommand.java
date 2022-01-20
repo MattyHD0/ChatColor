@@ -19,7 +19,6 @@ import java.util.List;
 
 public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
-    private String[] completions = {"set", "list", "disable", "gui", "help"};
     private ChatColor plugin;
     
     public ChatColorCommand(ChatColor plugin) {
@@ -28,29 +27,32 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
     public boolean onCommand(CommandSender sender, Command command, String s, String[] arg) {
 
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-            if (arg.length > 0) {
-                if (arg[0].equalsIgnoreCase("set")) {
-                    setPattern(player, arg);
-                } else if (arg[0].equalsIgnoreCase("list")) {
-                    list(player, arg);
-                } else if (arg[0].equalsIgnoreCase("disable")) {
-                    disable(player, arg);
-                } else if (arg[0].equalsIgnoreCase("gui")) {
-                    gui(player, arg);
-                } else if (arg[0].equalsIgnoreCase("help")) {
-                    help(player, arg);
-                } else {
-                    unknownCommand(player);
-                }
-            } else {
-                unknownCommand(player);
-            }
-
-        } else {
+        if (!(sender instanceof Player)) {
             sender.sendMessage(Config.getMessage("other.bad-executor"));
+            return true;
         }
+
+        Player player = (Player) sender;
+
+        if (!(arg.length > 0)) {
+            unknownCommand(player);
+            return true;
+        }
+
+        if (arg[0].equalsIgnoreCase("set")) {
+            setPattern(player, arg);
+        } else if (arg[0].equalsIgnoreCase("list")) {
+            list(player, arg);
+        } else if (arg[0].equalsIgnoreCase("disable")) {
+            disable(player, arg);
+        } else if (arg[0].equalsIgnoreCase("gui")) {
+            gui(player, arg);
+        } else if (arg[0].equalsIgnoreCase("help")) {
+            help(player, arg);
+        } else {
+            unknownCommand(player);
+        }
+
         return true;
     }
     
@@ -269,29 +271,32 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] strings) {
 
+        List<String> completions = new ArrayList<>();
+
         if(strings.length == 1) {
 
-            return Arrays.asList(completions);
+
+            completions.add("set");
+            completions.add("disable");
+            completions.add("gui");
+            completions.add("list");
+            completions.add("help");
+
+            return completions;
 
         } else if (strings.length == 2 && strings[0].equals("set")) {
 
-            List<String> patternNames = new ArrayList<>();
+            for (Pattern pattern : PatternLoader.getAllPatterns()) {
 
-            if(sender instanceof Player) {
-
-                for (Pattern pattern : PatternLoader.getAllPatterns()) {
-
-                    if (new CPlayer((Player) sender).canUsePattern(pattern)) patternNames.add(pattern.getName(false));
-
-                }
+                if (new CPlayer((Player) sender).canUsePattern(pattern)) completions.add(pattern.getName(false));
 
             }
 
-            return patternNames;
+            return completions;
 
         } else {
 
-            return new ArrayList<>();
+            return completions;
 
         }
     }

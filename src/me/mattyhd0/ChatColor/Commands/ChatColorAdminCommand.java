@@ -6,6 +6,7 @@ import me.mattyhd0.ChatColor.Configuration.Config;
 import me.mattyhd0.ChatColor.GUI.ChatColorGUI;
 import me.mattyhd0.ChatColor.PatternAPI.Pattern;
 import me.mattyhd0.ChatColor.PatternAPI.PatternLoader;
+import me.mattyhd0.ChatColor.Utility.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,13 +14,13 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
-    private String[] completions = {"set", "disable", "reload", "gui", "help"};
     protected ChatColor plugin;
 
     public ChatColorAdminCommand(ChatColor plugin) {
@@ -29,76 +30,74 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] arg) {
 
 
-
-        if (arg.length > 0) {
-            if (arg[0].equalsIgnoreCase("set")) {
-                setPattern(sender, arg);
-            }
-            else if (arg[0].equalsIgnoreCase("disable")) {
-                disable(sender, arg);
-            }
-            else if (arg[0].equalsIgnoreCase("reload")) {
-                reload(sender, arg);
-            }
-            else if (arg[0].equalsIgnoreCase("gui")) {
-                gui(sender, arg);
-            }
-            else if (arg[0].equalsIgnoreCase("help")) {
-                help(sender, arg);
-            }
-            else {
-                unknownCommand(sender);
-            }
+        if (!(arg.length > 0)) {
+            unknownCommand(sender);
+            return true;
         }
-        else {
+
+        if (arg[0].equalsIgnoreCase("set")) {
+            setPattern(sender, arg);
+        } else if (arg[0].equalsIgnoreCase("disable")) {
+            disable(sender, arg);
+        } else if (arg[0].equalsIgnoreCase("reload")) {
+            reload(sender, arg);
+        } else if (arg[0].equalsIgnoreCase("gui")) {
+            gui(sender, arg);
+        } else if (arg[0].equalsIgnoreCase("help")) {
+            help(sender, arg);
+        } else {
             unknownCommand(sender);
         }
+
         return true;
 
     }
 
+
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] strings) {
 
+        List<String> completions = new ArrayList<>();
+
         if(strings.length == 1) {
 
-            return Arrays.asList(completions);
+            completions.add("set");
+            completions.add("disable");
+            completions.add("reload");
+            completions.add("gui");
+            completions.add("help");
+
+            return completions;
 
         } else if (strings.length == 2 && (strings[0].equals("disable") || strings[0].equals("gui"))) {
 
-            List<String> completionsList = new ArrayList<>();
-
             for(Player player: Bukkit.getOnlinePlayers()){
-                completionsList.add(player.getName());
+                completions.add(player.getName());
             }
 
-            return completionsList;
+            return completions;
 
         } else if (strings.length == 2 && strings[0].equals("set")){
 
-            List<String> completionsList = new ArrayList<>();
-
             for(Player player: Bukkit.getOnlinePlayers()){
-                completionsList.add(player.getName());
+                completions.add(player.getName());
             }
 
-            return completionsList;
+            return completions;
 
         } else if (strings.length == 3 && strings[0].equals("set")){
 
-            List<String> patternNames = new ArrayList<>();
-
             for(Pattern pattern: PatternLoader.getAllPatterns()){
 
-                patternNames.add(pattern.getName(false));
+                completions.add(pattern.getName(false));
 
             }
 
-            return patternNames;
+            return completions;
 
         }
 
-        return new ArrayList<>();
+        return completions;
 
     }
     
