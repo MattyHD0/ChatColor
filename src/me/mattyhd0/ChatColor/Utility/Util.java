@@ -131,20 +131,20 @@ public class Util {
     public static String bukkitGradient(String text, List<java.awt.Color> colors, boolean bold, boolean italic, boolean underline, boolean magic, boolean strikethrough){
 
         int divisions = colors.size()-1;
-        int divideEveryChars = text.length()/divisions > 0 ? text.length()/divisions : 1;
+        float divideEveryChars = text.length()/divisions > 0 ? (float)text.length()/divisions : 1;
         List<String> substrings = new ArrayList<>();
         StringBuilder finalText = new StringBuilder();
 
-        for(int i = 0; i <= text.length()+divideEveryChars; i += divideEveryChars){
+        for(float i = 0; i <= text.length()+divideEveryChars; i += divideEveryChars){
 
             if(i+divideEveryChars > text.length() && text.length() > 0) {
                 int lastSub = substrings.size()-1;
                 String latestStr = substrings.get(lastSub);
-                substrings.set(lastSub, latestStr+text.substring(i));
+                substrings.set(lastSub, latestStr+text.substring(Math.round(i)));
                 break;
             }
 
-            String sub = text.substring(i, (i+divideEveryChars));
+            String sub = text.substring(Math.round(i), Math.round(i+divideEveryChars));
             substrings.add(sub);
 
         }
