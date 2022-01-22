@@ -8,6 +8,14 @@ config:
   # When writing in the chat it will only show the pattern if the player has the permission of that pattern
   show-pattern-only-if-has-permissions: false
 
+  storage:
+    type: YML # YML or MYSQL
+    mysql:
+      host: localhost
+      port: 25565
+      username: root
+      password: root
+
   show-pattern-on:
     list: true
     selected-message: true

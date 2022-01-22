@@ -10,6 +10,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import me.mattyhd0.ChatColor.Configuration.Config;
 import me.mattyhd0.ChatColor.PlaceholderAPI.ChatColorPlaceholders;
 import java.io.File;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class ChatColor extends JavaPlugin {
     private static List<String> supportedPlugins = new ArrayList<>();
     private static Plugin plugin;
     private static String prefix;
+    public static Connection MYSQL_CONNECTION;
     
     public void onEnable() {
         setPlugin(this);
@@ -44,6 +46,13 @@ public class ChatColor extends JavaPlugin {
     
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(Util.color(prefix+" &7Disabling ChatColor v" + this.getDescription().getVersion()));
+        if(MYSQL_CONNECTION != null) {
+            try {
+                MYSQL_CONNECTION.close();
+            } catch (SQLException ignored){
+
+            }
+        }
     }
     
     public void setupConfig() {
@@ -116,6 +125,41 @@ public class ChatColor extends JavaPlugin {
 
         Bukkit.getConsoleSender().sendMessage(Util.color( prefix+"&7 "+plugin+" support: "+supportStr));
 
+    }
+
+    public static void mysqlConnection(){
+
+        String host = "localhost";
+        String port = "3306";
+        String username = "root";
+        String password = "";
+        String database = "chatcolor";
+
+        try{
+
+            String urlConnection = "jdbc:mysql://{host}:{port}/{database}?user={username}&password={password}"
+                    .replaceAll("\\{host}", host)
+                    .replaceAll("\\{port}", port)
+                    .replaceAll("\\{username}", username)
+                    .replaceAll("\\{password}", password)
+                    .replaceAll("\\{database}", database);
+
+            MYSQL_CONNECTION = DriverManager.getConnection(urlConnection);
+            if(MYSQL_CONNECTION != null) System.out.println("Connection yes");
+
+            Statement statement = MYSQL_CONNECTION.createStatement();
+            statement.execute("CREATE TABLE IF NOT EXISTS playerdata ( uuid varchar(36) NOT NULL, pattern varchar(45) NOT NULL, PRIMARY KEY (uuid) );");
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static void main(String[] arg){
+        mysqlConnection();
     }
 
     public static boolean supportPlugin(String plugin){

@@ -3,8 +3,14 @@ package me.mattyhd0.ChatColor;
 import me.mattyhd0.ChatColor.Configuration.YMLFile;
 import me.mattyhd0.ChatColor.PatternAPI.Pattern;
 import me.mattyhd0.ChatColor.PatternAPI.PatternLoader;
+import me.mattyhd0.ChatColor.Utility.Util;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class CPlayer {
 
@@ -15,22 +21,92 @@ public class CPlayer {
     }
 
     public void setPattern(Pattern pattern){
-        YMLFile dataFile = new YMLFile("playerdata.yml");
-        FileConfiguration data = dataFile.get();
-        data.set("data."+player.getUniqueId().toString(), pattern.getName(false));
-        dataFile.save();
+        if(ChatColor.MYSQL_CONNECTION != null) {
+            YMLFile dataFile = new YMLFile("playerdata.yml");
+            FileConfiguration data = dataFile.get();
+            data.set("data." + player.getUniqueId().toString(), pattern.getName(false));
+            dataFile.save();
+        } else {
+            try {
+
+                Statement statement = ChatColor.MYSQL_CONNECTION.createStatement();
+
+                boolean st1 = statement.execute("INSERT INTO playerdata VALUES ('{uuid}', '{pattern}');"
+                        .replaceAll("\\{uuid}", player.getUniqueId().toString())
+                        .replaceAll("\\{pattern}", pattern.getName(false))
+                );
+
+                if(st1 == false ) statement.execute("UPDATE playerdata SET pattern = '{pattern}' WHERE uuid = '{uuid}'; "
+                        .replaceAll("\\{uuid}", player.getUniqueId().toString())
+                        .replaceAll("\\{pattern}", pattern.getName(false))
+                );
+
+            } catch (SQLException ignored){
+
+                Bukkit.getServer().getConsoleSender().sendMessage(
+                        Util.color("&c[ChatColor] An error occurred while trying to set the pattern of {uuid} ({player}) via MySQL"
+                                .replaceAll("\\{uuid}", player.getUniqueId().toString()))
+                                .replaceAll("\\{player}", player.getName()
+                                )
+                );
+
+            }
+        }
     }
 
     public void disablePattern(){
-        YMLFile dataFile = new YMLFile("playerdata.yml");
-        FileConfiguration data = dataFile.get();
-        data.set("data."+player.getUniqueId().toString(), null);
-        dataFile.save();
+        if(ChatColor.MYSQL_CONNECTION != null) {
+            YMLFile dataFile = new YMLFile("playerdata.yml");
+            FileConfiguration data = dataFile.get();
+            data.set("data." + player.getUniqueId().toString(), null);
+            dataFile.save();
+        } else {
+            try {
+
+                Statement statement = ChatColor.MYSQL_CONNECTION.createStatement();
+
+                statement.execute("DELETE FROM playerdata WHERE uuid = '{uuid}';"
+                        .replaceAll("\\{uuid}", player.getUniqueId().toString())
+                );
+
+            } catch (SQLException e){
+
+                Bukkit.getServer().getConsoleSender().sendMessage(
+                        Util.color("&c[ChatColor] An error occurred while trying to remove the pattern from {uuid} ({player}) via MySQL"
+                                .replaceAll("\\{uuid}", player.getUniqueId().toString()))
+                                .replaceAll("\\{player}", player.getName()
+                                )
+                );
+
+            }
+        }
     }
 
     public Pattern getPattern(){
-        YMLFile dataFile = new YMLFile("playerdata.yml");
-        return PatternLoader.getPatternByName(dataFile.get().getString("data."+player.getUniqueId()));
+        String pattern = "";
+        if(ChatColor.MYSQL_CONNECTION != null) {
+            YMLFile dataFile = new YMLFile("playerdata.yml");
+            pattern = dataFile.get().getString("data." + player.getUniqueId());
+        } else {
+            try {
+
+                Statement statement = ChatColor.MYSQL_CONNECTION.createStatement();
+
+                ResultSet resultSet = statement.executeQuery("SELECT pattern FROM playerdata WHERE uuid = '{uuid}';");
+                pattern = resultSet.getNString(0);
+
+            } catch (SQLException e){
+
+                Bukkit.getServer().getConsoleSender().sendMessage(
+                        Util.color("&c[ChatColor] An error occurred while trying to get the pattern of {uuid} ({player}) via MySQL"
+                                .replaceAll("\\{uuid}", player.getUniqueId().toString()))
+                                .replaceAll("\\{player}", player.getName()
+                                )
+                );
+
+            }
+        }
+        return PatternLoader.getPatternByName(pattern);
     }
 
     public boolean canUsePattern(Pattern pattern){
