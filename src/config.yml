@@ -8,13 +8,13 @@ config:
   # When writing in the chat it will only show the pattern if the player has the permission of that pattern
   show-pattern-only-if-has-permissions: false
 
-  storage:
-    type: YML # YML or MYSQL
-    mysql:
-      host: localhost
-      port: 25565
-      username: root
-      password: root
+  mysql:
+    enable: false
+    database: 'chatcolor'
+    host: 'localhost'
+    port: '3306'
+    username: 'root'
+    password: ''
 
   show-pattern-on:
     list: true
@@ -33,3 +33,5 @@ config:
       - '&8> &7/chatcolor color2 &8- &a[VIP]'
       - '&8> &7/chatcolor color &8- &a[VIP]'
       - '&4---&c---&6---&e---&2---&a---&b---&3----&b---&a---&2---&e---&6---&c---&4---'
+
+config-version: 1

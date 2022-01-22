@@ -15,6 +15,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -280,8 +281,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
             if(arg.length == 1) {
 
                 sender.sendMessage(Config.getMessage("commands.chatcoloradmin.reload.reloading-plugin"));
-                Config.loadConfiguration();
-                PatternLoader.loadAllPatterns();
+                ChatColor.reload();
                 sender.sendMessage(Config.getMessage("commands.chatcoloradmin.reload.plugin-reloaded"));
 
             } else {

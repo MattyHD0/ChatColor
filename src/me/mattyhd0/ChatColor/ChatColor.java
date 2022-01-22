@@ -1,7 +1,11 @@
 package me.mattyhd0.ChatColor;
 
 import me.mattyhd0.ChatColor.Commands.ChatColorAdminCommand;
+import me.mattyhd0.ChatColor.ConfigUpdater.ConfigVersion;
+import me.mattyhd0.ChatColor.ConfigUpdater.ConfigVersionUpdater;
+import me.mattyhd0.ChatColor.Configuration.YMLFile;
 import me.mattyhd0.ChatColor.GUI.GuiListener;
+import me.mattyhd0.ChatColor.PatternAPI.Pattern;
 import me.mattyhd0.ChatColor.PatternAPI.PatternLoader;
 import me.mattyhd0.ChatColor.UpdateChecker.UpdateChecker;
 import me.mattyhd0.ChatColor.Utility.Util;
@@ -19,6 +23,7 @@ import me.mattyhd0.ChatColor.Listeners.StaffJoinListener;
 import me.mattyhd0.ChatColor.Listeners.ChatListener;
 import me.mattyhd0.ChatColor.Commands.ChatColorCommand;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -35,13 +40,24 @@ public class ChatColor extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(Util.color(prefix+" &7Enabling ChatColor v" + this.getDescription().getVersion()));
         Metrics metrics = new Metrics(this, 11648);
         saySupport("PlaceholderAPI");
-        Config.loadConfiguration();
-        setupConfig();
+        reload();
+        updateConfiguration();
         setupListeners();
         setupCommands();
         updateChecker(this, 93186);
         setupPlaceholderAPI();
+    }
+
+    public static void reload(){
+        Config.loadConfiguration();
         PatternLoader.loadAllPatterns();
+        if(MYSQL_CONNECTION != null){
+            try {
+                MYSQL_CONNECTION.close();
+                MYSQL_CONNECTION = null;
+            } catch (SQLException ignored){}
+        }
+        if(Config.getConfig().getBoolean("config.mysql.enable")) mysqlConnection();
     }
     
     public void onDisable() {
@@ -52,14 +68,6 @@ public class ChatColor extends JavaPlugin {
             } catch (SQLException ignored){
 
             }
-        }
-    }
-    
-    public void setupConfig() {
-        final File config = new File(this.getDataFolder(), "config.yml");
-        if (!config.exists()) {
-            this.getConfig().options().copyDefaults(true);
-            this.saveDefaultConfig();
         }
     }
 
@@ -89,7 +97,25 @@ public class ChatColor extends JavaPlugin {
             new ChatColorPlaceholders().register();
         }
     }
-    
+
+    public void updateConfiguration(){
+        ConfigVersionUpdater configVersionUpdater = new ConfigVersionUpdater(new YMLFile("config.yml"));
+
+        configVersionUpdater.addConfigVersion(
+                        new ConfigVersion()
+                                .set("config.mysql.enable", false)
+                                .set("config.mysql.database", "chatcolor")
+                                .set("config.mysql.host", "localhost")
+                                .set("config.mysql.port", "3306")
+                                .set("config.mysql.username", "root")
+                                .set("config.mysql.password", "")
+        );
+
+        configVersionUpdater.update();
+
+
+    }
+
     private void updateChecker(Plugin plugin, int spigotId) {
         if (Config.getBoolean("config.update-checker")) {
             UpdateChecker updateChecker = new UpdateChecker(plugin, spigotId);
@@ -129,11 +155,13 @@ public class ChatColor extends JavaPlugin {
 
     public static void mysqlConnection(){
 
-        String host = "localhost";
-        String port = "3306";
-        String username = "root";
-        String password = "";
-        String database = "chatcolor";
+        FileConfiguration config = Config.getConfig();
+
+        String host     = config.getString("config.mysql.host");
+        String port     = config.getString("config.mysql.port");
+        String username = config.getString("config.mysql.username");
+        String password = config.getString("config.mysql.password");
+        String database = config.getString("config.mysql.database");
 
         try{
 
@@ -145,13 +173,18 @@ public class ChatColor extends JavaPlugin {
                     .replaceAll("\\{database}", database);
 
             MYSQL_CONNECTION = DriverManager.getConnection(urlConnection);
-            if(MYSQL_CONNECTION != null) System.out.println("Connection yes");
+
+            if(MYSQL_CONNECTION == null) Bukkit.getServer().getConsoleSender().sendMessage(
+                    Util.color("&c[ChatColor] There was an error connecting to the MySQL Database")
+            );
 
             Statement statement = MYSQL_CONNECTION.createStatement();
             statement.execute("CREATE TABLE IF NOT EXISTS playerdata ( uuid varchar(36) NOT NULL, pattern varchar(45) NOT NULL, PRIMARY KEY (uuid) );");
 
-
         } catch (SQLException e){
+            Bukkit.getServer().getConsoleSender().sendMessage(
+                    Util.color("&c[ChatColor] There was an error connecting to the MySQL Database")
+            );
             e.printStackTrace();
         }
 

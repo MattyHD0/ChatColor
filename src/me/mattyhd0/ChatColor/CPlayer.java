@@ -21,7 +21,7 @@ public class CPlayer {
     }
 
     public void setPattern(Pattern pattern){
-        if(ChatColor.MYSQL_CONNECTION != null) {
+        if(ChatColor.MYSQL_CONNECTION == null) {
             YMLFile dataFile = new YMLFile("playerdata.yml");
             FileConfiguration data = dataFile.get();
             data.set("data." + player.getUniqueId().toString(), pattern.getName(false));
@@ -31,17 +31,22 @@ public class CPlayer {
 
                 Statement statement = ChatColor.MYSQL_CONNECTION.createStatement();
 
-                boolean st1 = statement.execute("INSERT INTO playerdata VALUES ('{uuid}', '{pattern}');"
-                        .replaceAll("\\{uuid}", player.getUniqueId().toString())
-                        .replaceAll("\\{pattern}", pattern.getName(false))
-                );
 
-                if(st1 == false ) statement.execute("UPDATE playerdata SET pattern = '{pattern}' WHERE uuid = '{uuid}'; "
-                        .replaceAll("\\{uuid}", player.getUniqueId().toString())
-                        .replaceAll("\\{pattern}", pattern.getName(false))
-                );
+                try { //Intenta crear el entry
+                    statement.execute("INSERT INTO playerdata VALUES ('{uuid}', '{pattern}'"
+                            .replaceAll("\\{uuid}", player.getUniqueId().toString())
+                            .replaceAll("\\{pattern}", pattern.getName(false))
+                    );
+                } catch (SQLException e){ //Si el entry existe lo establece
+                    statement.execute("UPDATE playerdata SET pattern = '{pattern}' WHERE uuid = '{uuid}'; "
+                            .replaceAll("\\{uuid}", player.getUniqueId().toString())
+                            .replaceAll("\\{pattern}", pattern.getName(false))
+                    );
+                }
 
-            } catch (SQLException ignored){
+
+
+            } catch (SQLException e){
 
                 Bukkit.getServer().getConsoleSender().sendMessage(
                         Util.color("&c[ChatColor] An error occurred while trying to set the pattern of {uuid} ({player}) via MySQL"
@@ -50,12 +55,14 @@ public class CPlayer {
                                 )
                 );
 
+                e.printStackTrace();
+
             }
         }
     }
 
     public void disablePattern(){
-        if(ChatColor.MYSQL_CONNECTION != null) {
+        if(ChatColor.MYSQL_CONNECTION == null) {
             YMLFile dataFile = new YMLFile("playerdata.yml");
             FileConfiguration data = dataFile.get();
             data.set("data." + player.getUniqueId().toString(), null);
@@ -77,6 +84,7 @@ public class CPlayer {
                                 .replaceAll("\\{player}", player.getName()
                                 )
                 );
+                e.printStackTrace();
 
             }
         }
@@ -84,7 +92,7 @@ public class CPlayer {
 
     public Pattern getPattern(){
         String pattern = "";
-        if(ChatColor.MYSQL_CONNECTION != null) {
+        if(ChatColor.MYSQL_CONNECTION == null) {
             YMLFile dataFile = new YMLFile("playerdata.yml");
             pattern = dataFile.get().getString("data." + player.getUniqueId());
         } else {
@@ -92,8 +100,14 @@ public class CPlayer {
 
                 Statement statement = ChatColor.MYSQL_CONNECTION.createStatement();
 
-                ResultSet resultSet = statement.executeQuery("SELECT pattern FROM playerdata WHERE uuid = '{uuid}';");
-                pattern = resultSet.getNString(0);
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM playerdata WHERE uuid = '{uuid}';"
+                        .replaceAll("\\{uuid}", player.getUniqueId().toString())
+                );
+
+                while (resultSet.next()) {
+                    pattern = resultSet.getString("pattern");
+                }
+
 
             } catch (SQLException e){
 
@@ -103,6 +117,7 @@ public class CPlayer {
                                 .replaceAll("\\{player}", player.getName()
                                 )
                 );
+                e.printStackTrace();
 
             }
         }
