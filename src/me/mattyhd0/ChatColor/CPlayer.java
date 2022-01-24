@@ -31,30 +31,17 @@ public class CPlayer {
 
                 Statement statement = ChatColor.MYSQL_CONNECTION.createStatement();
 
-
-                try { //Intenta crear el entry
-                    statement.execute("INSERT INTO playerdata VALUES ('{uuid}', '{pattern}'"
-                            .replaceAll("\\{uuid}", player.getUniqueId().toString())
-                            .replaceAll("\\{pattern}", pattern.getName(false))
-                    );
-                } catch (SQLException e){ //Si el entry existe lo establece
-                    statement.execute("UPDATE playerdata SET pattern = '{pattern}' WHERE uuid = '{uuid}'; "
-                            .replaceAll("\\{uuid}", player.getUniqueId().toString())
-                            .replaceAll("\\{pattern}", pattern.getName(false))
-                    );
-                }
-
-
+                statement.execute(
+                        formatQuery("INSERT INTO playerdata(uuid, pattern) VALUES('uuid', 'pattern') ON DUPLICATE KEY UPDATE pattern= VALUES(pattern);")
+                );
 
             } catch (SQLException e){
 
                 Bukkit.getServer().getConsoleSender().sendMessage(
-                        Util.color("&c[ChatColor] An error occurred while trying to set the pattern of {uuid} ({player}) via MySQL"
-                                .replaceAll("\\{uuid}", player.getUniqueId().toString()))
-                                .replaceAll("\\{player}", player.getName()
+                        Util.color(
+                                formatQuery("&c[ChatColor] An error occurred while trying to set the pattern of {uuid} ({player}) via MySQL")
                                 )
                 );
-
                 e.printStackTrace();
 
             }
@@ -72,16 +59,15 @@ public class CPlayer {
 
                 Statement statement = ChatColor.MYSQL_CONNECTION.createStatement();
 
-                statement.execute("DELETE FROM playerdata WHERE uuid = '{uuid}';"
-                        .replaceAll("\\{uuid}", player.getUniqueId().toString())
+                statement.execute(
+                        formatQuery("DELETE FROM playerdata WHERE uuid = '{uuid}';")
                 );
 
             } catch (SQLException e){
 
                 Bukkit.getServer().getConsoleSender().sendMessage(
-                        Util.color("&c[ChatColor] An error occurred while trying to remove the pattern from {uuid} ({player}) via MySQL"
-                                .replaceAll("\\{uuid}", player.getUniqueId().toString()))
-                                .replaceAll("\\{player}", player.getName()
+                        Util.color(
+                                formatQuery("&c[ChatColor] An error occurred while trying to remove the pattern from {uuid} ({player}) via MySQL")
                                 )
                 );
                 e.printStackTrace();
@@ -100,8 +86,8 @@ public class CPlayer {
 
                 Statement statement = ChatColor.MYSQL_CONNECTION.createStatement();
 
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM playerdata WHERE uuid = '{uuid}';"
-                        .replaceAll("\\{uuid}", player.getUniqueId().toString())
+                ResultSet resultSet = statement.executeQuery(
+                        formatQuery("SELECT * FROM playerdata WHERE uuid = '{uuid}';")
                 );
 
                 while (resultSet.next()) {
@@ -112,9 +98,8 @@ public class CPlayer {
             } catch (SQLException e){
 
                 Bukkit.getServer().getConsoleSender().sendMessage(
-                        Util.color("&c[ChatColor] An error occurred while trying to get the pattern of {uuid} ({player}) via MySQL"
-                                .replaceAll("\\{uuid}", player.getUniqueId().toString()))
-                                .replaceAll("\\{player}", player.getName()
+                        Util.color(
+                                formatQuery("&c[ChatColor] An error occurred while trying to get the pattern of {uuid} ({player}) via MySQL")
                                 )
                 );
                 e.printStackTrace();
@@ -126,6 +111,17 @@ public class CPlayer {
 
     public boolean canUsePattern(Pattern pattern){
         return (pattern.getPermission() == null || player.hasPermission(pattern.getPermission()));
+    }
+
+    private String formatQuery(String string){
+
+        String uuid = player.getUniqueId().toString();
+        String name = player.getName();
+
+        return string
+                .replaceAll("\\{uuid}", uuid)
+                .replaceAll("\\{player}",name);
+
     }
 
 }
