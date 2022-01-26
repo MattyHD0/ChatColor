@@ -122,9 +122,7 @@ public class CPlayer {
 
         return string
                 .replaceAll("\\{uuid}", uuid)
-                .replaceAll("\\{player}", name)
-
-                ;
+                .replaceAll("\\{player}", name);
 
     }
 
