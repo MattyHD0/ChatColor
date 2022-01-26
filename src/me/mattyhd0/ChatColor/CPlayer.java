@@ -32,7 +32,7 @@ public class CPlayer {
                 Statement statement = ChatColor.MYSQL_CONNECTION.createStatement();
 
                 statement.execute(
-                        formatQuery("INSERT INTO playerdata(uuid, pattern) VALUES('uuid', 'pattern') ON DUPLICATE KEY UPDATE pattern= VALUES(pattern);")
+                        formatQuery("INSERT INTO playerdata(uuid, pattern) VALUES('{uuid}', '{pattern}') ON DUPLICATE KEY UPDATE pattern= VALUES(pattern);", pattern)
                 );
 
             } catch (SQLException e){
@@ -113,15 +113,23 @@ public class CPlayer {
         return (pattern.getPermission() == null || player.hasPermission(pattern.getPermission()));
     }
 
-    private String formatQuery(String string){
+    private String formatQuery(String string, Pattern pattern){
 
         String uuid = player.getUniqueId().toString();
         String name = player.getName();
 
+        string = pattern == null ? string : string.replaceAll("\\{pattern}", pattern.getName(false));
+
         return string
                 .replaceAll("\\{uuid}", uuid)
-                .replaceAll("\\{player}",name);
+                .replaceAll("\\{player}", name)
 
+                ;
+
+    }
+
+    private String formatQuery(String string){
+        return formatQuery(string, null);
     }
 
 }
