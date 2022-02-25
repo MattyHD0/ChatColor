@@ -12,22 +12,26 @@ import org.bukkit.event.Listener;
 
 public class ChatListener implements Listener {
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onChat(final AsyncPlayerChatEvent event) {
 
         Player player = event.getPlayer();
         CPlayer cPlayer = new CPlayer(player);
         Pattern pattern = cPlayer.getPattern();
+        cPlayer.setLastMessages(event.getMessage());
 
         if (pattern != null) {
 
             boolean showPatternIfHasPerm = Config.getBoolean("config.show-pattern-only-if-has-permissions");
             String message = ChatColor.stripColor(event.getMessage());
+            String coloredMessage = pattern.getText(message);
 
             if (showPatternIfHasPerm && cPlayer.canUsePattern(pattern)) {
-                event.setMessage(pattern.getText(message));
+                event.setMessage(coloredMessage);
+                cPlayer.setLastMessages(coloredMessage);
             } else if (!showPatternIfHasPerm) {
-                event.setMessage(pattern.getText(message));
+                event.setMessage(coloredMessage);
+                cPlayer.setLastMessages(coloredMessage);
             }
 
         }

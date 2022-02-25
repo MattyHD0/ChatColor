@@ -1,6 +1,6 @@
 main: me.mattyhd0.ChatColor.ChatColor
 name: ChatColor
-version: 2.5.0 #MySQL Support
+version: '2.5.1' #Added %chatcolor_last_message%
 api-version: 1.13
 description: 'A plugin that allows you to create color patterns for the chat'
 author: MattyHD0

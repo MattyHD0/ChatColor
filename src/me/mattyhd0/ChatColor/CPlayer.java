@@ -11,10 +11,13 @@ import org.bukkit.entity.Player;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CPlayer {
 
     public Player player;
+    public static Map<Player, String> lastMessages = new HashMap<>();
 
     public CPlayer(Player player){
         this.player = player;
@@ -111,6 +114,15 @@ public class CPlayer {
 
     public boolean canUsePattern(Pattern pattern){
         return (pattern.getPermission() == null || player.hasPermission(pattern.getPermission()));
+    }
+
+    public void setLastMessages(String lastMessages) {
+        CPlayer.lastMessages.put(this.player, lastMessages);
+    }
+
+    public String getLastMessages() {
+        String message = CPlayer.lastMessages.get(player);
+        return message != null ? message : "";
     }
 
     private String formatQuery(String string, Pattern pattern){
