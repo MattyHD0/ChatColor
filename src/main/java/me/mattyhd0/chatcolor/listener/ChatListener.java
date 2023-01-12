@@ -12,7 +12,7 @@ import org.bukkit.event.Listener;
 
 public class ChatListener implements Listener {
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOW)
     public void onChat(final AsyncPlayerChatEvent event) {
 
         Player player = event.getPlayer();
