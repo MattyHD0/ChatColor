@@ -41,21 +41,21 @@ public class Config {
         return ChatColor.getInstance().getConfig();
     }
     
-    public static String getMessage(String message) {
+    public static String getMessage(String messageKey) {
 
-        String msg = messages.getString("messages." + message);
+        String msg = messages.getString("messages." + messageKey);
 
         if (msg != null) {
             msg = msg.replaceAll("%prefix%", messages.getString("messages.prefix"));
             return Util.color(msg);
         }
 
-        return Util.color("&c[ChatColor] Error: Message " + message + " does not exist in messages.yml");
+        return Util.color("&c[ChatColor] Error: Message " + messageKey + " does not exist in messages.yml");
     }
 
-    public static List<String> getMessageList(String message) {
+    public static List<String> getMessageList(String messageKey) {
         YMLFile messagesFile = new YMLFile("messages.yml");
-        List<String> msgList = messagesFile.get().getStringList("messages." + message);
+        List<String> msgList = messagesFile.get().getStringList("messages." + messageKey);
         List<String> coloredList = new ArrayList<>();
 
         if (msgList.size() > 0) {
@@ -72,19 +72,14 @@ public class Config {
         } else {
 
             List<String> error = new ArrayList<>();
-            error.add(org.bukkit.ChatColor.translateAlternateColorCodes('&', "&c[ChatColor] Error: Message " + message + " does not exist in messages.yml"));
+            error.add(org.bukkit.ChatColor.translateAlternateColorCodes('&', "&c[ChatColor] Error: Message " + messageKey + " does not exist in messages.yml"));
             return error;
         }
 
     }
     
     public static boolean getBoolean(String path) {
-        boolean bol = config.getBoolean(path);
-        try {
-            return bol;
-        } catch (NullPointerException exception) {
-            return false;
-        }
+        return config.contains(path) && config.getBoolean(path);
     }
 
     public static FileConfiguration getConfig(){

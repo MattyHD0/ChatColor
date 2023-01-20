@@ -4,8 +4,7 @@ import me.mattyhd0.chatcolor.CPlayer;
 import me.mattyhd0.chatcolor.ChatColor;
 import me.mattyhd0.chatcolor.configuration.Config;
 import me.mattyhd0.chatcolor.gui.ChatColorGUI;
-import me.mattyhd0.chatcolor.pattern.api.IPattern;
-import me.mattyhd0.chatcolor.pattern.manager.PatternManager;
+import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -84,7 +83,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
         } else if (strings.length == 3 && strings[0].equals("set")){
 
-            for(IPattern pattern: ChatColor.getInstance().getPatternManager().getAllPatterns()){
+            for(BasePattern pattern: ChatColor.getInstance().getPatternManager().getAllPatterns()){
 
                 completions.add(pattern.getName(false));
 
@@ -104,7 +103,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
             if (arg.length == 3) {
 
-                IPattern pattern = ChatColor.getInstance().getPatternManager().getPatternByName(arg[2]);
+                BasePattern pattern = ChatColor.getInstance().getPatternManager().getPatternByName(arg[2]);
                 Player player = Bukkit.getPlayer(arg[1]);
                 CPlayer cPlayer = new CPlayer(player);
 
@@ -182,7 +181,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
                 if(player != null){
 
                     CPlayer cPlayer = new CPlayer(player);
-                    IPattern pattern = cPlayer.getPattern();
+                    BasePattern pattern = cPlayer.getPattern();
 
                     if (pattern != null) {
 

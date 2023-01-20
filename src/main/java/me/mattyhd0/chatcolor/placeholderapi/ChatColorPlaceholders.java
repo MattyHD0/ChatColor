@@ -1,7 +1,7 @@
 package me.mattyhd0.chatcolor.placeholderapi;
 
 import me.mattyhd0.chatcolor.CPlayer;
-import me.mattyhd0.chatcolor.pattern.api.IPattern;
+import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.entity.Player;
 import me.mattyhd0.chatcolor.ChatColor;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
@@ -38,7 +38,7 @@ public class ChatColorPlaceholders extends PlaceholderExpansion
     public String onPlaceholderRequest(Player player, String identifier) {
 
         CPlayer cPlayer = new CPlayer(player);
-        IPattern pattern = cPlayer.getPattern();
+        BasePattern pattern = cPlayer.getPattern();
 
         if(pattern == null) {
             return "";

@@ -2,8 +2,7 @@ package me.mattyhd0.chatcolor.command;
 
 import me.mattyhd0.chatcolor.CPlayer;
 import me.mattyhd0.chatcolor.gui.ChatColorGUI;
-import me.mattyhd0.chatcolor.pattern.api.IPattern;
-import me.mattyhd0.chatcolor.pattern.manager.PatternManager;
+import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import me.mattyhd0.chatcolor.util.Util;
 import me.mattyhd0.chatcolor.configuration.Config;
 import org.bukkit.command.TabCompleter;
@@ -61,7 +60,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
             if (arg.length == 2) {
 
-                IPattern pattern = ChatColor.getInstance().getPatternManager().getPatternByName(arg[1]);
+                BasePattern pattern = ChatColor.getInstance().getPatternManager().getPatternByName(arg[1]);
                 CPlayer cPlayer = new CPlayer(player);
 
                 if (pattern != null) {
@@ -70,51 +69,36 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
                     String patternName = pattern.getName(Config.getBoolean("config.show-pattern-on.list"));
 
                     if (patternPermission != null) {
-
                         if (player.hasPermission(patternPermission)) {
-
                             if (cPlayer.getPattern() != pattern) {
-
                                 cPlayer.setPattern(pattern);
-
                                 player.sendMessage(
                                         Config.getMessage("commands.chatcolor.set.selected-pattern")
                                                 .replaceAll("%pattern%", patternName)
 
                                 );
-
                             } else {
-
                                 player.sendMessage(
                                         Config.getMessage("commands.chatcolor.set.already-in-use")
                                                 .replaceAll("%pattern%", patternName)
                                 );
-
                             }
-
                         } else {
                             noPermission(player);
                         }
-
                     } else {
-
                         cPlayer.setPattern(pattern);
-
                         player.sendMessage(
                                 Config.getMessage("commands.chatcolor.set.selected-pattern")
                                         .replaceAll("%pattern%", patternName)
 
                         );
-
                     }
-
                 } else {
-
                     player.sendMessage(
                             Config.getMessage("commands.chatcolor.set.pattern-not-exist")
                                     .replaceAll("%pattern%", arg[1])
                     );
-
                 }
             } else {
                 player.sendMessage(
@@ -122,7 +106,6 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
                                 .replaceAll("%command%", "/chatcolor set <pattern>")
                 );
             }
-
         } else {
             noPermission(player);
         }
@@ -147,7 +130,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
                     player.sendMessage(header);
 
-                    for (IPattern pattern: ChatColor.getInstance().getPatternManager().getAllPatterns()) {
+                    for (BasePattern pattern: ChatColor.getInstance().getPatternManager().getAllPatterns()) {
 
                         String patternName = pattern.getName(Config.getBoolean("config.show-pattern-on.list"));
                         String patternPermission = pattern.getPermission();
@@ -188,7 +171,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     
     public void disable(Player player, String[] arg) {
 
-        IPattern pattern = new CPlayer(player).getPattern();
+        BasePattern pattern = new CPlayer(player).getPattern();
 
         if (player.hasPermission("chatcolor.disable")) {
 
@@ -285,7 +268,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
         } else if (strings.length == 2 && strings[0].equals("set")) {
 
-            for (IPattern pattern : ChatColor.getInstance().getPatternManager().getAllPatterns()) {
+            for (BasePattern pattern : ChatColor.getInstance().getPatternManager().getAllPatterns()) {
 
                 if (new CPlayer((Player) sender).canUsePattern(pattern)) completions.add(pattern.getName(false));
 

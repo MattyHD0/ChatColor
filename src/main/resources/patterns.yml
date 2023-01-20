@@ -47,7 +47,7 @@ red:
   gui-item:
     slot: 11
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmU1NGRlZjE0NzcwNTFlMjMzM2UzMmQ1YjE2YzIyYjlkNjQwZDNhYjk5YWJiODQ0YjRlNWRmYzUyZGE3MGIzIn19fQ===
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmU1NGRlZjE0NzcwNTFlMjMzM2UzMmQ1YjE2YzIyYjlkNjQwZDNhYjk5YWJiODQ0YjRlNWRmYzUyZGE3MGIzIn19fQ
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -88,7 +88,7 @@ gold:
   gui-item:
     slot: 12
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTdjMmQ1ZWVlODRiYmExZDdlOTRmOTMzYTBhNTU2ZWQ3ZWE0ZTRmYTY1ZThlOWY1NjMyNTgxM2IifX19=
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTdjMmQ1ZWVlODRiYmExZDdlOTRmOTMzYTBhNTU2ZWQ3ZWE0ZTRmYTY1ZThlOWY1NjMyNTgxM2IifX19
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -129,7 +129,7 @@ yellow:
   gui-item:
     slot: 13
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTQzYzc5Y2Q5YzJkMzE4N2VhMDMyNDVmZTIxMjhlMGQyYWJiZTc5NDUyMTRiYzU4MzRkZmE0MDNjMTM0ZTI3In19fQ===
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTQzYzc5Y2Q5YzJkMzE4N2VhMDMyNDVmZTIxMjhlMGQyYWJiZTc5NDUyMTRiYzU4MzRkZmE0MDNjMTM0ZTI3In19fQ
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -170,7 +170,7 @@ green:
   gui-item:
     slot: 14
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGU5YjI3ZmNjZDgwOTIxYmQyNjNjOTFkYzUxMWQwOWU5YTc0NjU1NWU2YzljYWQ1MmU4NTYyZWQwMTgyYTJmIn19fQ===
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGU5YjI3ZmNjZDgwOTIxYmQyNjNjOTFkYzUxMWQwOWU5YTc0NjU1NWU2YzljYWQ1MmU4NTYyZWQwMTgyYTJmIn19fQ
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -211,7 +211,7 @@ lime:
   gui-item:
     slot: 15
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjJkMTQ1YzkzZTVlYWM0OGE2NjFjNmYyN2ZkYWZmNTkyMmNmNDMzZGQ2MjdiZjIzZWVjMzc4Yjk5NTYxOTcifX19===
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjJkMTQ1YzkzZTVlYWM0OGE2NjFjNmYyN2ZkYWZmNTkyMmNmNDMzZGQ2MjdiZjIzZWVjMzc4Yjk5NTYxOTcifX19
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -252,7 +252,7 @@ aqua:
   gui-item:
     slot: 16
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTcwNjIyOTdmMjZlNTA5Y2U2YTI0Yzk5MjAxYThmOGI0YWUwMzBkNThmNDFlNzNjZDkzZDdiZDc3ZTY0NyJ9fX0====
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTcwNjIyOTdmMjZlNTA5Y2U2YTI0Yzk5MjAxYThmOGI0YWUwMzBkNThmNDFlNzNjZDkzZDdiZDc3ZTY0NyJ9fX0
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -293,7 +293,7 @@ dark_aqua:
   gui-item:
     slot: 19
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTIxOGM0OTZkZmJkZWI0NTUzYTZkMzJiMjc0Yjk5NTZiN2UxNmE5ZTRkYWZjOWIzM2ZjZjE4OTdiOCJ9fX0====
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTIxOGM0OTZkZmJkZWI0NTUzYTZkMzJiMjc0Yjk5NTZiN2UxNmE5ZTRkYWZjOWIzM2ZjZjE4OTdiOCJ9fX0
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -334,7 +334,7 @@ blue:
   gui-item:
     slot: 20
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjJkNWM3MzJhZTU4MjNlZmViZWJjMTJlYmFkNmI1NTljYmI3MWQ2YmM3ZWNlNTNiYzRhOTgzYWRhYWU0MyJ9fX0=====
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjJkNWM3MzJhZTU4MjNlZmViZWJjMTJlYmFkNmI1NTljYmI3MWQ2YmM3ZWNlNTNiYzRhOTgzYWRhYWU0MyJ9fX0
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -375,7 +375,7 @@ dark_blue:
   gui-item:
     slot: 21
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjU2NzYxYjU3MmNmZTIyYmEzNDVkYzdhZDA2NmEwNzliZDQ1YTczNjU1NjdjMjI2MTE0YTY3ZmQ3ZGJhODMifX19====
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjU2NzYxYjU3MmNmZTIyYmEzNDVkYzdhZDA2NmEwNzliZDQ1YTczNjU1NjdjMjI2MTE0YTY3ZmQ3ZGJhODMifX19
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -416,7 +416,7 @@ pink:
   gui-item:
     slot: 22
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzNiMGFmODNkMGM3MjhhZWVjYTQ3MGYwOGExZDc1ZjQxY2VlMjUzYTM1NzNiYTQxNTdjYTI0MzNlNmMzNiJ9fX0======
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzNiMGFmODNkMGM3MjhhZWVjYTQ3MGYwOGExZDc1ZjQxY2VlMjUzYTM1NzNiYTQxNTdjYTI0MzNlNmMzNiJ9fX0
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -457,7 +457,7 @@ purple:
   gui-item:
     slot: 23
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjYxN2QxNzEzMmQ5NWIwYjNmOWYyMDdiYTI5NGNlOTNiZDdhMjEwM2QyZmYwNjI5NjYxNmI0YWQxNzhjYyJ9fX0=====
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjYxN2QxNzEzMmQ5NWIwYjNmOWYyMDdiYTI5NGNlOTNiZDdhMjEwM2QyZmYwNjI5NjYxNmI0YWQxNzhjYyJ9fX0
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -498,7 +498,7 @@ white:
   gui-item:
     slot: 24
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzY2YTVjOTg5MjhmYTVkNGI1ZDViOGVmYjQ5MDE1NWI0ZGRhMzk1NmJjYWE5MzcxMTc3ODE0NTMyY2ZjIn19fQ=======
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzY2YTVjOTg5MjhmYTVkNGI1ZDViOGVmYjQ5MDE1NWI0ZGRhMzk1NmJjYWE5MzcxMTc3ODE0NTMyY2ZjIn19fQ
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -539,7 +539,7 @@ gray:
   gui-item:
     slot: 25
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzhlMjk1NzY5OWJjOThhNGI1ZDYzNGFiNzE4NjdlZWIxODZiOTM0YmRiNjVkMmM0YjlkY2MyYjYxM2NmNSJ9fX0======
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzhlMjk1NzY5OWJjOThhNGI1ZDYzNGFiNzE4NjdlZWIxODZiOTM0YmRiNjVkMmM0YjlkY2MyYjYxM2NmNSJ9fX0
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -580,7 +580,7 @@ dark_gray:
   gui-item:
     slot: 28
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjA4ZjMyMzQ2MmZiNDM0ZTkyOGJkNjcyODYzOGM5NDRlZTNkODEyZTE2MmI5YzZiYTA3MGZjYWM5YmY5In19fQ========
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjA4ZjMyMzQ2MmZiNDM0ZTkyOGJkNjcyODYzOGM5NDRlZTNkODEyZTE2MmI5YzZiYTA3MGZjYWM5YmY5In19fQ
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -621,7 +621,7 @@ black:
   gui-item:
     slot: 29
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTY3YTJmMjE4YTZlNmUzOGYyYjU0NWY2YzE3NzMzZjRlZjliYmIyODhlNzU0MDI5NDljMDUyMTg5ZWUifX19========
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTY3YTJmMjE4YTZlNmUzOGYyYjU0NWY2YzE3NzMzZjRlZjliYmIyODhlNzU0MDI5NDljMDUyMTg5ZWUifX19
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -667,7 +667,7 @@ monochromatic:
   gui-item:
     slot: 40
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2MyYzU5ZmNkOTI2MjVlYzRkNTc4MTU5YTVmZDViZDQyNDdlMzgyZDQ5NDcyODRjZjUwZjk5OWM4NDExNmMwIn19fQ==
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2MyYzU5ZmNkOTI2MjVlYzRkNTc4MTU5YTVmZDViZDQyNDdlMzgyZDQ5NDcyODRjZjUwZjk5OWM4NDExNmMwIn19fQ
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -770,7 +770,7 @@ rainbow_random:
   gui-item:
     slot: 42
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2ZmYzk3N2NjN2UxMGU1NjRhMDk2MzhhNTNiYmM0YzU0YzljOGRhYzc0NTBiYTNkZmEzYzkwOTlkOTRmNSJ9fX0=
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2ZmYzk3N2NjN2UxMGU1NjRhMDk2MzhhNTNiYmM0YzU0YzljOGRhYzc0NTBiYTNkZmEzYzkwOTlkOTRmNSJ9fX0
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:
@@ -820,7 +820,7 @@ rainbow_gradient:
   gui-item:
     slot: 43
     has-permission:
-      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzY5ZTNlNmU1YjJiOTJmMGJlYjM2OGI3MzhiOTkzZDdiYTIyNWJmOWJiMjc1OGJmYzlmYzJkYWJhNGE1YTdkIn19fQ==
+      material: SKULL:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzY5ZTNlNmU1YjJiOTJmMGJlYjM2OGI3MzhiOTkzZDdiYTIyNWJmOWJiMjc1OGJmYzlmYzJkYWJhNGE1YTdkIn19fQ
       amount: 1
       name: '&7Equip: {pattern_name_formatted}'
       lore:

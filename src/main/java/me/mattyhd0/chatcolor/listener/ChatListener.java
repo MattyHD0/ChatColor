@@ -2,7 +2,7 @@ package me.mattyhd0.chatcolor.listener;
 
 import me.mattyhd0.chatcolor.CPlayer;
 import me.mattyhd0.chatcolor.configuration.Config;
-import me.mattyhd0.chatcolor.pattern.api.IPattern;
+import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.entity.Player;
@@ -13,11 +13,11 @@ import org.bukkit.event.Listener;
 public class ChatListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOW)
-    public void onChat(final AsyncPlayerChatEvent event) {
+    public void onChat(AsyncPlayerChatEvent event) {
 
         Player player = event.getPlayer();
         CPlayer cPlayer = new CPlayer(player);
-        IPattern pattern = cPlayer.getPattern();
+        BasePattern pattern = cPlayer.getPattern();
         cPlayer.setLastMessages(event.getMessage());
 
         if (pattern != null) {

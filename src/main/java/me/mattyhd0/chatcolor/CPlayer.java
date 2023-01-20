@@ -1,8 +1,7 @@
 package me.mattyhd0.chatcolor;
 
 import me.mattyhd0.chatcolor.configuration.YMLFile;
-import me.mattyhd0.chatcolor.pattern.api.IPattern;
-import me.mattyhd0.chatcolor.pattern.manager.PatternManager;
+import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import me.mattyhd0.chatcolor.util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,7 +22,7 @@ public class CPlayer {
         this.player = player;
     }
 
-    public void setPattern(IPattern pattern){
+    public void setPattern(BasePattern pattern){
         if(ChatColor.getInstance().getMysqlConnection() == null) {
             YMLFile dataFile = new YMLFile("playerdata.yml");
             FileConfiguration data = dataFile.get();
@@ -79,7 +78,7 @@ public class CPlayer {
         }
     }
 
-    public IPattern getPattern(){
+    public BasePattern getPattern(){
         String pattern = "";
         if(ChatColor.getInstance().getMysqlConnection() == null) {
             YMLFile dataFile = new YMLFile("playerdata.yml");
@@ -112,7 +111,7 @@ public class CPlayer {
         return ChatColor.getInstance().getPatternManager().getPatternByName(pattern);
     }
 
-    public boolean canUsePattern(IPattern pattern){
+    public boolean canUsePattern(BasePattern pattern){
         return (pattern.getPermission() == null || player.hasPermission(pattern.getPermission()));
     }
 
@@ -125,7 +124,7 @@ public class CPlayer {
         return message != null ? message : "";
     }
 
-    private String formatQuery(String string, IPattern pattern){
+    private String formatQuery(String string, BasePattern pattern){
 
         String uuid = player.getUniqueId().toString();
         String name = player.getName();

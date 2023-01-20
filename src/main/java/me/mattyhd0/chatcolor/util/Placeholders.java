@@ -3,7 +3,7 @@ package me.mattyhd0.chatcolor.util;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.mattyhd0.chatcolor.ChatColor;
 import me.mattyhd0.chatcolor.configuration.Config;
-import me.mattyhd0.chatcolor.pattern.api.IPattern;
+import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Placeholders {
 
-    public static String setPlaceholders(String text, IPattern pattern, Player player){
+    public static String setPlaceholders(String text, BasePattern pattern, Player player){
 
         FileConfiguration config = Config.getGui();
 
@@ -39,7 +39,7 @@ public class Placeholders {
 
     }
 
-    public static List<String> setPlaceholders(List<String> texts, IPattern pattern, Player player){
+    public static List<String> setPlaceholders(List<String> texts, BasePattern pattern, Player player){
 
         if(texts == null) return new ArrayList<>();
 

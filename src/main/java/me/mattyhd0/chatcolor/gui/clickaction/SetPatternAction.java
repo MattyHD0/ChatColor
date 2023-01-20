@@ -3,8 +3,7 @@ package me.mattyhd0.chatcolor.gui.clickaction;
 import me.mattyhd0.chatcolor.CPlayer;
 import me.mattyhd0.chatcolor.ChatColor;
 import me.mattyhd0.chatcolor.gui.clickaction.api.GuiClickAction;
-import me.mattyhd0.chatcolor.pattern.api.IPattern;
-import me.mattyhd0.chatcolor.pattern.manager.PatternManager;
+import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.entity.Player;
 
 public class SetPatternAction implements GuiClickAction {
@@ -18,7 +17,7 @@ public class SetPatternAction implements GuiClickAction {
     @Override
     public void execute(Player player) {
 
-        IPattern pattern = ChatColor.getInstance().getPatternManager().getPatternByName(patternName);
+        BasePattern pattern = ChatColor.getInstance().getPatternManager().getPatternByName(patternName);
         CPlayer cPlayer = new CPlayer(player);
         cPlayer.setPattern(pattern);
 

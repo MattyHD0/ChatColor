@@ -4,8 +4,7 @@ import me.mattyhd0.chatcolor.ChatColor;
 import me.mattyhd0.chatcolor.configuration.Config;
 import me.mattyhd0.chatcolor.gui.clickaction.api.GuiClickAction;
 import me.mattyhd0.chatcolor.gui.clickaction.util.GuiClickActionManager;
-import me.mattyhd0.chatcolor.pattern.api.IPattern;
-import me.mattyhd0.chatcolor.pattern.manager.PatternManager;
+import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import me.mattyhd0.chatcolor.util.Placeholders;
 import me.mattyhd0.chatcolor.util.Util;
 import org.bukkit.Sound;
@@ -59,7 +58,7 @@ public class ChatColorGUI {
 
 
 
-        for(IPattern pattern : ChatColor.getInstance().getPatternManager().getAllPatterns()){
+        for(BasePattern pattern : ChatColor.getInstance().getPatternManager().getAllPatterns()){
 
             String key = pattern.getName(false)+".gui-item";
 

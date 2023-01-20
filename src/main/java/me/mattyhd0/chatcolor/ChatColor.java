@@ -48,6 +48,7 @@ public class ChatColor extends JavaPlugin {
 
     public void reload(){
         Config.loadConfiguration();
+        patternManager = new PatternManager();
         if(mysqlConnection != null){
             try {
                 mysqlConnection.close();
