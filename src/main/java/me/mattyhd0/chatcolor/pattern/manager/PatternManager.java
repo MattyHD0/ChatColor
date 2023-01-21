@@ -69,9 +69,8 @@ public class PatternManager {
                 color = ChatColor.getByChar(colorString.charAt(0));
             } else if (colorString.matches("#[a-zA-Z0-9]{6}")){
                 try {
-                    color = ChatColor.of(colorString.replace("#", ""));
-                } catch (NoSuchMethodError ignored){
-                }
+                    color = ChatColor.of(colorString);
+                } catch (NoSuchMethodError ignored){}
             } else {
                 color = ChatColor.valueOf(colorString);
             }
