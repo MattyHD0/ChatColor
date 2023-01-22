@@ -51,13 +51,18 @@ public class CPlayer {
     }
 
     public void disablePattern(){
-        if(ChatColor.getInstance().getMysqlConnection() == null) {
+        ChatColor plugin = ChatColor.getInstance();
+        if(plugin.getMysqlConnection() == null) {
             YMLFile dataFile = new YMLFile("playerdata.yml");
             FileConfiguration data = dataFile.get();
             data.set("data." + player.getUniqueId().toString(), null);
             dataFile.save();
         } else {
             try {
+
+                if(plugin.getMysqlConnection().isClosed()){
+                    plugin.openMysqlConnection();
+                }
 
                 Statement statement = ChatColor.getInstance().getMysqlConnection().createStatement();
 

@@ -55,7 +55,7 @@ public class ChatColor extends JavaPlugin {
                 mysqlConnection = null;
             } catch (SQLException ignored){}
         }
-        if(Config.getConfig().getBoolean("config.mysql.enable")) mysqlConnection();
+        if(Config.getConfig().getBoolean("config.mysql.enable")) openMysqlConnection();
     }
     
     public void onDisable() {
@@ -125,7 +125,7 @@ public class ChatColor extends JavaPlugin {
 
     }
 
-    public void mysqlConnection(){
+    public void openMysqlConnection(){
 
         FileConfiguration config = Config.getConfig();
 
