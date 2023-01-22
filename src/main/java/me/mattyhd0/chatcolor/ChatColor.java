@@ -137,7 +137,7 @@ public class ChatColor extends JavaPlugin {
 
         try{
 
-            String urlConnection = "jdbc:mysql://{host}:{port}/{database}?user={username}&password={password}"
+            String urlConnection = "jdbc:mysql://{host}:{port}/{database}?user={username}&password={password}&autoReconnect=true"
                     .replaceAll("\\{host}", host)
                     .replaceAll("\\{port}", port)
                     .replaceAll("\\{username}", username)
