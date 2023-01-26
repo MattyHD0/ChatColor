@@ -98,7 +98,7 @@ public class PatternManager {
     }
 
     public List<BasePattern> getAllPatterns(){
-        return loadedPatternsMap.values().stream().collect(Collectors.toList());
+        return new ArrayList<>(loadedPatternsMap.values());
     }
 
 }
