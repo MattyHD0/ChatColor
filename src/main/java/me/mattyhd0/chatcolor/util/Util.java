@@ -145,7 +145,7 @@ public class Util {
         if(itemMeta != null) {
 
             if (name != null) itemMeta.setDisplayName(Util.color(name));
-            if (unbreakable == true) {
+            if (unbreakable) {
                 try {
                     itemMeta.setUnbreakable(unbreakable);
                 } catch (NoSuchMethodError exception){
