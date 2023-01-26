@@ -34,7 +34,6 @@ public class ChatColor extends JavaPlugin {
     
     public void onEnable() {
         INSTANCE = this;
-        patternManager = new PatternManager();
         prefix = Util.color("&8[&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr&8]");
         Bukkit.getConsoleSender().sendMessage(Util.color(prefix+" &7Enabling ChatColor v" + this.getDescription().getVersion()));
         metrics = new Metrics(this, 11648);
@@ -178,4 +177,13 @@ public class ChatColor extends JavaPlugin {
     public PatternManager getPatternManager() {
         return patternManager;
     }
+
+    public void sendConsoleMessage(String message){
+        getServer().getConsoleSender().sendMessage(prefix+" "+Util.color(message));
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
 }
