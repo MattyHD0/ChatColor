@@ -85,19 +85,6 @@ public class Util {
         ItemStack skull = XMaterial.PLAYER_HEAD.parseItem();
         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
 
-        /*GameProfile gameProfile = new GameProfile(UUID.randomUUID(), "");
-
-        gameProfile.getProperties().put("textures", new Property("textures", value));
-
-        Field profileField = null;
-        try {
-            profileField = skullMeta.getClass().getDeclaredField("profile");
-            profileField.setAccessible(true);
-            profileField.set(skullMeta, gameProfile);
-        } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-            e.printStackTrace();
-        }*/
-
         if(skullMeta != null) skull.setItemMeta(SkullUtils.applySkin(skullMeta, value));
         return skull;
 

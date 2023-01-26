@@ -35,9 +35,6 @@ public class GradientPattern extends BasePattern {
         float gEnd = color2.getGreen();
         float bEnd = color2.getBlue();
 
-        //System.out.println(MessageFormat.format("START R: {0}, G: {1}, B: {2}", rStart, gStart, bStart));
-        //System.out.println(MessageFormat.format("END R: {0}, G: {1}, B: {2}", rEnd, gEnd, bEnd));
-
         float rMath = (rEnd-rStart)/text.length();
         float gMath = (gEnd-gStart)/text.length();
         float bMath = (bEnd-bStart)/text.length();
