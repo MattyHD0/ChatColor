@@ -36,7 +36,7 @@ public class PatternManager {
         try{
             type  = PatternType.valueOf(patternMode);
         } catch (Exception e){
-            me.mattyhd0.chatcolor.ChatColor.getInstance().sendConsoleMessage("&cPattern mode '"+patternMode+"' is invalid using '"+type.toString()+"' instead. valid pattern modes: "+String.join(", ", Arrays.toString(PatternType.values())));
+            me.mattyhd0.chatcolor.ChatColor.getInstance().sendConsoleMessage("&cPattern mode '"+patternMode+"' is invalid using '"+type+"' instead. valid pattern modes: "+String.join(", ", Arrays.toString(PatternType.values())));
         }
 
         String permission = configurationSection.getString("permission");

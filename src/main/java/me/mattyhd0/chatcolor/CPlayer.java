@@ -24,7 +24,7 @@ public class CPlayer {
     public void setPattern(BasePattern pattern){
         if(ChatColor.getInstance().getMysqlConnection() == null) {
             SimpleYMLConfiguration data = ChatColor.getInstance().getConfigurationManager().getData();
-            data.set("data." + player.getUniqueId().toString(), pattern.getName(false));
+            data.set("data." + player.getUniqueId(), pattern.getName(false));
             data.save();
         } else {
             try {
@@ -54,7 +54,7 @@ public class CPlayer {
         ChatColor plugin = ChatColor.getInstance();
         if(plugin.getMysqlConnection() == null) {
             SimpleYMLConfiguration data = ChatColor.getInstance().getConfigurationManager().getData();
-            data.set("data." + player.getUniqueId().toString(), null);
+            data.set("data." + player.getUniqueId(), null);
             data.save();
         } else {
             try {
