@@ -12,7 +12,7 @@ public class SpigotAPI {
 
     public static SpigotResource getSpigotResource(int id){
 
-        String response = "";
+        StringBuilder response = new StringBuilder();
 
         try {
 
@@ -23,7 +23,7 @@ public class SpigotAPI {
 
             while ((line = bufferedReader.readLine()) != null) {
 
-                response = response + line;
+                response.append(line);
 
             }
 
@@ -35,7 +35,7 @@ public class SpigotAPI {
 
 
         Gson gson = new Gson();
-        return gson.fromJson(response, SpigotResource.class);
+        return gson.fromJson(response.toString(), SpigotResource.class);
 
     }
 

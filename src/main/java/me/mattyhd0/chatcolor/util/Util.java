@@ -25,26 +25,6 @@ import java.util.regex.Pattern;
 
 public class Util {
 
-    public static String capitalize(String string){
-
-        //Divide la id EJEMPLO: DIAMOND_SWORD en el array {"DIAMOND", "SWORD"}
-        String[] strings = string.split("_");
-        String finalString = "";
-
-        //Transforma el array {"DIAMOND", "SWORD"} en el String "Diamond Sword "
-        for(String str: strings){
-            str = str.toLowerCase();
-            str = str.replaceFirst(Character.toString(str.charAt(0)), Character.toString(str.charAt(0)).toUpperCase());
-            finalString = finalString+str+" ";
-        }
-
-        //Elimina el " " (espacio) al final del texto si este existe
-        if(finalString.charAt(finalString.length()-1) == ' ') finalString = finalString.substring(0, finalString.length()-1);
-
-        return finalString;
-
-    }
-
     public static String color(String text){
 
         text = text.replaceAll("&#", "#");
@@ -77,16 +57,16 @@ public class Util {
     public static String getRandomString(String characters, int length){
 
         String[] chars = characters.split("");
-        String text = "";
+        StringBuilder text = new StringBuilder();
 
         for(int i = 0; i < length+1; i++){
 
             double c = Math.random()*(chars.length-1);
-            text = text+chars[(int)Math.round(c)];
+            text.append(chars[(int) Math.round(c)]);
 
         }
 
-        return text;
+        return text.toString();
 
     }
 

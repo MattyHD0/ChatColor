@@ -143,19 +143,19 @@ public class SpigotResource {
 
         String url = ("https://www.spigotmc.org/resources/"+title+"."+id+"/").replaceAll(" ", "-");
         String validChars = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:/.-_";
-        String validUrl = "";
+        StringBuilder validUrl = new StringBuilder();
 
         for(int i = 0; i < url.length(); i++){
 
             String c = Character.toString(url.charAt(i));
 
             if(validChars.contains(c)){
-                validUrl = validUrl+c;
+                validUrl.append(c);
             }
 
         }
 
-        return validUrl;
+        return validUrl.toString();
     }
 
 }

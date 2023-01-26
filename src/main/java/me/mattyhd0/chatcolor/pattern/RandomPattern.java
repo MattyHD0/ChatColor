@@ -14,7 +14,7 @@ public class RandomPattern extends BasePattern {
     @Override
     public String getText(String text) {
 
-        String finalString = "";
+        StringBuilder finalString = new StringBuilder();
 
         for (String character: text.split("")){
 
@@ -23,11 +23,11 @@ public class RandomPattern extends BasePattern {
 
             character = getTextFormatOptions().setFormat(character);
 
-            finalString = finalString + randomColor + character;
+            finalString.append(randomColor).append(character);
 
         }
 
-        return Util.color(finalString);
+        return Util.color(finalString.toString());
     }
 
 }

@@ -17,12 +17,12 @@ public class LinearPattern extends BasePattern {
     public String getText(String text) {
 
         String[] characters = text.split("");
-        String finalString = "";
+        StringBuilder finalString = new StringBuilder();
         int index = 0;
 
         for (String character : characters) {
 
-            finalString = finalString + getColors().get(index) + character;
+            finalString.append(getColors().get(index)).append(character);
             if (index < getColors().size() - 1) {
                 if(!ignoreSpaces){
                     index++;
@@ -36,7 +36,7 @@ public class LinearPattern extends BasePattern {
             }
         }
 
-        return finalString;
+        return finalString.toString();
     }
 
     public void setIgnoreSpaces(boolean ignoreSpaces) {
