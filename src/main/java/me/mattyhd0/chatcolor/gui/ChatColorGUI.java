@@ -98,7 +98,7 @@ public class ChatColorGUI {
 
         }
 
-        builder.open(player, 1L);
+        builder.open(player);
         if(sound != null) player.playSound(player.getLocation(), sound, 1, 1);
 
     }

@@ -141,8 +141,9 @@ public class GuiBuilder {
 
         }
 
-        player.openInventory(gui);
+        player.closeInventory();
         GuiListener.setPlayerOpenedGui(player, this);
+        player.openInventory(gui);
 
     }
 

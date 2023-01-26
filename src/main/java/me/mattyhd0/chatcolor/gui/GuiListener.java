@@ -59,16 +59,7 @@ public class GuiListener implements Listener {
         Player player = (Player) event.getPlayer();
         if(inventoryActions.get(player) != null) inventoryActions.remove(player);
         if(playersWithGui.contains(player)) {
-            new BukkitRunnable() {
-
-                @Override
-                public void run() {
-
-                    while (playersWithGui.contains(player)) playersWithGui.remove(player);
-
-                }
-
-            }.runTaskLater(ChatColor.getInstance(), 1L);
+            while (playersWithGui.contains(player)) playersWithGui.remove(player);
         }
 
     }
