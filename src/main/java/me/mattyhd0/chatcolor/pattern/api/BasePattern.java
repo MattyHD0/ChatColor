@@ -46,7 +46,7 @@ public abstract class BasePattern {
 
     public String getPermission(){
         return permission;
-    };
+    }
 
     public void setTextFormatOptions(TextFormatOptions textFormatOptions) {
         this.textFormatOptions = textFormatOptions;
