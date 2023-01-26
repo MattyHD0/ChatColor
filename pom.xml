@@ -6,15 +6,7 @@
 
     <groupId>me.mattyhd0</groupId>
     <artifactId>ChatColor</artifactId>
-    <version>2.6.0-pre1</version>
-    <!--
-     Recoded all Patterns
-     IPattern (Interface) > BasePatterns (Abstract Class)
-     Added GRADIENT_RANDOM pattern type
-     fixed /chatcoloradmin reload dont reload pattern config
-     Fixed configuration wrong base64 values
-
-     -->
+    <version>2.6.0</version>
     <packaging>jar</packaging>
 
     <properties>
