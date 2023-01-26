@@ -1,6 +1,7 @@
 package me.mattyhd0.chatcolor.pattern.format;
 
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.configuration.ConfigurationSection;
 
 import java.awt.*;
 import java.util.*;
@@ -57,6 +58,20 @@ public class TextFormatOptions {
         return formattedChar.append(character).toString();
     }
 
+    public static TextFormatOptions fromConfigurationSection(ConfigurationSection configurationSection){
+
+        boolean bold = configurationSection.contains("bold") && configurationSection.getBoolean(".bold");
+        boolean italic = configurationSection.contains("italic") && configurationSection.getBoolean(".italic");
+        boolean underline = configurationSection.contains("underline") && configurationSection.getBoolean(".underline");
+        boolean magic = configurationSection.contains("magic") && configurationSection.getBoolean(".magic");
+        boolean strikethrough = configurationSection.contains("strikethrough") && configurationSection.getBoolean(".strikethrough");
+
+        TextFormatOptions textFormatOptions = new TextFormatOptions();
+        textFormatOptions.of(bold, italic, underline, magic, strikethrough);
+
+        return textFormatOptions;
+
+    }
     public void of(boolean bold, boolean italic, boolean underline, boolean magic, boolean strikethrough){
         if (bold) formats.add(ChatColor.BOLD);
         if (italic) formats.add(ChatColor.ITALIC);
