@@ -17,7 +17,7 @@ public enum PatternType {
     GRADIENT_RANDOM(RandomGradientPattern.class);
 
     private Class clazz;
-    private PatternType(Class<? extends BasePattern> clazz){
+    PatternType(Class<? extends BasePattern> clazz){
         this.clazz = clazz;
     }
 
