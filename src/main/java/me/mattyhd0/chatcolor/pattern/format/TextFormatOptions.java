@@ -3,7 +3,6 @@ package me.mattyhd0.chatcolor.pattern.format;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 

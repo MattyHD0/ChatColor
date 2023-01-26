@@ -3,7 +3,6 @@ package me.mattyhd0.chatcolor.pattern.api;
 import me.mattyhd0.chatcolor.pattern.format.TextFormatOptions;
 import net.md_5.bungee.api.ChatColor;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

@@ -1,11 +1,8 @@
 package me.mattyhd0.chatcolor.pattern;
 
-import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import me.mattyhd0.chatcolor.pattern.format.TextFormatOptions;
 import net.md_5.bungee.api.ChatColor;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

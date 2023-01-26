@@ -1,7 +1,6 @@
 package me.mattyhd0.chatcolor.configuration;
 
 import me.mattyhd0.chatcolor.util.Util;
-import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -1,9 +1,5 @@
 package me.mattyhd0.chatcolor.configuration;
 
-import org.bukkit.configuration.file.FileConfiguration;
-
-import java.io.File;
-
 public class ConfigurationManager {
 
     private SimpleYMLConfiguration config;
