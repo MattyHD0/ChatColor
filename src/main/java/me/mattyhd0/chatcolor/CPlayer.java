@@ -35,6 +35,8 @@ public class CPlayer {
                         formatQuery("INSERT INTO playerdata(uuid, pattern) VALUES('{uuid}', '{pattern}') ON DUPLICATE KEY UPDATE pattern= VALUES(pattern);", pattern)
                 );
 
+                statement.close();
+
             } catch (SQLException e){
 
                 Bukkit.getServer().getConsoleSender().sendMessage(
@@ -66,6 +68,8 @@ public class CPlayer {
                 statement.execute(
                         formatQuery("DELETE FROM playerdata WHERE uuid = '{uuid}';")
                 );
+
+                statement.close();
 
             } catch (SQLException e){
 
