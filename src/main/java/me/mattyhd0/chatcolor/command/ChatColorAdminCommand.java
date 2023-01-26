@@ -2,7 +2,9 @@ package me.mattyhd0.chatcolor.command;
 
 import me.mattyhd0.chatcolor.CPlayer;
 import me.mattyhd0.chatcolor.ChatColor;
-import me.mattyhd0.chatcolor.configuration.Config;
+import me.mattyhd0.chatcolor.configuration.ConfigurationManager;
+import me.mattyhd0.chatcolor.configuration.MessagesYMLFile;
+import me.mattyhd0.chatcolor.configuration.SimpleYMLConfiguration;
 import me.mattyhd0.chatcolor.gui.ChatColorGUI;
 import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.Bukkit;
@@ -101,6 +103,10 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
         if (sender.hasPermission("chatcolor.admin.set")) {
 
+            ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+            SimpleYMLConfiguration config = configurationManager.getConfig();
+            MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
+
             if (arg.length == 3) {
 
                 BasePattern pattern = ChatColor.getInstance().getPatternManager().getPatternByName(arg[2]);
@@ -111,20 +117,20 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
                     if (pattern != null) {
 
-                        String patternName = pattern.getName(Config.getBoolean("config.show-pattern-on.list"));
+                        String patternName = pattern.getName(config.getBoolean("config.show-pattern-on.list"));
 
                         if (cPlayer.getPattern() != pattern) {
 
                             cPlayer.setPattern(pattern);
 
                             sender.sendMessage(
-                                    Config.getMessage("commands.chatcoloradmin.set.selected-pattern-sender")
+                                    messagesYMLFile.getMessage("commands.chatcoloradmin.set.selected-pattern-sender")
                                             .replaceAll("%player%", player.getName())
                                             .replaceAll("%pattern%", patternName)
 
                             );
 
-                            String messagePlayer = Config.getMessage("commands.chatcoloradmin.set.selected-pattern-target")
+                            String messagePlayer = messagesYMLFile.getMessage("commands.chatcoloradmin.set.selected-pattern-target")
                                     .replaceAll("%sender%", sender.getName())
                                     .replaceAll("%pattern%", patternName);
 
@@ -133,7 +139,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
                         } else {
 
                             sender.sendMessage(
-                                    Config.getMessage("commands.chatcoloradmin.set.already-in-use")
+                                    messagesYMLFile.getMessage("commands.chatcoloradmin.set.already-in-use")
                                     .replaceAll("%pattern%", patternName)
                                     .replaceAll("%player%", player.getName()
                                     )
@@ -144,7 +150,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
                     } else {
 
                         sender.sendMessage(
-                                Config.getMessage("commands.chatcoloradmin.set.pattern-not-exist")
+                                messagesYMLFile.getMessage("commands.chatcoloradmin.set.pattern-not-exist")
                                         .replaceAll("%pattern%", arg[2])
                         );
 
@@ -152,7 +158,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
                 } else {
                     sender.sendMessage(
-                            Config.getMessage("other.unknown-player")
+                            messagesYMLFile.getMessage("other.unknown-player")
                                     .replaceAll("%player%", arg[1])
                     );
                 }
@@ -160,7 +166,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
             } else {
                 sender.sendMessage(
-                        Config.getMessage("other.correct-usage")
+                        messagesYMLFile.getMessage("other.correct-usage")
                                 .replaceAll("%command%", "/chatcoloradmin set <player> <pattern>")
                 );
             }
@@ -174,6 +180,10 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
         if (sender.hasPermission("chatcolor.admin.disable")) {
 
+            ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+            SimpleYMLConfiguration config = configurationManager.getConfig();
+            MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
+
             if(arg.length == 2){
 
                 Player player = Bukkit.getPlayer(arg[1]);
@@ -185,17 +195,17 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
                     if (pattern != null) {
 
-                        String patternName = pattern.getName(Config.getBoolean("config.show-pattern-on.list"));
+                        String patternName = pattern.getName(config.getBoolean("config.show-pattern-on.list"));
 
                         cPlayer.disablePattern();
 
                         sender.sendMessage(
-                                Config.getMessage("commands.chatcoloradmin.disable.pattern-disabled-sender")
+                                messagesYMLFile.getMessage("commands.chatcoloradmin.disable.pattern-disabled-sender")
                                         .replaceAll("%pattern%", patternName)
                                         .replaceAll("%player%", player.getName())
                         );
 
-                        String messagePlayer = Config.getMessage("commands.chatcoloradmin.disable.pattern-disabled-target")
+                        String messagePlayer = messagesYMLFile.getMessage("commands.chatcoloradmin.disable.pattern-disabled-target")
                                 .replaceAll("%pattern%", patternName)
                                 .replaceAll("%sender%", sender.getName());
 
@@ -203,14 +213,14 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
                     } else {
                         sender.sendMessage(
-                                Config.getMessage("commands.chatcoloradmin.disable.no-pattern-in-use")
+                                messagesYMLFile.getMessage("commands.chatcoloradmin.disable.no-pattern-in-use")
                                         .replaceAll("%player%", player.getName())
                         );
                     }
 
                 } else {
                     sender.sendMessage(
-                            Config.getMessage("other.unknown-player")
+                            messagesYMLFile.getMessage("other.unknown-player")
                                     .replaceAll("%player%", arg[1])
                     );
                 }
@@ -218,7 +228,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
             } else {
 
                 sender.sendMessage(
-                        Config.getMessage("other.correct-usage")
+                        messagesYMLFile.getMessage("other.correct-usage")
                                 .replaceAll("%command%", "/chatcoloradmin disable <player>")
                 );
 
@@ -233,6 +243,8 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
         if (sender.hasPermission("chatcolor.admin.gui")) {
 
+            MessagesYMLFile messagesYMLFile = ChatColor.getInstance().getConfigurationManager().getMessages();
+
             if(arg.length == 2){
 
                 Player player = Bukkit.getPlayer(arg[1]);
@@ -240,11 +252,11 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
                 if(player != null){
 
                     sender.sendMessage(
-                            Config.getMessage("commands.chatcoloradmin.gui.gui-opened-sender")
+                            messagesYMLFile.getMessage("commands.chatcoloradmin.gui.gui-opened-sender")
                                     .replaceAll("%player%", player.getName())
                     );
 
-                    String messagePlayer = Config.getMessage("commands.chatcoloradmin.gui.gui-opened-target")
+                    String messagePlayer = messagesYMLFile.getMessage("commands.chatcoloradmin.gui.gui-opened-target")
                             .replaceAll("%sender%", sender.getName());
 
                     if(!messagePlayer.equals("")) player.sendMessage(messagePlayer);
@@ -252,13 +264,13 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
                     ChatColorGUI.openGui(player);
 
                 } else {
-                    sender.sendMessage(Config.getMessage("other.unknown-player").replaceAll("%player%", arg[1]));
+                    sender.sendMessage(messagesYMLFile.getMessage("other.unknown-player").replaceAll("%player%", arg[1]));
                 }
 
             } else {
 
                 sender.sendMessage(
-                        Config.getMessage("other.correct-usage")
+                        messagesYMLFile.getMessage("other.correct-usage")
                                 .replaceAll("%command%", "/chatcoloradmin gui <player>")
                 );
 
@@ -273,15 +285,18 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
         if (sender.hasPermission("chatcolor.admin.reload")) {
 
+            ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+            MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
+
             if(arg.length == 1) {
 
-                sender.sendMessage(Config.getMessage("commands.chatcoloradmin.reload.reloading-plugin"));
+                sender.sendMessage(messagesYMLFile.getMessage("commands.chatcoloradmin.reload.reloading-plugin"));
                 ChatColor.getInstance().reload();
-                sender.sendMessage(Config.getMessage("commands.chatcoloradmin.reload.plugin-reloaded"));
+                sender.sendMessage(messagesYMLFile.getMessage("commands.chatcoloradmin.reload.plugin-reloaded"));
 
             } else {
                 sender.sendMessage(
-                        Config.getMessage("other.correct-usage")
+                        messagesYMLFile.getMessage("other.correct-usage")
                                 .replaceAll("%command%", "/chatcoloradmin reload")
                 );
             }
@@ -293,16 +308,19 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
     }
     public void help(CommandSender sender, String[] arg) {
 
+        ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+        MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
+
         if(arg.length == 1) {
 
-            for (String line : Config.getMessageList("commands.chatcoloradmin.help")) {
+            for (String line : messagesYMLFile.getMessageList("commands.chatcoloradmin.help")) {
                 sender.sendMessage(line);
             }
 
         } else {
 
             sender.sendMessage(
-                    Config.getMessage("other.correct-usage")
+                    messagesYMLFile.getMessage("other.correct-usage")
                     .replaceAll("%command%", "/chatcoloradmin help")
             );
 
@@ -312,13 +330,13 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
     
     public void noPermission(CommandSender sender) {
         sender.sendMessage(
-                Config.getMessage("no-permission")
+                ChatColor.getInstance().getConfigurationManager().getMessages().getMessage("no-permission")
         );
     }
 
     public void unknownCommand(CommandSender sender) {
         sender.sendMessage(
-                Config.getMessage("commands.chatcoloradmin.unknown-command")
+                ChatColor.getInstance().getConfigurationManager().getMessages().getMessage("commands.chatcoloradmin.unknown-command")
         );
     }
 }

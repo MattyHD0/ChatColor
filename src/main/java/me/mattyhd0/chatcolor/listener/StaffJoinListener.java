@@ -4,7 +4,6 @@ import me.mattyhd0.chatcolor.updatechecker.UpdateChecker;
 import org.bukkit.event.EventHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.ChatColor;
-import me.mattyhd0.chatcolor.configuration.Config;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.Listener;
 
@@ -14,7 +13,7 @@ public class StaffJoinListener implements Listener {
 
         Player player = event.getPlayer();
 
-        if (player.hasPermission("chatcolor.updatenotify") && Config.getBoolean("config.update-checker")) {
+        if (player.hasPermission("chatcolor.updatenotify") && me.mattyhd0.chatcolor.ChatColor.getInstance().getConfigurationManager().getConfig().getBoolean("config.update-checker")) {
 
             UpdateChecker updateChecker = new UpdateChecker(me.mattyhd0.chatcolor.ChatColor.getInstance(), 93186);
 

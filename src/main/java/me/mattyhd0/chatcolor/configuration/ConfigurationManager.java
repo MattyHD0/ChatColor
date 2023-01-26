@@ -1,39 +1,41 @@
 package me.mattyhd0.chatcolor.configuration;
 
+import org.bukkit.configuration.file.FileConfiguration;
+
+import java.io.File;
+
 public class ConfigurationManager {
 
-    private YMLFile config;
-    private YMLFile gui;
-    private YMLFile messages;
-    private YMLFile patterns;
-
-    private YMLFile data;
-
+    private SimpleYMLConfiguration config;
+    private SimpleYMLConfiguration gui;
+    private MessagesYMLFile messages;
+    private SimpleYMLConfiguration patterns;
+    private SimpleYMLConfiguration data;
     public ConfigurationManager() {
-        this.config = new YMLFile("config.yml");
-        this.gui = new YMLFile("gui.yml");
-        this.messages = new YMLFile("messages.yml");
-        this.messages = new YMLFile("patterns.yml");
-        this.data = new YMLFile("playerdata.yml");
+        this.config = new SimpleYMLConfiguration("config.yml");
+        this.gui = new SimpleYMLConfiguration("gui.yml");
+        this.messages = new MessagesYMLFile("messages.yml");
+        this.patterns = new SimpleYMLConfiguration("patterns.yml");
+        this.data = new SimpleYMLConfiguration("playerdata.yml");
     }
 
-    public YMLFile getConfig() {
+    public SimpleYMLConfiguration getConfig() {
         return config;
     }
 
-    public YMLFile getPatterns() {
+    public SimpleYMLConfiguration getPatterns() {
         return patterns;
     }
 
-    public YMLFile getMessages() {
+    public MessagesYMLFile getMessages() {
         return messages;
     }
 
-    public YMLFile getGui() {
+    public SimpleYMLConfiguration getGui() {
         return gui;
     }
 
-    public YMLFile getData() {
+    public SimpleYMLConfiguration getData() {
         return data;
     }
     

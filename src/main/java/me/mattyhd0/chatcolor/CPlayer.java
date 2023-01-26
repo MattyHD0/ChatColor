@@ -1,10 +1,9 @@
 package me.mattyhd0.chatcolor;
 
-import me.mattyhd0.chatcolor.configuration.YMLFile;
+import me.mattyhd0.chatcolor.configuration.SimpleYMLConfiguration;
 import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import me.mattyhd0.chatcolor.util.Util;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.sql.ResultSet;
@@ -24,10 +23,9 @@ public class CPlayer {
 
     public void setPattern(BasePattern pattern){
         if(ChatColor.getInstance().getMysqlConnection() == null) {
-            YMLFile dataFile = new YMLFile("playerdata.yml");
-            FileConfiguration data = dataFile.get();
+            SimpleYMLConfiguration data = ChatColor.getInstance().getConfigurationManager().getData();
             data.set("data." + player.getUniqueId().toString(), pattern.getName(false));
-            dataFile.save();
+            data.save();
         } else {
             try {
 
@@ -53,10 +51,9 @@ public class CPlayer {
     public void disablePattern(){
         ChatColor plugin = ChatColor.getInstance();
         if(plugin.getMysqlConnection() == null) {
-            YMLFile dataFile = new YMLFile("playerdata.yml");
-            FileConfiguration data = dataFile.get();
+            SimpleYMLConfiguration data = ChatColor.getInstance().getConfigurationManager().getData();
             data.set("data." + player.getUniqueId().toString(), null);
-            dataFile.save();
+            data.save();
         } else {
             try {
 
@@ -86,8 +83,8 @@ public class CPlayer {
     public BasePattern getPattern(){
         String pattern = "";
         if(ChatColor.getInstance().getMysqlConnection() == null) {
-            YMLFile dataFile = new YMLFile("playerdata.yml");
-            pattern = dataFile.get().getString("data." + player.getUniqueId());
+            SimpleYMLConfiguration data = ChatColor.getInstance().getConfigurationManager().getData();
+            pattern = data.getString("data." + player.getUniqueId());
         } else {
             try {
 

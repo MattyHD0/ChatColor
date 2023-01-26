@@ -1,13 +1,14 @@
 package me.mattyhd0.chatcolor;
 
 import me.mattyhd0.chatcolor.command.ChatColorAdminCommand;
+import me.mattyhd0.chatcolor.configuration.ConfigurationManager;
+import me.mattyhd0.chatcolor.configuration.SimpleYMLConfiguration;
 import me.mattyhd0.chatcolor.gui.GuiListener;
 import me.mattyhd0.chatcolor.pattern.manager.PatternManager;
 import me.mattyhd0.chatcolor.updatechecker.UpdateChecker;
 import me.mattyhd0.chatcolor.util.Util;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.command.ConsoleCommandSender;
-import me.mattyhd0.chatcolor.configuration.Config;
 import me.mattyhd0.chatcolor.placeholderapi.ChatColorPlaceholders;
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ import me.mattyhd0.chatcolor.listener.StaffJoinListener;
 import me.mattyhd0.chatcolor.listener.ChatListener;
 import me.mattyhd0.chatcolor.command.ChatColorCommand;
 
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,6 +26,7 @@ public class ChatColor extends JavaPlugin {
 
     private static ChatColor INSTANCE;
     private PatternManager patternManager;
+    private ConfigurationManager configurationManager;
     private List<String> supportedPlugins = new ArrayList<>();
 
     private String prefix;
@@ -46,7 +47,7 @@ public class ChatColor extends JavaPlugin {
     }
 
     public void reload(){
-        Config.loadConfiguration();
+        configurationManager = new ConfigurationManager();
         patternManager = new PatternManager();
         if(mysqlConnection != null){
             try {
@@ -54,7 +55,7 @@ public class ChatColor extends JavaPlugin {
                 mysqlConnection = null;
             } catch (SQLException ignored){}
         }
-        if(Config.getConfig().getBoolean("config.mysql.enable")) openMysqlConnection();
+        if(configurationManager.getConfig().getBoolean("config.mysql.enable")) openMysqlConnection();
     }
     
     public void onDisable() {
@@ -88,7 +89,7 @@ public class ChatColor extends JavaPlugin {
     }
 
     private void updateChecker(Plugin plugin, int spigotId) {
-        if (Config.getBoolean("config.update-checker")) {
+        if (ChatColor.getInstance().getConfigurationManager().getConfig().getBoolean("config.update-checker")) {
             UpdateChecker updateChecker = new UpdateChecker(plugin, spigotId);
             ConsoleCommandSender console = Bukkit.getConsoleSender();
             if (updateChecker.requestIsValid()) {
@@ -126,7 +127,7 @@ public class ChatColor extends JavaPlugin {
 
     public void openMysqlConnection(){
 
-        FileConfiguration config = Config.getConfig();
+        SimpleYMLConfiguration config = configurationManager.getConfig();
 
         String host     = config.getString("config.mysql.host");
         String port     = config.getString("config.mysql.port");
@@ -172,6 +173,10 @@ public class ChatColor extends JavaPlugin {
 
     public Connection getMysqlConnection() {
         return mysqlConnection;
+    }
+
+    public ConfigurationManager getConfigurationManager() {
+        return configurationManager;
     }
 
     public PatternManager getPatternManager() {

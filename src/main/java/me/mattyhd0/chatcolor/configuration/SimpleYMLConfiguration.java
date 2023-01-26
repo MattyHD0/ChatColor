@@ -1,32 +1,27 @@
 package me.mattyhd0.chatcolor.configuration;
 
-import org.bukkit.configuration.InvalidConfigurationException;
-import java.io.IOException;
-import org.bukkit.configuration.file.YamlConfiguration;
 import me.mattyhd0.chatcolor.ChatColor;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
+import java.io.IOException;
 
-public class YMLFile {
+public class SimpleYMLConfiguration extends YamlConfiguration {
 
-    private String fileName;
     private File file;
-    private FileConfiguration fileConfiguration;
-    
-    public YMLFile(String fileName) {
-        this.fileName = fileName;
-        this.file = new File(ChatColor.getInstance().getDataFolder(), this.fileName);
+
+    public SimpleYMLConfiguration(String fileName) {
+        super();
+        this.file = new File(ChatColor.getInstance().getDataFolder(), fileName);
         this.check();
     }
-    
-    public YMLFile(File file) {
-        this.fileName = file.getName();
+
+    public SimpleYMLConfiguration(File file) {
         this.file = file;
         this.check();
-    }
-    
-    public FileConfiguration get() {
-        return this.fileConfiguration;
     }
     
     public void check() {
@@ -38,13 +33,12 @@ public class YMLFile {
     
     public void createFile() {
         this.file.getParentFile().mkdirs();
-        ChatColor.getInstance().saveResource(this.fileName, false);
+        ChatColor.getInstance().saveResource(this.file.getName(), false);
     }
     
     public void loadFile() {
-        this.fileConfiguration = new YamlConfiguration();
         try {
-            this.fileConfiguration.load(this.file);
+            this.load(this.file);
         } catch (IOException | InvalidConfigurationException e) {
             e.printStackTrace();
         }
@@ -52,9 +46,10 @@ public class YMLFile {
     
     public void save() {
         try {
-            this.get().save(this.file);
+            this.save(this.file);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
     }
+
 }

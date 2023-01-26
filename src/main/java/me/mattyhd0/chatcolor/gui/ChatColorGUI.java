@@ -1,7 +1,7 @@
 package me.mattyhd0.chatcolor.gui;
 
 import me.mattyhd0.chatcolor.ChatColor;
-import me.mattyhd0.chatcolor.configuration.Config;
+import me.mattyhd0.chatcolor.configuration.ConfigurationManager;
 import me.mattyhd0.chatcolor.gui.clickaction.api.GuiClickAction;
 import me.mattyhd0.chatcolor.gui.clickaction.util.GuiClickActionManager;
 import me.mattyhd0.chatcolor.pattern.api.BasePattern;
@@ -20,8 +20,10 @@ public class ChatColorGUI {
 
     public static void openGui(Player player){
 
-        FileConfiguration file = Config.getGui();
-        FileConfiguration patterns = Config.getPatterns();
+        ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+
+        FileConfiguration file = configurationManager.getGui();
+        FileConfiguration patterns = configurationManager.getPatterns();
 
         String openSoundStr = file.getString("gui.open-sound");
 
