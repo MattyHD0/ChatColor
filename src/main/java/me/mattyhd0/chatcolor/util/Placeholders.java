@@ -1,7 +1,7 @@
 package me.mattyhd0.chatcolor.util;
 
 import me.clip.placeholderapi.PlaceholderAPI;
-import me.mattyhd0.chatcolor.ChatColor;
+import me.mattyhd0.chatcolor.ChatColorPlugin;
 import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -13,7 +13,7 @@ public class Placeholders {
 
     public static String setPlaceholders(String text, BasePattern pattern, Player player){
 
-        FileConfiguration config = ChatColor.getInstance().getConfigurationManager().getGui();
+        FileConfiguration config = ChatColorPlugin.getInstance().getConfigurationManager().getGui();
 
         if(pattern != null){
 
@@ -25,7 +25,7 @@ public class Placeholders {
 
         if(player != null){
 
-            if(ChatColor.getInstance().supportPlugin("PlaceholderAPI")){
+            if(ChatColorPlugin.getInstance().supportPlugin("PlaceholderAPI")){
 
                 text = PlaceholderAPI.setPlaceholders(player, text);
 

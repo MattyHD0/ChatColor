@@ -1,7 +1,7 @@
 package me.mattyhd0.chatcolor.command;
 
 import me.mattyhd0.chatcolor.CPlayer;
-import me.mattyhd0.chatcolor.ChatColor;
+import me.mattyhd0.chatcolor.ChatColorPlugin;
 import me.mattyhd0.chatcolor.configuration.ConfigurationManager;
 import me.mattyhd0.chatcolor.configuration.MessagesYMLFile;
 import me.mattyhd0.chatcolor.configuration.SimpleYMLConfiguration;
@@ -19,9 +19,9 @@ import java.util.List;
 
 public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
-    protected ChatColor plugin;
+    protected ChatColorPlugin plugin;
 
-    public ChatColorAdminCommand(ChatColor plugin) {
+    public ChatColorAdminCommand(ChatColorPlugin plugin) {
         this.plugin = plugin;
     }
     
@@ -85,7 +85,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
         } else if (strings.length == 3 && strings[0].equals("set")){
 
-            for(BasePattern pattern: ChatColor.getInstance().getPatternManager().getAllPatterns()){
+            for(BasePattern pattern: ChatColorPlugin.getInstance().getPatternManager().getAllPatterns()){
 
                 completions.add(pattern.getName(false));
 
@@ -103,13 +103,13 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
         if (sender.hasPermission("chatcolor.admin.set")) {
 
-            ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+            ConfigurationManager configurationManager = ChatColorPlugin.getInstance().getConfigurationManager();
             SimpleYMLConfiguration config = configurationManager.getConfig();
             MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
 
             if (arg.length == 3) {
 
-                BasePattern pattern = ChatColor.getInstance().getPatternManager().getPatternByName(arg[2]);
+                BasePattern pattern = ChatColorPlugin.getInstance().getPatternManager().getPatternByName(arg[2]);
                 Player player = Bukkit.getPlayer(arg[1]);
                 CPlayer cPlayer = new CPlayer(player);
 
@@ -180,7 +180,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
         if (sender.hasPermission("chatcolor.admin.disable")) {
 
-            ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+            ConfigurationManager configurationManager = ChatColorPlugin.getInstance().getConfigurationManager();
             SimpleYMLConfiguration config = configurationManager.getConfig();
             MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
 
@@ -243,7 +243,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
         if (sender.hasPermission("chatcolor.admin.gui")) {
 
-            MessagesYMLFile messagesYMLFile = ChatColor.getInstance().getConfigurationManager().getMessages();
+            MessagesYMLFile messagesYMLFile = ChatColorPlugin.getInstance().getConfigurationManager().getMessages();
 
             if(arg.length == 2){
 
@@ -285,13 +285,13 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
         if (sender.hasPermission("chatcolor.admin.reload")) {
 
-            ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+            ConfigurationManager configurationManager = ChatColorPlugin.getInstance().getConfigurationManager();
             MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
 
             if(arg.length == 1) {
 
                 sender.sendMessage(messagesYMLFile.getMessage("commands.chatcoloradmin.reload.reloading-plugin"));
-                ChatColor.getInstance().reload();
+                ChatColorPlugin.getInstance().reload();
                 sender.sendMessage(messagesYMLFile.getMessage("commands.chatcoloradmin.reload.plugin-reloaded"));
 
             } else {
@@ -308,7 +308,7 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
     }
     public void help(CommandSender sender, String[] arg) {
 
-        ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+        ConfigurationManager configurationManager = ChatColorPlugin.getInstance().getConfigurationManager();
         MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
 
         if(arg.length == 1) {
@@ -330,13 +330,13 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
     
     public void noPermission(CommandSender sender) {
         sender.sendMessage(
-                ChatColor.getInstance().getConfigurationManager().getMessages().getMessage("no-permission")
+                ChatColorPlugin.getInstance().getConfigurationManager().getMessages().getMessage("no-permission")
         );
     }
 
     public void unknownCommand(CommandSender sender) {
         sender.sendMessage(
-                ChatColor.getInstance().getConfigurationManager().getMessages().getMessage("commands.chatcoloradmin.unknown-command")
+                ChatColorPlugin.getInstance().getConfigurationManager().getMessages().getMessage("commands.chatcoloradmin.unknown-command")
         );
     }
 }

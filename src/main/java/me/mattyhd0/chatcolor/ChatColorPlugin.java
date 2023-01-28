@@ -22,9 +22,9 @@ import me.mattyhd0.chatcolor.command.ChatColorCommand;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ChatColor extends JavaPlugin {
+public class ChatColorPlugin extends JavaPlugin {
 
-    private static ChatColor INSTANCE;
+    private static ChatColorPlugin INSTANCE;
     private PatternManager patternManager;
     private ConfigurationManager configurationManager;
     private List<String> supportedPlugins = new ArrayList<>();
@@ -89,7 +89,7 @@ public class ChatColor extends JavaPlugin {
     }
 
     private void updateChecker(Plugin plugin, int spigotId) {
-        if (ChatColor.getInstance().getConfigurationManager().getConfig().getBoolean("config.update-checker")) {
+        if (ChatColorPlugin.getInstance().getConfigurationManager().getConfig().getBoolean("config.update-checker")) {
             UpdateChecker updateChecker = new UpdateChecker(plugin, spigotId);
             ConsoleCommandSender console = Bukkit.getConsoleSender();
             if (updateChecker.requestIsValid()) {
@@ -167,7 +167,7 @@ public class ChatColor extends JavaPlugin {
         return supportedPlugins.contains(plugin);
     }
 
-    public static ChatColor getInstance() {
+    public static ChatColorPlugin getInstance() {
         return INSTANCE;
     }
 

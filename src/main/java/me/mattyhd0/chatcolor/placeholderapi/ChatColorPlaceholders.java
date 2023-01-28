@@ -3,7 +3,7 @@ package me.mattyhd0.chatcolor.placeholderapi;
 import me.mattyhd0.chatcolor.CPlayer;
 import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.entity.Player;
-import me.mattyhd0.chatcolor.ChatColor;
+import me.mattyhd0.chatcolor.ChatColorPlugin;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.plugin.Plugin;
 
@@ -12,7 +12,7 @@ public class ChatColorPlaceholders extends PlaceholderExpansion
     private Plugin plugin;
     
     public ChatColorPlaceholders() {
-        this.plugin = ChatColor.getInstance();
+        this.plugin = ChatColorPlugin.getInstance();
     }
     
     public boolean canRegister() {

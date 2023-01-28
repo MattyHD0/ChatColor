@@ -1,5 +1,6 @@
 package me.mattyhd0.chatcolor.pattern.manager;
 
+import me.mattyhd0.chatcolor.ChatColorPlugin;
 import me.mattyhd0.chatcolor.configuration.SimpleYMLConfiguration;
 import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import me.mattyhd0.chatcolor.pattern.format.TextFormatOptions;
@@ -8,7 +9,6 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class PatternManager {
 
@@ -28,7 +28,7 @@ public class PatternManager {
 
     public void load(ConfigurationSection configurationSection){
 
-        me.mattyhd0.chatcolor.ChatColor.getInstance().sendConsoleMessage("&7Loading pattern "+configurationSection.getName()+"...");
+        ChatColorPlugin.getInstance().sendConsoleMessage("&7Loading pattern "+configurationSection.getName()+"...");
 
         PatternType type = PatternType.SINGLE;
         String patternMode = configurationSection.getString("mode");
@@ -36,7 +36,7 @@ public class PatternManager {
         try{
             type  = PatternType.valueOf(patternMode);
         } catch (Exception e){
-            me.mattyhd0.chatcolor.ChatColor.getInstance().sendConsoleMessage("&cPattern mode '"+patternMode+"' is invalid using '"+type+"' instead. valid pattern modes: "+String.join(", ", Arrays.toString(PatternType.values())));
+            ChatColorPlugin.getInstance().sendConsoleMessage("&cPattern mode '"+patternMode+"' is invalid using '"+type+"' instead. valid pattern modes: "+String.join(", ", Arrays.toString(PatternType.values())));
         }
 
         String permission = configurationSection.getString("permission");
@@ -49,7 +49,7 @@ public class PatternManager {
 
             if(pattern != null){
                 loadedPatternsMap.put(configurationSection.getName(), pattern);
-                me.mattyhd0.chatcolor.ChatColor.getInstance().sendConsoleMessage("&7Loaded pattern "+pattern.getName(true)+"&7!");
+                ChatColorPlugin.getInstance().sendConsoleMessage("&7Loaded pattern "+pattern.getName(true)+"&7!");
             }
 
         } catch (Exception error){
@@ -81,7 +81,7 @@ public class PatternManager {
 
             } catch (Exception e){
 
-                me.mattyhd0.chatcolor.ChatColor.getInstance().sendConsoleMessage("&CCannot load color '"+colorString+"' using '"+color.getName()+"' instead, valid formats are: 'f', '&&cf', 'WHITE', '#&cFFFFFF'");
+                ChatColorPlugin.getInstance().sendConsoleMessage("&CCannot load color '"+colorString+"' using '"+color.getName()+"' instead, valid formats are: 'f', '&&cf', 'WHITE', '#&cFFFFFF'");
 
             }
 

@@ -1,6 +1,6 @@
 package me.mattyhd0.chatcolor.configuration;
 
-import me.mattyhd0.chatcolor.ChatColor;
+import me.mattyhd0.chatcolor.ChatColorPlugin;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -13,7 +13,7 @@ public class SimpleYMLConfiguration extends YamlConfiguration {
 
     public SimpleYMLConfiguration(String fileName) {
         super();
-        this.file = new File(ChatColor.getInstance().getDataFolder(), fileName);
+        this.file = new File(ChatColorPlugin.getInstance().getDataFolder(), fileName);
         this.check();
     }
 
@@ -31,7 +31,7 @@ public class SimpleYMLConfiguration extends YamlConfiguration {
     
     public void createFile() {
         this.file.getParentFile().mkdirs();
-        ChatColor.getInstance().saveResource(this.file.getName(), false);
+        ChatColorPlugin.getInstance().saveResource(this.file.getName(), false);
     }
     
     public void loadFile() {

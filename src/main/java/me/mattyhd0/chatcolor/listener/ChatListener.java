@@ -1,6 +1,7 @@
 package me.mattyhd0.chatcolor.listener;
 
 import me.mattyhd0.chatcolor.CPlayer;
+import me.mattyhd0.chatcolor.ChatColorPlugin;
 import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -21,7 +22,7 @@ public class ChatListener implements Listener {
 
         if (pattern != null) {
 
-            boolean showPatternIfHasPerm = me.mattyhd0.chatcolor.ChatColor.getInstance().getConfigurationManager().getConfig().getBoolean("config.show-pattern-only-if-has-permissions");
+            boolean showPatternIfHasPerm = ChatColorPlugin.getInstance().getConfigurationManager().getConfig().getBoolean("config.show-pattern-only-if-has-permissions");
             String message = ChatColor.stripColor(event.getMessage());
             String coloredMessage = pattern.getText(message);
 

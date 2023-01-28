@@ -22,14 +22,14 @@ public class CPlayer {
     }
 
     public void setPattern(BasePattern pattern){
-        if(ChatColor.getInstance().getMysqlConnection() == null) {
-            SimpleYMLConfiguration data = ChatColor.getInstance().getConfigurationManager().getData();
+        if(ChatColorPlugin.getInstance().getMysqlConnection() == null) {
+            SimpleYMLConfiguration data = ChatColorPlugin.getInstance().getConfigurationManager().getData();
             data.set("data." + player.getUniqueId(), pattern.getName(false));
             data.save();
         } else {
             try {
 
-                Statement statement = ChatColor.getInstance().getMysqlConnection().createStatement();
+                Statement statement = ChatColorPlugin.getInstance().getMysqlConnection().createStatement();
 
                 statement.execute(
                         formatQuery("INSERT INTO playerdata(uuid, pattern) VALUES('{uuid}', '{pattern}') ON DUPLICATE KEY UPDATE pattern= VALUES(pattern);", pattern)
@@ -51,9 +51,9 @@ public class CPlayer {
     }
 
     public void disablePattern(){
-        ChatColor plugin = ChatColor.getInstance();
+        ChatColorPlugin plugin = ChatColorPlugin.getInstance();
         if(plugin.getMysqlConnection() == null) {
-            SimpleYMLConfiguration data = ChatColor.getInstance().getConfigurationManager().getData();
+            SimpleYMLConfiguration data = ChatColorPlugin.getInstance().getConfigurationManager().getData();
             data.set("data." + player.getUniqueId(), null);
             data.save();
         } else {
@@ -63,7 +63,7 @@ public class CPlayer {
                     plugin.openMysqlConnection();
                 }
 
-                Statement statement = ChatColor.getInstance().getMysqlConnection().createStatement();
+                Statement statement = ChatColorPlugin.getInstance().getMysqlConnection().createStatement();
 
                 statement.execute(
                         formatQuery("DELETE FROM playerdata WHERE uuid = '{uuid}';")
@@ -86,13 +86,13 @@ public class CPlayer {
 
     public BasePattern getPattern(){
         String pattern = "";
-        if(ChatColor.getInstance().getMysqlConnection() == null) {
-            SimpleYMLConfiguration data = ChatColor.getInstance().getConfigurationManager().getData();
+        if(ChatColorPlugin.getInstance().getMysqlConnection() == null) {
+            SimpleYMLConfiguration data = ChatColorPlugin.getInstance().getConfigurationManager().getData();
             pattern = data.getString("data." + player.getUniqueId());
         } else {
             try {
 
-                Statement statement = ChatColor.getInstance().getMysqlConnection().createStatement();
+                Statement statement = ChatColorPlugin.getInstance().getMysqlConnection().createStatement();
 
                 ResultSet resultSet = statement.executeQuery(
                         formatQuery("SELECT * FROM playerdata WHERE uuid = '{uuid}';")
@@ -114,7 +114,7 @@ public class CPlayer {
 
             }
         }
-        return ChatColor.getInstance().getPatternManager().getPatternByName(pattern);
+        return ChatColorPlugin.getInstance().getPatternManager().getPatternByName(pattern);
     }
 
     public boolean canUsePattern(BasePattern pattern){

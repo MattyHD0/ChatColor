@@ -11,7 +11,7 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import me.mattyhd0.chatcolor.ChatColor;
+import me.mattyhd0.chatcolor.ChatColorPlugin;
 import org.bukkit.command.CommandExecutor;
 
 import java.util.ArrayList;
@@ -19,15 +19,15 @@ import java.util.List;
 
 public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
-    private ChatColor plugin;
+    private ChatColorPlugin plugin;
     
-    public ChatColorCommand(ChatColor plugin) {
+    public ChatColorCommand(ChatColorPlugin plugin) {
         this.plugin = plugin;
     }
 
     public boolean onCommand(CommandSender sender, Command command, String s, String[] arg) {
 
-        MessagesYMLFile messagesYMLFile = ChatColor.getInstance().getConfigurationManager().getMessages();
+        MessagesYMLFile messagesYMLFile = ChatColorPlugin.getInstance().getConfigurationManager().getMessages();
 
         if (!(sender instanceof Player)) {
             sender.sendMessage(messagesYMLFile.getMessage("other.bad-executor"));
@@ -60,14 +60,14 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     
     public void setPattern(Player player, String[] arg) {
 
-        ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+        ConfigurationManager configurationManager = ChatColorPlugin.getInstance().getConfigurationManager();
         MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
 
         if (player.hasPermission("chatcolor.set")) {
 
             if (arg.length == 2) {
 
-                BasePattern pattern = ChatColor.getInstance().getPatternManager().getPatternByName(arg[1]);
+                BasePattern pattern = ChatColorPlugin.getInstance().getPatternManager().getPatternByName(arg[1]);
                 CPlayer cPlayer = new CPlayer(player);
 
                 if (pattern != null) {
@@ -120,7 +120,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     
     public void list(Player player, String[] arg) {
 
-        ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+        ConfigurationManager configurationManager = ChatColorPlugin.getInstance().getConfigurationManager();
         SimpleYMLConfiguration config = configurationManager.getConfig();
         MessagesYMLFile messagesConfig = configurationManager.getMessages();
 
@@ -142,7 +142,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
                     player.sendMessage(header);
 
-                    for (BasePattern pattern: ChatColor.getInstance().getPatternManager().getAllPatterns()) {
+                    for (BasePattern pattern: ChatColorPlugin.getInstance().getPatternManager().getAllPatterns()) {
 
                         String patternName = pattern.getName(config.getBoolean("config.show-pattern-on.list"));
                         String patternPermission = pattern.getPermission();
@@ -184,8 +184,8 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     public void disable(Player player, String[] arg) {
 
         BasePattern pattern = new CPlayer(player).getPattern();
-        SimpleYMLConfiguration config = ChatColor.getInstance().getConfigurationManager().getConfig();
-        MessagesYMLFile messagesYMLFile = ChatColor.getInstance().getConfigurationManager().getMessages();
+        SimpleYMLConfiguration config = ChatColorPlugin.getInstance().getConfigurationManager().getConfig();
+        MessagesYMLFile messagesYMLFile = ChatColorPlugin.getInstance().getConfigurationManager().getMessages();
 
         if (player.hasPermission("chatcolor.disable")) {
 
@@ -219,7 +219,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
     public void gui(Player player, String[] arg) {
 
-        MessagesYMLFile messagesYMLFile = ChatColor.getInstance().getConfigurationManager().getMessages();
+        MessagesYMLFile messagesYMLFile = ChatColorPlugin.getInstance().getConfigurationManager().getMessages();
 
         if (player.hasPermission("chatcolor.gui")) {
 
@@ -243,7 +243,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     
     public void help(Player player, String[] arg) {
 
-        MessagesYMLFile messagesYMLFile = ChatColor.getInstance().getConfigurationManager().getMessages();
+        MessagesYMLFile messagesYMLFile = ChatColorPlugin.getInstance().getConfigurationManager().getMessages();
 
         if(arg.length == 1) {
 
@@ -262,11 +262,11 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     }
     
     public void noPermission(Player player) {
-        player.sendMessage(ChatColor.getInstance().getConfigurationManager().getMessages().getMessage("other.no-permission"));
+        player.sendMessage(ChatColorPlugin.getInstance().getConfigurationManager().getMessages().getMessage("other.no-permission"));
     }
     
     public void unknownCommand(Player player) {
-        player.sendMessage(ChatColor.getInstance().getConfigurationManager().getMessages().getMessage("commands.chatcolor.unknown-command"));
+        player.sendMessage(ChatColorPlugin.getInstance().getConfigurationManager().getMessages().getMessage("commands.chatcolor.unknown-command"));
     }
 
     @Override
@@ -286,7 +286,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
         } else if (strings.length == 2 && strings[0].equals("set")) {
 
-            for (BasePattern pattern : ChatColor.getInstance().getPatternManager().getAllPatterns()) {
+            for (BasePattern pattern : ChatColorPlugin.getInstance().getPatternManager().getAllPatterns()) {
 
                 if (new CPlayer((Player) sender).canUsePattern(pattern)) completions.add(pattern.getName(false));
 

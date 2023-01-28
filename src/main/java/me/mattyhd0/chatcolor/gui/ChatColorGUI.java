@@ -1,6 +1,6 @@
 package me.mattyhd0.chatcolor.gui;
 
-import me.mattyhd0.chatcolor.ChatColor;
+import me.mattyhd0.chatcolor.ChatColorPlugin;
 import me.mattyhd0.chatcolor.configuration.ConfigurationManager;
 import me.mattyhd0.chatcolor.gui.clickaction.api.GuiClickAction;
 import me.mattyhd0.chatcolor.gui.clickaction.util.GuiClickActionManager;
@@ -20,7 +20,7 @@ public class ChatColorGUI {
 
     public static void openGui(Player player){
 
-        ConfigurationManager configurationManager = ChatColor.getInstance().getConfigurationManager();
+        ConfigurationManager configurationManager = ChatColorPlugin.getInstance().getConfigurationManager();
 
         FileConfiguration file = configurationManager.getGui();
         FileConfiguration patterns = configurationManager.getPatterns();
@@ -60,7 +60,7 @@ public class ChatColorGUI {
 
 
 
-        for(BasePattern pattern : ChatColor.getInstance().getPatternManager().getAllPatterns()){
+        for(BasePattern pattern : ChatColorPlugin.getInstance().getPatternManager().getAllPatterns()){
 
             String key = pattern.getName(false)+".gui-item";
 

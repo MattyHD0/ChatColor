@@ -1,6 +1,6 @@
 package me.mattyhd0.chatcolor.gui;
 
-import me.mattyhd0.chatcolor.ChatColor;
+import me.mattyhd0.chatcolor.ChatColorPlugin;
 import me.mattyhd0.chatcolor.gui.clickaction.api.GuiClickAction;
 import me.mattyhd0.chatcolor.util.Util;
 import org.bukkit.Bukkit;
@@ -154,7 +154,7 @@ public class GuiBuilder {
             public void run() {
                 open(player);
             }
-        }.runTaskLater(ChatColor.getInstance(), delay);
+        }.runTaskLater(ChatColorPlugin.getInstance(), delay);
 
 
     }
