@@ -3,6 +3,7 @@ package me.mattyhd0.chatcolor;
 import me.mattyhd0.chatcolor.command.ChatColorAdminCommand;
 import me.mattyhd0.chatcolor.configuration.ConfigurationManager;
 import me.mattyhd0.chatcolor.configuration.SimpleYMLConfiguration;
+import me.mattyhd0.chatcolor.gui.ChatColorGUI;
 import me.mattyhd0.chatcolor.gui.GuiListener;
 import me.mattyhd0.chatcolor.pattern.manager.PatternManager;
 import me.mattyhd0.chatcolor.updatechecker.UpdateChecker;
@@ -34,7 +35,7 @@ public class ChatColorPlugin extends JavaPlugin {
     private Connection mysqlConnection;
     
     public void onEnable() {
-        INSTANCE = this;
+        ChatColorPlugin.INSTANCE = this;
         prefix = Util.color("&8[&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr&8]");
         Bukkit.getConsoleSender().sendMessage(Util.color(prefix+" &7Enabling ChatColor v" + this.getDescription().getVersion()));
         metrics = new Metrics(this, 11648);

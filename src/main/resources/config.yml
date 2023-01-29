@@ -8,6 +8,9 @@ config:
   # When writing in the chat it will only show the pattern if the player has the permission of that pattern
   show-pattern-only-if-has-permissions: false
 
+  # When a player write a message like "&6&lHelo World!" this message was colored if the player has the required permission
+  translate-chat-colors: true
+
   mysql:
     enable: false
     database: 'chatcolor'
