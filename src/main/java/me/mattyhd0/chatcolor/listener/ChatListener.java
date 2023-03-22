@@ -6,15 +6,23 @@ import me.mattyhd0.chatcolor.MyChatColor;
 import me.mattyhd0.chatcolor.configuration.SimpleYMLConfiguration;
 import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.ChatColor;
-import org.bukkit.event.EventHandler;
+import org.bukkit.event.*;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.Listener;
+import org.bukkit.plugin.EventExecutor;
+import org.jetbrains.annotations.NotNull;
 
-public class ChatListener implements Listener {
+public class ChatListener implements EventExecutor {
 
-    @EventHandler(priority = EventPriority.LOW)
+    @Override
+    public void execute(@NotNull Listener listener, @NotNull Event event) throws EventException {
+
+        if(event instanceof AsyncPlayerChatEvent){
+            onChat((AsyncPlayerChatEvent) event);
+        }
+
+    }
+
     public void onChat(AsyncPlayerChatEvent event) {
 
         SimpleYMLConfiguration config = ChatColorPlugin.getInstance().getConfigurationManager().getConfig();

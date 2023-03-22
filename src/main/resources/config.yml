@@ -2,6 +2,11 @@ config:
   # The plugin will check if there is a new version available
   update-checker: true
 
+  # Don't change this if you don't know what you're doing
+  # Note: Requires you to restart the server
+  # Valid values: LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR
+  listener-priority: NORMAL
+
   # The patterns shown in /chatcolor list will only be the ones that the player can use
   show-pattern-in-list-only-if-has-permissions: true
 

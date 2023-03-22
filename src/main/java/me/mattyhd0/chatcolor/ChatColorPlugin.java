@@ -20,6 +20,9 @@ import me.mattyhd0.chatcolor.listener.StaffJoinListener;
 import me.mattyhd0.chatcolor.listener.ChatListener;
 import me.mattyhd0.chatcolor.command.ChatColorCommand;
 
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -71,7 +74,22 @@ public class ChatColorPlugin extends JavaPlugin {
     }
 
     public void setupListeners(){
-        getServer().getPluginManager().registerEvents(new ChatListener(), this);
+
+        EventPriority priority = configurationManager.getConfig().contains("config.listener-priority") ?
+                EventPriority.valueOf(configurationManager.getConfig().getString("config.listener-priority")) :
+                EventPriority.NORMAL;
+
+
+
+        getServer().getPluginManager().registerEvent(
+                AsyncPlayerChatEvent.class,
+                new Listener() {},
+                priority,
+                new ChatListener(),
+                this
+
+        );
+       //getServer().getPluginManager().registerEvents(new ChatListener(), this);
         getServer().getPluginManager().registerEvents(new StaffJoinListener(), this);
         getServer().getPluginManager().registerEvents(new GuiListener(), this);
     }
