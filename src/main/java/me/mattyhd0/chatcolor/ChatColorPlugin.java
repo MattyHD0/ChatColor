@@ -77,7 +77,7 @@ public class ChatColorPlugin extends JavaPlugin {
 
         EventPriority priority = configurationManager.getConfig().contains("config.listener-priority") ?
                 EventPriority.valueOf(configurationManager.getConfig().getString("config.listener-priority")) :
-                EventPriority.NORMAL;
+                EventPriority.LOW;
 
 
 
