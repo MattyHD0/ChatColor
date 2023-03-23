@@ -11,11 +11,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class CPlayer {
 
     public Player player;
-    public static Map<Player, String> lastMessages = new HashMap<>();
+    public static Map<UUID, String> lastMessages = new HashMap<>();
 
     public CPlayer(Player player){
         this.player = player;
@@ -122,11 +123,11 @@ public class CPlayer {
     }
 
     public void setLastMessages(String lastMessages) {
-        CPlayer.lastMessages.put(this.player, lastMessages);
+        CPlayer.lastMessages.put(this.player.getUniqueId(), lastMessages);
     }
 
     public String getLastMessages() {
-        String message = CPlayer.lastMessages.get(player);
+        String message = CPlayer.lastMessages.get(player.getUniqueId());
         return message != null ? message : "";
     }
 
