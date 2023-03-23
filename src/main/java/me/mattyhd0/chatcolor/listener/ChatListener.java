@@ -30,7 +30,6 @@ public class ChatListener implements EventExecutor {
         Player player = event.getPlayer();
         CPlayer cPlayer = new CPlayer(player);
         BasePattern pattern = cPlayer.getPattern();
-        cPlayer.setLastMessages(event.getMessage());
 
         if(config.getBoolean("config.translate-chat-colors")){
             event.setMessage(
@@ -46,13 +45,13 @@ public class ChatListener implements EventExecutor {
 
             if (showPatternIfHasPerm && cPlayer.canUsePattern(pattern)) {
                 event.setMessage(coloredMessage);
-                cPlayer.setLastMessages(coloredMessage);
             } else if (!showPatternIfHasPerm) {
                 event.setMessage(coloredMessage);
-                cPlayer.setLastMessages(coloredMessage);
             }
 
         }
+
+        cPlayer.setLastMessages(event.getMessage());
 
     }
 
