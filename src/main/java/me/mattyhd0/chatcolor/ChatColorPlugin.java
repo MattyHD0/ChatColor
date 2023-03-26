@@ -66,6 +66,9 @@ public class ChatColorPlugin extends JavaPlugin {
     
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(Util.color(prefix+" &7Disabling ChatColor v" + this.getDescription().getVersion()));
+        for (CPlayer cPlayer: dataMap.values()){
+            cPlayer.saveData();
+        }
         if(mysqlConnection != null) {
             try {
                 mysqlConnection.close();

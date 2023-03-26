@@ -14,6 +14,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -102,43 +103,14 @@ public class ConnectionListener implements Listener {
             playersBeingLoaded.remove(event.getPlayer().getUniqueId()).cancel();
             return;
         }
+        CPlayer cPlayer = plugin.getDataMap().get(event.getPlayer().getUniqueId());
         if (plugin.getDataMap().containsKey(event.getPlayer().getUniqueId())) {
-            CPlayer cPlayer = plugin.getDataMap().get(event.getPlayer().getUniqueId());
-            Player player = event.getPlayer();
-            if (ChatColorPlugin.getInstance().getMysqlConnection() == null) {
-                SimpleYMLConfiguration data = ChatColorPlugin.getInstance().getConfigurationManager().getData();
-                data.set("data." + player.getUniqueId(), cPlayer.getPattern() == null ? null : cPlayer.getPattern().getName(false));
-                data.save();
-            } else {
-                new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            PreparedStatement statement;
-                            if (cPlayer.getPattern() == null) {
-                                statement = ChatColorPlugin.getInstance().getMysqlConnection().prepareStatement(
-                                        "DELETE FROM playerdata WHERE uuid=?");
-                                statement.setString(1, player.getUniqueId().toString());
-                            } else {
-                                statement = ChatColorPlugin.getInstance().getMysqlConnection().prepareStatement(
-                                        "INSERT INTO playerdata(uuid, pattern) VALUES(?,?) ON DUPLICATE KEY UPDATE pattern= VALUES(pattern)");
-                                statement.setString(1, player.getUniqueId().toString());
-                                statement.setString(2, cPlayer.getPattern().getName(false));
-                            }
-                            statement.executeUpdate();
-                            statement.close();
-                        } catch (SQLException e) {
-                            Bukkit.getServer().getConsoleSender().sendMessage(
-                                    Util.color(
-                                            formatQuery(player, "&c[ChatColor] An error occurred while trying to set the pattern of {uuid} ({player}) via MySQL")
-                                    )
-                            );
-                            e.printStackTrace();
-                        }
-
-                    }
-                }.runTaskAsynchronously(plugin);
-            }
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    cPlayer.saveData();
+                }
+            }.runTaskAsynchronously(plugin);
         }
     }
 
@@ -146,6 +118,7 @@ public class ConnectionListener implements Listener {
     public void onPlayerQuitMonitor(PlayerQuitEvent event) {
         plugin.getDataMap().remove(event.getPlayer().getUniqueId());
     }
+
 
     private String formatQuery(Player player, String string) {
         return formatQuery(player, string, null);
