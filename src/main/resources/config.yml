@@ -23,6 +23,8 @@ config:
     port: '3306'
     username: 'root'
     password: ''
+    # Important if you need to modify connection url.
+    additional-url: "&useSSL=false&&autoReconnect=true"
 
   show-pattern-on:
     list: true
@@ -41,5 +43,10 @@ config:
       - '&8> &7/chatcolor color2 &8- &a[VIP]'
       - '&8> &7/chatcolor color &8- &a[VIP]'
       - '&4---&c---&6---&e---&2---&a---&b---&3----&b---&a---&2---&e---&6---&c---&4---'
+
+  # Delay to load players. Recommended to leave it in 30 ticks so player data is saved correctly if it's switching servers.
+  data-delay: 30
+  # Should config update when a new option is added? Suggested to leave it enabled.
+  auto-update-config: true
 
 config-version: 1

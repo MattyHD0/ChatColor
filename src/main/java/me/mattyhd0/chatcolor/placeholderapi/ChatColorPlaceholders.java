@@ -37,16 +37,26 @@ public class ChatColorPlaceholders extends PlaceholderExpansion
     
     public String onPlaceholderRequest(Player player, String identifier) {
 
-        CPlayer cPlayer = new CPlayer(player);
-        BasePattern pattern = cPlayer.getPattern();
-
         switch (identifier){
-            case "last_message":
-                return cPlayer.getLastMessages();
-            case "pattern_name":
-                return pattern != null ? pattern.getName(false) : "";
+            case "last_message": {
+                CPlayer cPlayer = ChatColorPlugin.getInstance().getDataMap().get(player.getUniqueId());
+                return cPlayer == null ? "" : cPlayer.getLastMessages();
+            }
+            case "pattern_name": {
+                CPlayer cPlayer = ChatColorPlugin.getInstance().getDataMap().get(player.getUniqueId());
+                if(cPlayer == null) {
+                    return "";
+                }else{
+                    return cPlayer.getPattern() == null ? "" : cPlayer.getPattern().getName(false);
+                }
+            }
             case "pattern_name_formatted":
-                return pattern != null ? pattern.getName(true) : "";
+                CPlayer cPlayer = ChatColorPlugin.getInstance().getDataMap().get(player.getUniqueId());
+                if(cPlayer == null) {
+                    return "";
+                }else{
+                    return cPlayer.getPattern() == null ? "" : cPlayer.getPattern().getName(true);
+                }
             default:
                 return "";
         }

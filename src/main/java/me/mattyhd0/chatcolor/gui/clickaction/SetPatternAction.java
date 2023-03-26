@@ -18,8 +18,7 @@ public class SetPatternAction implements GuiClickAction {
     public void execute(Player player) {
 
         BasePattern pattern = ChatColorPlugin.getInstance().getPatternManager().getPatternByName(patternName);
-        CPlayer cPlayer = new CPlayer(player);
-        cPlayer.setPattern(pattern);
-
+        CPlayer cPlayer = ChatColorPlugin.getInstance().getDataMap().get(player.getUniqueId());
+        if(cPlayer != null) cPlayer.setPattern(pattern);
     }
 }

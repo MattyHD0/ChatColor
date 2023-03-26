@@ -2,6 +2,7 @@ messages:
   prefix: "&8[&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr&8]"
   commands:
     chatcolor:
+      player-not-loaded: "%prefix% &cReconnect to the server. If issue persist, contact an administrator."
       unknown-command: "%prefix% &7Unknown command, try &a/chatcolor help&7."
       help:
         - '&4--&c--&6--&e--&2--&a--&b--&8[ &7ChatColor Help &8]&b--&a--&2--&e--&6--&c--&4--'
@@ -25,6 +26,7 @@ messages:
       gui:
         gui-opened: "%prefix% &7The patterns gui was opened."
     chatcoloradmin:
+      player-not-loaded: "%prefix% &cTarget player is not loaded. Try in some seconds.."
       unknown-command: "%prefix% &7Unknown command, try &c/chatcoloradmin help&7."
       help:
         - '&4--&c--&6--&e--&2--&a--&b--&8[ &7ChatColor Admin &8]&b--&a--&2--&e--&6--&c--&4--'
