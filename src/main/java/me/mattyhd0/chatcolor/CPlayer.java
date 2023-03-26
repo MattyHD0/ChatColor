@@ -13,7 +13,6 @@ public class CPlayer {
     private boolean modified = false;
     private String lastMessage = null;
     private BasePattern basePattern;
-    public static Map<UUID, String> lastMessages = new HashMap<>();
 
     public CPlayer(Player player, BasePattern basePattern){
         this.player = player;
