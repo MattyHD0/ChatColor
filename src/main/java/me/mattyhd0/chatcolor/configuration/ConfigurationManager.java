@@ -13,10 +13,10 @@ public class ConfigurationManager {
         this.messages = new MessagesYMLFile("messages.yml");
         this.patterns = new SimpleYMLConfiguration("patterns.yml");
         this.data = new SimpleYMLConfiguration("playerdata.yml");
-        if(config.getBoolean("config.auto-update-config",true)) {
+        /*if(config.getBoolean("config.auto-update-config",true)) {
             updateConfig();
             updateMessages();
-        }
+        }*/
     }
 
     private void updateMessages() {
@@ -26,7 +26,7 @@ public class ConfigurationManager {
     }
 
     private void updateConfig() {
-        boolean updated = addConfig(config,"config.mysql.additional-url","&useSSL=false&&autoReconnect=true");
+        boolean updated = addConfig(config,"config.mysql.additional-url","&useSSL=false&autoReconnect=true");
         updated = addConfig(config,"config.data-delay",30) || updated;
         updated = addConfig(config,"config.auto-update-config",true) || updated;
         if(updated) config.save();
