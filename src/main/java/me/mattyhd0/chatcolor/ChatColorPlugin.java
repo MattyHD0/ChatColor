@@ -4,6 +4,7 @@ import me.mattyhd0.chatcolor.command.ChatColorAdminCommand;
 import me.mattyhd0.chatcolor.configuration.ConfigurationManager;
 import me.mattyhd0.chatcolor.configuration.SimpleYMLConfiguration;
 import me.mattyhd0.chatcolor.gui.GuiListener;
+import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import me.mattyhd0.chatcolor.pattern.manager.PatternManager;
 import me.mattyhd0.chatcolor.updatechecker.UpdateChecker;
 import me.mattyhd0.chatcolor.util.Util;
@@ -11,16 +12,14 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.command.ConsoleCommandSender;
 import me.mattyhd0.chatcolor.placeholderapi.ChatColorPlaceholders;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import org.bukkit.Bukkit;
 import me.mattyhd0.chatcolor.listener.ConnectionListener;
 import me.mattyhd0.chatcolor.listener.ChatListener;
 import me.mattyhd0.chatcolor.command.ChatColorCommand;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -65,6 +64,36 @@ public class ChatColorPlugin extends JavaPlugin {
     }
     
     public void onDisable() {
+        for (Map.Entry<UUID, CPlayer> entry : dataMap.entrySet()) {
+            UUID uuid = entry.getKey();
+            CPlayer cPlayer = entry.getValue();
+            if (getMysqlConnection() == null) {
+                SimpleYMLConfiguration data = ChatColorPlugin.getInstance().getConfigurationManager().getData();
+                data.set("data." + uuid.toString(), cPlayer.getPattern() == null ? null : cPlayer.getPattern().getName(false));
+                data.save();
+            } else {
+                try {
+                    PreparedStatement statement;
+                    if (cPlayer.getPattern() == null) {
+                        statement = ChatColorPlugin.getInstance().getMysqlConnection().prepareStatement(
+                                "DELETE FROM playerdata WHERE uuid=?");
+                        statement.setString(1, uuid.toString());
+                    } else {
+                        statement = ChatColorPlugin.getInstance().getMysqlConnection().prepareStatement(
+                                "INSERT INTO playerdata(uuid, pattern) VALUES(?,?) ON DUPLICATE KEY UPDATE pattern= VALUES(pattern)");
+                        statement.setString(1, uuid.toString());
+                        statement.setString(2, cPlayer.getPattern().getName(false));
+                    }
+                    statement.executeUpdate();
+                    statement.close();
+                } catch (SQLException e) {
+                    Bukkit.getServer().getConsoleSender().sendMessage(
+                            Util.color("&c[ChatColor] An error occurred while trying to save data of "+uuid.toString()+" ("+cPlayer.player.getName()+") via MySQL")
+                    );
+                    e.printStackTrace();
+                }
+            }
+        }
         Bukkit.getConsoleSender().sendMessage(Util.color(prefix+" &7Disabling ChatColor v" + this.getDescription().getVersion()));
         if(mysqlConnection != null) {
             try {
@@ -80,8 +109,6 @@ public class ChatColorPlugin extends JavaPlugin {
         EventPriority priority = configurationManager.getConfig().contains("config.listener-priority") ?
                 EventPriority.valueOf(configurationManager.getConfig().getString("config.listener-priority")) :
                 EventPriority.LOW;
-
-
 
         getServer().getPluginManager().registerEvent(
                 AsyncPlayerChatEvent.class,
@@ -219,5 +246,20 @@ public class ChatColorPlugin extends JavaPlugin {
 
     public HashMap<UUID, CPlayer> getDataMap() {
         return dataMap;
+    }
+    private String formatQuery(Player player, String string){
+        return formatQuery(player, string, null);
+    }
+    private String formatQuery(Player player, String string, BasePattern pattern){
+
+        String uuid = player.getUniqueId().toString();
+        String name = player.getName();
+
+        string = pattern == null ? string : string.replaceAll("\\{pattern}", pattern.getName(false));
+
+        return string
+                .replaceAll("\\{uuid}", uuid)
+                .replaceAll("\\{player}", name);
+
     }
 }

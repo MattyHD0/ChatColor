@@ -6,7 +6,7 @@
 
     <groupId>me.mattyhd0</groupId>
     <artifactId>ChatColor</artifactId>
-    <version>2.7.2-DEV-2</version>
+    <version>2.7.3</version>
     <packaging>jar</packaging>
 
     <properties>
