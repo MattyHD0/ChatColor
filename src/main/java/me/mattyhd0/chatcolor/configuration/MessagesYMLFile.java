@@ -29,6 +29,19 @@ public class MessagesYMLFile extends SimpleYMLConfiguration {
 
     }
 
+    public String getMessage(String key, String defaultMessage){
+
+        String msg = this.getString("messages." + key, defaultMessage);
+
+        if (msg != null) {
+            msg = msg.replaceAll("%prefix%", this.getString("messages.prefix"));
+            return Util.color(msg);
+        }
+
+        return Util.color("&c[ChatColor] Error: Message " + key + " does not exist in messages.yml");
+
+    }
+
     public List<String> getMessageList(String key){
 
         String prefix = this.getString("messages.prefix");

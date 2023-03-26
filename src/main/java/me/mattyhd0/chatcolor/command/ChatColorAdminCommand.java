@@ -111,49 +111,55 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
 
                 BasePattern pattern = ChatColorPlugin.getInstance().getPatternManager().getPatternByName(arg[2]);
                 Player player = Bukkit.getPlayer(arg[1]);
-                CPlayer cPlayer = new CPlayer(player);
 
                 if(player != null){
+                    if(plugin.getDataMap().containsKey(player.getUniqueId())) {
+                        CPlayer cPlayer = plugin.getDataMap().get(player.getUniqueId());
+                        if (pattern != null) {
 
-                    if (pattern != null) {
+                            String patternName = pattern.getName(config.getBoolean("config.show-pattern-on.list"));
 
-                        String patternName = pattern.getName(config.getBoolean("config.show-pattern-on.list"));
+                            if (cPlayer.getPattern() != pattern) {
 
-                        if (cPlayer.getPattern() != pattern) {
+                                cPlayer.setPattern(pattern);
 
-                            cPlayer.setPattern(pattern);
+                                sender.sendMessage(
+                                        messagesYMLFile.getMessage("commands.chatcoloradmin.set.selected-pattern-sender")
+                                                .replaceAll("%player%", player.getName())
+                                                .replaceAll("%pattern%", patternName)
 
-                            sender.sendMessage(
-                                    messagesYMLFile.getMessage("commands.chatcoloradmin.set.selected-pattern-sender")
-                                            .replaceAll("%player%", player.getName())
-                                            .replaceAll("%pattern%", patternName)
+                                );
 
-                            );
+                                String messagePlayer = messagesYMLFile.getMessage("commands.chatcoloradmin.set.selected-pattern-target")
+                                        .replaceAll("%sender%", sender.getName())
+                                        .replaceAll("%pattern%", patternName);
 
-                            String messagePlayer = messagesYMLFile.getMessage("commands.chatcoloradmin.set.selected-pattern-target")
-                                    .replaceAll("%sender%", sender.getName())
-                                    .replaceAll("%pattern%", patternName);
+                                if (!messagePlayer.equals("")) player.sendMessage(messagePlayer);
 
-                            if(!messagePlayer.equals("")) player.sendMessage(messagePlayer);
+                            } else {
+
+                                sender.sendMessage(
+                                        messagesYMLFile.getMessage("commands.chatcoloradmin.set.already-in-use")
+                                                .replaceAll("%pattern%", patternName)
+                                                .replaceAll("%player%", player.getName()
+                                                )
+                                );
+
+                            }
 
                         } else {
 
                             sender.sendMessage(
-                                    messagesYMLFile.getMessage("commands.chatcoloradmin.set.already-in-use")
-                                    .replaceAll("%pattern%", patternName)
-                                    .replaceAll("%player%", player.getName()
-                                    )
+                                    messagesYMLFile.getMessage("commands.chatcoloradmin.set.pattern-not-exist")
+                                            .replaceAll("%pattern%", arg[2])
                             );
 
                         }
-
-                    } else {
-
+                    }else {
                         sender.sendMessage(
-                                messagesYMLFile.getMessage("commands.chatcoloradmin.set.pattern-not-exist")
-                                        .replaceAll("%pattern%", arg[2])
+                                messagesYMLFile.getMessage("commands.chatcoloradmin.player-not-loaded","%prefix% &cTarget player is not loaded. Try in some seconds..")
+                                        .replaceAll("%player%", arg[1])
                         );
-
                     }
 
                 } else {
@@ -189,32 +195,38 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
                 Player player = Bukkit.getPlayer(arg[1]);
 
                 if(player != null){
+                    if(plugin.getDataMap().containsKey(player.getUniqueId())) {
+                        CPlayer cPlayer = plugin.getDataMap().get(player.getUniqueId());
+                        BasePattern pattern = cPlayer.getPattern();
 
-                    CPlayer cPlayer = new CPlayer(player);
-                    BasePattern pattern = cPlayer.getPattern();
+                        if (pattern != null) {
 
-                    if (pattern != null) {
+                            String patternName = pattern.getName(config.getBoolean("config.show-pattern-on.list"));
 
-                        String patternName = pattern.getName(config.getBoolean("config.show-pattern-on.list"));
+                            cPlayer.disablePattern();
 
-                        cPlayer.disablePattern();
+                            sender.sendMessage(
+                                    messagesYMLFile.getMessage("commands.chatcoloradmin.disable.pattern-disabled-sender")
+                                            .replaceAll("%pattern%", patternName)
+                                            .replaceAll("%player%", player.getName())
+                            );
 
+                            String messagePlayer = messagesYMLFile.getMessage("commands.chatcoloradmin.disable.pattern-disabled-target")
+                                    .replaceAll("%pattern%", patternName)
+                                    .replaceAll("%sender%", sender.getName());
+
+                            if (!messagePlayer.equals("")) player.sendMessage(messagePlayer);
+
+                        } else {
+                            sender.sendMessage(
+                                    messagesYMLFile.getMessage("commands.chatcoloradmin.disable.no-pattern-in-use")
+                                            .replaceAll("%player%", player.getName())
+                            );
+                        }
+                    }else {
                         sender.sendMessage(
-                                messagesYMLFile.getMessage("commands.chatcoloradmin.disable.pattern-disabled-sender")
-                                        .replaceAll("%pattern%", patternName)
-                                        .replaceAll("%player%", player.getName())
-                        );
-
-                        String messagePlayer = messagesYMLFile.getMessage("commands.chatcoloradmin.disable.pattern-disabled-target")
-                                .replaceAll("%pattern%", patternName)
-                                .replaceAll("%sender%", sender.getName());
-
-                        if(!messagePlayer.equals("")) player.sendMessage(messagePlayer);
-
-                    } else {
-                        sender.sendMessage(
-                                messagesYMLFile.getMessage("commands.chatcoloradmin.disable.no-pattern-in-use")
-                                        .replaceAll("%player%", player.getName())
+                                messagesYMLFile.getMessage("commands.chatcoloradmin.player-not-loaded","%prefix% &cTarget player is not loaded. Try in some seconds..")
+                                        .replaceAll("%player%", arg[1])
                         );
                     }
 
@@ -250,19 +262,24 @@ public class ChatColorAdminCommand implements CommandExecutor, TabCompleter {
                 Player player = Bukkit.getPlayer(arg[1]);
 
                 if(player != null){
+                    if(plugin.getDataMap().containsKey(player.getUniqueId())) {
+                        sender.sendMessage(
+                                messagesYMLFile.getMessage("commands.chatcoloradmin.gui.gui-opened-sender")
+                                        .replaceAll("%player%", player.getName())
+                        );
 
-                    sender.sendMessage(
-                            messagesYMLFile.getMessage("commands.chatcoloradmin.gui.gui-opened-sender")
-                                    .replaceAll("%player%", player.getName())
-                    );
+                        String messagePlayer = messagesYMLFile.getMessage("commands.chatcoloradmin.gui.gui-opened-target")
+                                .replaceAll("%sender%", sender.getName());
 
-                    String messagePlayer = messagesYMLFile.getMessage("commands.chatcoloradmin.gui.gui-opened-target")
-                            .replaceAll("%sender%", sender.getName());
+                        if (!messagePlayer.equals("")) player.sendMessage(messagePlayer);
 
-                    if(!messagePlayer.equals("")) player.sendMessage(messagePlayer);
-
-                    ChatColorGUI.openGui(player);
-
+                        ChatColorGUI.openGui(player);
+                    }else {
+                        sender.sendMessage(
+                                messagesYMLFile.getMessage("commands.chatcoloradmin.player-not-loaded","%prefix% &cTarget player is not loaded. Try in some seconds..")
+                                        .replaceAll("%player%", arg[1])
+                        );
+                    }
                 } else {
                     sender.sendMessage(messagesYMLFile.getMessage("other.unknown-player").replaceAll("%player%", arg[1]));
                 }

@@ -27,7 +27,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
     public boolean onCommand(CommandSender sender, Command command, String s, String[] arg) {
 
-        MessagesYMLFile messagesYMLFile = ChatColorPlugin.getInstance().getConfigurationManager().getMessages();
+        MessagesYMLFile messagesYMLFile = plugin.getConfigurationManager().getMessages();
 
         if (!(sender instanceof Player)) {
             sender.sendMessage(messagesYMLFile.getMessage("other.bad-executor"));
@@ -60,51 +60,59 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     
     public void setPattern(Player player, String[] arg) {
 
-        ConfigurationManager configurationManager = ChatColorPlugin.getInstance().getConfigurationManager();
+        ConfigurationManager configurationManager = plugin.getConfigurationManager();
         MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
 
         if (player.hasPermission("chatcolor.set")) {
 
             if (arg.length == 2) {
 
-                BasePattern pattern = ChatColorPlugin.getInstance().getPatternManager().getPatternByName(arg[1]);
-                CPlayer cPlayer = new CPlayer(player);
+                BasePattern pattern = plugin.getPatternManager().getPatternByName(arg[1]);
 
-                if (pattern != null) {
+                if(plugin.getDataMap().containsKey(player.getUniqueId())) {
+                    CPlayer cPlayer = plugin.getDataMap().get(player.getUniqueId());
 
-                    String patternPermission = pattern.getPermission();
-                    String patternName = pattern.getName(configurationManager.getConfig().getBoolean("config.show-pattern-on.list"));
+                    if (pattern != null) {
 
-                    if (patternPermission != null) {
-                        if (player.hasPermission(patternPermission)) {
-                            if (cPlayer.getPattern() != pattern) {
-                                cPlayer.setPattern(pattern);
-                                player.sendMessage(
-                                        messagesYMLFile.getMessage("commands.chatcolor.set.selected-pattern")
-                                                .replaceAll("%pattern%", patternName)
+                        String patternPermission = pattern.getPermission();
+                        String patternName = pattern.getName(configurationManager.getConfig().getBoolean("config.show-pattern-on.list"));
 
-                                );
+                        if (patternPermission != null) {
+                            if (player.hasPermission(patternPermission)) {
+                                if (cPlayer.getPattern() != pattern) {
+                                    cPlayer.setPattern(pattern);
+                                    player.sendMessage(
+                                            messagesYMLFile.getMessage("commands.chatcolor.set.selected-pattern")
+                                                    .replaceAll("%pattern%", patternName)
+
+                                    );
+                                } else {
+                                    player.sendMessage(
+                                            messagesYMLFile.getMessage("commands.chatcolor.set.already-in-use")
+                                                    .replaceAll("%pattern%", patternName)
+                                    );
+                                }
                             } else {
-                                player.sendMessage(
-                                        messagesYMLFile.getMessage("commands.chatcolor.set.already-in-use")
-                                                .replaceAll("%pattern%", patternName)
-                                );
+                                noPermission(player);
                             }
                         } else {
-                            noPermission(player);
+                            cPlayer.setPattern(pattern);
+                            player.sendMessage(
+                                    messagesYMLFile.getMessage("commands.chatcolor.set.selected-pattern")
+                                            .replaceAll("%pattern%", patternName)
+
+                            );
                         }
                     } else {
-                        cPlayer.setPattern(pattern);
                         player.sendMessage(
-                                messagesYMLFile.getMessage("commands.chatcolor.set.selected-pattern")
-                                        .replaceAll("%pattern%", patternName)
-
+                                messagesYMLFile.getMessage("commands.chatcolor.set.pattern-not-exist")
+                                        .replaceAll("%pattern%", arg[1])
                         );
                     }
-                } else {
+                }else {
                     player.sendMessage(
-                            messagesYMLFile.getMessage("commands.chatcolor.set.pattern-not-exist")
-                                    .replaceAll("%pattern%", arg[1])
+                            messagesYMLFile.getMessage("commands.chatcolor.player-not-loaded","%prefix% &cReconnect to the server. If issue persist, contact an administrator.")
+                                    .replaceAll("%player%", arg[1])
                     );
                 }
             } else {
@@ -120,7 +128,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     
     public void list(Player player, String[] arg) {
 
-        ConfigurationManager configurationManager = ChatColorPlugin.getInstance().getConfigurationManager();
+        ConfigurationManager configurationManager = plugin.getConfigurationManager();
         SimpleYMLConfiguration config = configurationManager.getConfig();
         MessagesYMLFile messagesConfig = configurationManager.getMessages();
 
@@ -142,7 +150,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
                     player.sendMessage(header);
 
-                    for (BasePattern pattern: ChatColorPlugin.getInstance().getPatternManager().getAllPatterns()) {
+                    for (BasePattern pattern: plugin.getPatternManager().getAllPatterns()) {
 
                         String patternName = pattern.getName(config.getBoolean("config.show-pattern-on.list"));
                         String patternPermission = pattern.getPermission();
@@ -182,52 +190,64 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     }
     
     public void disable(Player player, String[] arg) {
+        if(plugin.getDataMap().containsKey(player.getUniqueId())) {
+            CPlayer cPlayer = plugin.getDataMap().get(player.getUniqueId());
+            BasePattern pattern = cPlayer.getPattern();
+            SimpleYMLConfiguration config = plugin.getConfigurationManager().getConfig();
+            MessagesYMLFile messagesYMLFile = plugin.getConfigurationManager().getMessages();
 
-        BasePattern pattern = new CPlayer(player).getPattern();
-        SimpleYMLConfiguration config = ChatColorPlugin.getInstance().getConfigurationManager().getConfig();
-        MessagesYMLFile messagesYMLFile = ChatColorPlugin.getInstance().getConfigurationManager().getMessages();
+            if (player.hasPermission("chatcolor.disable")) {
 
-        if (player.hasPermission("chatcolor.disable")) {
+                if (arg.length == 1) {
 
-            if(arg.length == 1) {
+                    if (pattern != null) {
 
-                if (pattern != null) {
+                        String patternName = pattern.getName(config.getBoolean("config.show-pattern-on.list"));
 
-                    String patternName = pattern.getName(config.getBoolean("config.show-pattern-on.list"));
+                        player.sendMessage(
+                                messagesYMLFile.getMessage("commands.chatcolor.disable.pattern-disabled")
+                                        .replaceAll("%pattern%", patternName)
+                        );
 
-                    player.sendMessage(
-                            messagesYMLFile.getMessage("commands.chatcolor.disable.pattern-disabled")
-                                    .replaceAll("%pattern%", patternName)
-                    );
+                        cPlayer.disablePattern();
 
-                    new CPlayer(player).disablePattern();
+                    } else {
+                        player.sendMessage(messagesYMLFile.getMessage("commands.chatcolor.disable.no-pattern-in-use"));
+                    }
 
                 } else {
-                    player.sendMessage(messagesYMLFile.getMessage("commands.chatcolor.disable.no-pattern-in-use"));
+                    player.sendMessage(
+                            messagesYMLFile.getMessage("other.correct-usage")
+                                    .replaceAll("%command%", "/chatcolor disable")
+                    );
                 }
-
             } else {
-                player.sendMessage(
-                        messagesYMLFile.getMessage("other.correct-usage")
-                                .replaceAll("%command%", "/chatcolor disable")
-                );
+                noPermission(player);
             }
-        } else {
-            noPermission(player);
+        }else{
+            player.sendMessage(
+                    plugin.getConfigurationManager().getMessages().getMessage("commands.chatcolor.player-not-loaded","%prefix% &cReconnect to the server. If issue persist, contact an administrator.")
+                            .replaceAll("%player%", arg[1])
+            );
         }
     }
 
     public void gui(Player player, String[] arg) {
 
-        MessagesYMLFile messagesYMLFile = ChatColorPlugin.getInstance().getConfigurationManager().getMessages();
+        MessagesYMLFile messagesYMLFile = plugin.getConfigurationManager().getMessages();
 
         if (player.hasPermission("chatcolor.gui")) {
 
             if(arg.length == 1) {
-
-                player.sendMessage(messagesYMLFile.getMessage("commands.chatcolor.gui.gui-opened"));
-                ChatColorGUI.openGui(player);
-
+                if(plugin.getDataMap().containsKey(player.getUniqueId())) {
+                    player.sendMessage(messagesYMLFile.getMessage("commands.chatcolor.gui.gui-opened"));
+                    ChatColorGUI.openGui(player);
+                }else {
+                    player.sendMessage(
+                            plugin.getConfigurationManager().getMessages().getMessage("commands.chatcolor.player-not-loaded","%prefix% &cReconnect to the server. If issue persist, contact an administrator.")
+                                    .replaceAll("%player%", arg[1])
+                    );
+                }
             } else {
                 player.sendMessage(
                         messagesYMLFile.getMessage("other.correct-usage")
@@ -243,7 +263,7 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     
     public void help(Player player, String[] arg) {
 
-        MessagesYMLFile messagesYMLFile = ChatColorPlugin.getInstance().getConfigurationManager().getMessages();
+        MessagesYMLFile messagesYMLFile = plugin.getConfigurationManager().getMessages();
 
         if(arg.length == 1) {
 
@@ -262,11 +282,11 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
     }
     
     public void noPermission(Player player) {
-        player.sendMessage(ChatColorPlugin.getInstance().getConfigurationManager().getMessages().getMessage("other.no-permission"));
+        player.sendMessage(plugin.getConfigurationManager().getMessages().getMessage("other.no-permission"));
     }
     
     public void unknownCommand(Player player) {
-        player.sendMessage(ChatColorPlugin.getInstance().getConfigurationManager().getMessages().getMessage("commands.chatcolor.unknown-command"));
+        player.sendMessage(plugin.getConfigurationManager().getMessages().getMessage("commands.chatcolor.unknown-command"));
     }
 
     @Override
@@ -285,11 +305,13 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
             return completions;
 
         } else if (strings.length == 2 && strings[0].equals("set")) {
+            Player player = (Player) sender;
+            if(plugin.getDataMap().containsKey(player.getUniqueId())) {
+                for (BasePattern pattern : plugin.getPatternManager().getAllPatterns()) {
 
-            for (BasePattern pattern : ChatColorPlugin.getInstance().getPatternManager().getAllPatterns()) {
+                    if (plugin.getDataMap().get(player.getUniqueId()).canUsePattern(pattern)) completions.add(pattern.getName(false));
 
-                if (new CPlayer((Player) sender).canUsePattern(pattern)) completions.add(pattern.getName(false));
-
+                }
             }
 
             return completions;

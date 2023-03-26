@@ -6,7 +6,7 @@
 
     <groupId>me.mattyhd0</groupId>
     <artifactId>ChatColor</artifactId>
-    <version>2.7.2</version>
+    <version>2.7.2-DEV-1</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -68,14 +68,6 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.1</version>
-                <configuration>
-                    <outputDirectory>C:\Users\Matias\Desktop\test-1.8.9\plugins</outputDirectory>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
