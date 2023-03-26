@@ -42,6 +42,7 @@ public class ChatListener implements EventExecutor {
             );
         }
         if(cPlayer != null) {
+
             BasePattern pattern = cPlayer.getPattern();
 
             if (pattern != null) {
@@ -57,9 +58,10 @@ public class ChatListener implements EventExecutor {
                 }
 
             }
-        }
 
-        cPlayer.setLastMessages(event.getMessage());
+            cPlayer.setLastMessages(event.getMessage());
+
+        }
 
     }
 
