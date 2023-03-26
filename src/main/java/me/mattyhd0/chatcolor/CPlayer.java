@@ -3,17 +3,11 @@ package me.mattyhd0.chatcolor;
 import me.mattyhd0.chatcolor.pattern.api.BasePattern;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 public class CPlayer {
 
     public Player player;
-    private boolean modified = false;
     private String lastMessage = null;
     private BasePattern basePattern;
-    public static Map<UUID, String> lastMessages = new HashMap<>();
 
     public CPlayer(Player player, BasePattern basePattern){
         this.player = player;
