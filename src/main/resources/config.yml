@@ -24,7 +24,7 @@ config:
     username: 'root'
     password: ''
     # Important if you need to modify connection url.
-    additional-url: "&useSSL=false&&autoReconnect=true"
+    additional-url: "&useSSL=false&autoReconnect=true"
 
   show-pattern-on:
     list: true
