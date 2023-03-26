@@ -26,9 +26,11 @@ import java.util.UUID;
 public class ConnectionListener implements Listener {
     private ChatColorPlugin plugin;
     private HashMap<UUID, BukkitTask> playersBeingLoaded = new HashMap<>();
+
     public ConnectionListener(ChatColorPlugin plugin) {
         this.plugin = plugin;
     }
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
 
@@ -59,30 +61,30 @@ public class ConnectionListener implements Listener {
                 }
             });
         }
-        if(playersBeingLoaded.containsKey(player.getUniqueId())) {
+        if (playersBeingLoaded.containsKey(player.getUniqueId())) {
             playersBeingLoaded.remove(event.getPlayer().getUniqueId()).cancel();
         }
-        int delay = Math.max(0,plugin.getConfigurationManager().getConfig().getInt("config.data-delay",30));
+        int delay = Math.max(0, plugin.getConfigurationManager().getConfig().getInt("config.data-delay", 30));
         BukkitTask task = new BukkitRunnable() {
             @Override
             public void run() {
-                if(ChatColorPlugin.getInstance().getMysqlConnection() == null) {
+                if (ChatColorPlugin.getInstance().getMysqlConnection() == null) {
                     SimpleYMLConfiguration data = ChatColorPlugin.getInstance().getConfigurationManager().getData();
                     BasePattern basePattern = plugin.getPatternManager().getPatternByName(data.getString("data." + player.getUniqueId()));
-                    plugin.getDataMap().put(player.getUniqueId(),new CPlayer(player,basePattern));
+                    plugin.getDataMap().put(player.getUniqueId(), new CPlayer(player, basePattern));
                 } else {
                     try {
                         PreparedStatement statement = ChatColorPlugin.getInstance().getMysqlConnection().prepareStatement("SELECT * FROM playerdata WHERE uuid=?");
-                        statement.setString(1,player.getUniqueId().toString());
+                        statement.setString(1, player.getUniqueId().toString());
                         ResultSet resultSet = statement.executeQuery();
-                        if(resultSet.next()) {
+                        if (resultSet.next()) {
                             BasePattern basePattern = plugin.getPatternManager().getPatternByName(resultSet.getString("pattern"));
-                            plugin.getDataMap().put(player.getUniqueId(),new CPlayer(player,basePattern));
-                        }else plugin.getDataMap().put(player.getUniqueId(),new CPlayer(player,null));
-                    } catch (SQLException e){
+                            plugin.getDataMap().put(player.getUniqueId(), new CPlayer(player, basePattern));
+                        } else plugin.getDataMap().put(player.getUniqueId(), new CPlayer(player, null));
+                    } catch (SQLException e) {
                         Bukkit.getServer().getConsoleSender().sendMessage(
                                 Util.color(
-                                        formatQuery(player,"&c[ChatColor] An error occurred while trying to get the pattern of {uuid} ({player}) via MySQL")
+                                        formatQuery(player, "&c[ChatColor] An error occurred while trying to get the pattern of {uuid} ({player}) via MySQL")
                                 )
                         );
                         e.printStackTrace();
@@ -90,57 +92,66 @@ public class ConnectionListener implements Listener {
                 }
                 playersBeingLoaded.remove(player.getUniqueId());
             }
-        }.runTaskLaterAsynchronously(plugin,delay);
-        playersBeingLoaded.put(player.getUniqueId(),task);
+        }.runTaskLaterAsynchronously(plugin, delay);
+        playersBeingLoaded.put(player.getUniqueId(), task);
     }
+
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPlayerQuit(PlayerQuitEvent event) {
-        if(playersBeingLoaded.containsKey(event.getPlayer().getUniqueId())) {
+        if (playersBeingLoaded.containsKey(event.getPlayer().getUniqueId())) {
             playersBeingLoaded.remove(event.getPlayer().getUniqueId()).cancel();
             return;
         }
-        if(plugin.getDataMap().containsKey(event.getPlayer().getUniqueId())) {
+        if (plugin.getDataMap().containsKey(event.getPlayer().getUniqueId())) {
             CPlayer cPlayer = plugin.getDataMap().get(event.getPlayer().getUniqueId());
             Player player = event.getPlayer();
-            if(ChatColorPlugin.getInstance().getMysqlConnection() == null) {
+            if (ChatColorPlugin.getInstance().getMysqlConnection() == null) {
                 SimpleYMLConfiguration data = ChatColorPlugin.getInstance().getConfigurationManager().getData();
                 data.set("data." + player.getUniqueId(), cPlayer.getPattern() == null ? null : cPlayer.getPattern().getName(false));
                 data.save();
             } else {
-                try {
-                    PreparedStatement statement;
-                    if(cPlayer.getPattern() == null) {
-                        statement = ChatColorPlugin.getInstance().getMysqlConnection().prepareStatement(
-                                "DELETE FROM playerdata WHERE uuid=?");
-                        statement.setString(1,player.getUniqueId().toString());
-                    }else{
-                        statement = ChatColorPlugin.getInstance().getMysqlConnection().prepareStatement(
-                                "INSERT INTO playerdata(uuid, pattern) VALUES(?,?') ON DUPLICATE KEY UPDATE pattern= VALUES(pattern)");
-                        statement.setString(1,player.getUniqueId().toString());
-                        statement.setString(2,cPlayer.getPattern().getName(false));
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            PreparedStatement statement;
+                            if (cPlayer.getPattern() == null) {
+                                statement = ChatColorPlugin.getInstance().getMysqlConnection().prepareStatement(
+                                        "DELETE FROM playerdata WHERE uuid=?");
+                                statement.setString(1, player.getUniqueId().toString());
+                            } else {
+                                statement = ChatColorPlugin.getInstance().getMysqlConnection().prepareStatement(
+                                        "INSERT INTO playerdata(uuid, pattern) VALUES(?,?) ON DUPLICATE KEY UPDATE pattern= VALUES(pattern)");
+                                statement.setString(1, player.getUniqueId().toString());
+                                statement.setString(2, cPlayer.getPattern().getName(false));
+                            }
+                            statement.executeUpdate();
+                            statement.close();
+                        } catch (SQLException e) {
+                            Bukkit.getServer().getConsoleSender().sendMessage(
+                                    Util.color(
+                                            formatQuery(player, "&c[ChatColor] An error occurred while trying to set the pattern of {uuid} ({player}) via MySQL")
+                                    )
+                            );
+                            e.printStackTrace();
+                        }
+
                     }
-                    statement.executeUpdate();
-                    statement.close();
-                } catch (SQLException e){
-                    Bukkit.getServer().getConsoleSender().sendMessage(
-                            Util.color(
-                                    formatQuery(player,"&c[ChatColor] An error occurred while trying to set the pattern of {uuid} ({player}) via MySQL")
-                            )
-                    );
-                    e.printStackTrace();
-                }
+                }.runTaskAsynchronously(plugin);
             }
         }
     }
+
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerQuitMonitor(PlayerQuitEvent event) {
         plugin.getDataMap().remove(event.getPlayer().getUniqueId());
     }
 
-    private String formatQuery(Player player, String string){
+    private String formatQuery(Player player, String string) {
         return formatQuery(player, string, null);
     }
-    private String formatQuery(Player player, String string, BasePattern pattern){
+
+    private String formatQuery(Player player, String string, BasePattern pattern) {
 
         String uuid = player.getUniqueId().toString();
         String name = player.getName();
