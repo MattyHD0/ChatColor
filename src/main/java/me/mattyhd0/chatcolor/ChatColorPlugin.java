@@ -7,6 +7,7 @@ import me.mattyhd0.chatcolor.gui.GuiListener;
 import me.mattyhd0.chatcolor.pattern.manager.PatternManager;
 import me.mattyhd0.chatcolor.updatechecker.UpdateChecker;
 import me.mattyhd0.chatcolor.util.Util;
+import me.mattyhd0.chatcolor.util.Version;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.command.ConsoleCommandSender;
 import me.mattyhd0.chatcolor.placeholderapi.ChatColorPlaceholders;
@@ -30,6 +31,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ChatColorPlugin extends JavaPlugin {
 
     private static ChatColorPlugin INSTANCE;
+    private Version serverVersion;
     private PatternManager patternManager;
     private ConfigurationManager configurationManager;
     private List<String> supportedPlugins = new ArrayList<>();
@@ -43,6 +45,7 @@ public class ChatColorPlugin extends JavaPlugin {
         ChatColorPlugin.INSTANCE = this;
         prefix = Util.color("&8[&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr&8]");
         Bukkit.getConsoleSender().sendMessage(Util.color(prefix+" &7Enabling ChatColor v" + this.getDescription().getVersion()));
+        this.serverVersion = Version.from(getServer());
         metrics = new Metrics(this, 11648);
         saySupport("PlaceholderAPI");
         reload();
