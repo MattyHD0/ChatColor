@@ -203,6 +203,10 @@ public class ChatColorPlugin extends JavaPlugin {
         return INSTANCE;
     }
 
+    public Version getServerVersion() {
+        return serverVersion;
+    }
+
     public Connection getMysqlConnection() {
         return mysqlConnection;
     }
