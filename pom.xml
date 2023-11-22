@@ -6,7 +6,7 @@
 
     <groupId>me.mattyhd0</groupId>
     <artifactId>ChatColor</artifactId>
-    <version>2.7.4</version>
+    <version>2.7.5</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -73,7 +73,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                    <outputDirectory>C:\Users\Matias\Desktop\test-1.8.9\plugins</outputDirectory>
+                    <outputDirectory>/home/matias/Escritorio/Test Server 1.20.2/plugins/</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>
