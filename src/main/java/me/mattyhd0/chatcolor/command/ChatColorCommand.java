@@ -27,7 +27,10 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
 
     public boolean onCommand(CommandSender sender, Command command, String s, String[] arg) {
 
-        MessagesYMLFile messagesYMLFile = plugin.getConfigurationManager().getMessages();
+        ConfigurationManager configurationManager = plugin.getConfigurationManager();
+
+        SimpleYMLConfiguration config = configurationManager.getConfig();
+        MessagesYMLFile messagesYMLFile = configurationManager.getMessages();
 
         if (!(sender instanceof Player)) {
             sender.sendMessage(messagesYMLFile.getMessage("other.bad-executor"));
@@ -37,6 +40,12 @@ public class ChatColorCommand implements CommandExecutor, TabCompleter {
         Player player = (Player) sender;
 
         if (!(arg.length > 0)) {
+
+            if(config.getBoolean("config.use-main-command-as-gui")){
+                gui(player, new String[]{ "gui" });
+                return true;
+            }
+
             unknownCommand(player);
             return true;
         }

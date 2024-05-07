@@ -7,6 +7,9 @@ config:
   # Valid values: LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR
   listener-priority: LOW
 
+  # By enabling this option you will be able to open the GUI with /chatcolor instead of /chatcolor gui (/chacolor gui will still work too)
+  use-main-command-as-gui: false
+
   # The patterns shown in /chatcolor list will only be the ones that the player can use
   show-pattern-in-list-only-if-has-permissions: true
 
