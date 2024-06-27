@@ -31,7 +31,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ChatColorPlugin extends JavaPlugin {
 
     private static ChatColorPlugin INSTANCE;
-    private Version serverVersion;
     private PatternManager patternManager;
     private ConfigurationManager configurationManager;
     private List<String> supportedPlugins = new ArrayList<>();
@@ -45,7 +44,6 @@ public class ChatColorPlugin extends JavaPlugin {
         ChatColorPlugin.INSTANCE = this;
         prefix = Util.color("&8[&4&lC&c&lh&6&la&e&lt&2&lC&a&lo&b&ll&3&lo&1&lr&8]");
         Bukkit.getConsoleSender().sendMessage(Util.color(prefix+" &7Enabling ChatColor v" + this.getDescription().getVersion()));
-        this.serverVersion = Version.from(getServer());
         metrics = new Metrics(this, 11648);
         saySupport("PlaceholderAPI");
         reload();
@@ -201,10 +199,6 @@ public class ChatColorPlugin extends JavaPlugin {
 
     public static ChatColorPlugin getInstance() {
         return INSTANCE;
-    }
-
-    public Version getServerVersion() {
-        return serverVersion;
     }
 
     public Connection getMysqlConnection() {
