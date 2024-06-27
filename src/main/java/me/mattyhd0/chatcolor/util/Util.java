@@ -1,7 +1,9 @@
 package me.mattyhd0.chatcolor.util;
 
-import com.cryptomorin.xseries.SkullUtils;
 import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.profiles.builder.XSkull;
+import com.cryptomorin.xseries.profiles.objects.ProfileInputType;
+import com.cryptomorin.xseries.profiles.objects.Profileable;
 import com.google.common.collect.Multimap;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
@@ -81,13 +83,9 @@ public class Util {
     }
 
     public static ItemStack getSkullFromValue(String value){
-
-        ItemStack skull = XMaterial.PLAYER_HEAD.parseItem();
-        SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
-
-        if(skullMeta != null) skull.setItemMeta(SkullUtils.applySkin(skullMeta, value));
-        return skull;
-
+        return XSkull.createItem()
+                .profile(new Profileable.StringProfileable(value, ProfileInputType.BASE64))
+                .apply();
     }
 
     public static ItemStack getItemStackFromString(String material){
