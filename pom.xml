@@ -6,7 +6,7 @@
 
     <groupId>me.mattyhd0</groupId>
     <artifactId>ChatColor</artifactId>
-    <version>2.7.7</version>
+    <version>2.7.8</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -26,6 +26,11 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
+        <repository>
+            <id>minecraft-libraries</id>
+            <name>Minecraft Libraries</name>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -40,7 +45,7 @@
         <dependency>
             <groupId>com.github.cryptomorin</groupId>
             <artifactId>XSeries</artifactId>
-            <version>9.10.0</version>
+            <version>11.2.0</version>
             <scope>compile</scope>
         </dependency>
         <!-- PlaceholderAPI -->
@@ -57,7 +62,13 @@
             <version>3.0.1</version>
             <scope>compile</scope>
         </dependency>
-
+        <!-- Required for XSeries -->
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>authlib</artifactId>
+            <version>6.0.54</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
