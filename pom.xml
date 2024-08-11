@@ -6,7 +6,7 @@
 
     <groupId>me.mattyhd0</groupId>
     <artifactId>ChatColor</artifactId>
-    <version>2.7.8</version>
+    <version>2.7.9</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -38,14 +38,14 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.20-R0.1-SNAPSHOT</version>
+            <version>1.20.6-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <!-- XSeries -->
         <dependency>
             <groupId>com.github.cryptomorin</groupId>
             <artifactId>XSeries</artifactId>
-            <version>11.2.0</version>
+            <version>11.2.0.1</version>
             <scope>compile</scope>
         </dependency>
         <!-- PlaceholderAPI -->
@@ -67,6 +67,20 @@
             <groupId>com.mojang</groupId>
             <artifactId>authlib</artifactId>
             <version>6.0.54</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.11.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>33.2.1-jre</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -79,29 +93,33 @@
             </resource>
         </resources>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
                     <outputDirectory>C:\Users\Matias\Desktop\paper-1.20.6\plugins</outputDirectory>
                 </configuration>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <version>3.6.0</version>
                 <configuration>
                     <!-- <minimizeJar>true</minimizeJar> -->
                     <relocations>
                         <relocation>
                             <pattern>com.cryptomorin.xseries</pattern>
-                            <shadedPattern>me.mattyhd0.chatcolor.xseries</shadedPattern>
+                            <shadedPattern>me.mattyhd0.chatcolor.lib.xseries</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>me.mattyhd0.chatcolor.metrics</shadedPattern>
+                            <shadedPattern>me.mattyhd0.chatcolor.lib.bstats</shadedPattern>
                         </relocation>
+                        <!--<relocation>
+                            <pattern>com.mojang.authlib</pattern>
+                            <shadedPattern>me.mattyhd0.chatcolor.mojang-authlib</shadedPattern>
+                        </relocation>-->
                     </relocations>
                 </configuration>
                 <executions>

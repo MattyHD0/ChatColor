@@ -328,6 +328,8 @@ public class Util {
 
             if(itemMeta instanceof BannerMeta){
 
+                /* Base Color has been removed on spigot-api
+
                 String colorStr = config.getString(key+".banner.basecolor");
                 DyeColor dyeColor = DyeColor.WHITE;
 
@@ -337,7 +339,7 @@ public class Util {
                     error.addError("The DyeColor (" + colorStr + ") is not a valid DyeColor.");
                 }
 
-                ((BannerMeta) itemMeta).setBaseColor(dyeColor);
+                ((BannerMeta) itemMeta).setBaseColor(dyeColor); */
 
                 List<String> patternList = config.getStringList(key+".banner.patterns");
 
