@@ -14,10 +14,10 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,19 +69,22 @@ public class ConnectionListener implements Listener {
         BukkitTask task = new BukkitRunnable() {
             @Override
             public void run() {
-                if (ChatColorPlugin.getInstance().getMysqlConnection() == null) {
+                if (ChatColorPlugin.getInstance().getConnectionPool() == null) {
                     SimpleYMLConfiguration data = ChatColorPlugin.getInstance().getConfigurationManager().getData();
                     BasePattern basePattern = plugin.getPatternManager().getPatternByName(data.getString("data." + player.getUniqueId()));
                     plugin.getDataMap().put(player.getUniqueId(), new CPlayer(player, basePattern));
                 } else {
                     try {
-                        PreparedStatement statement = ChatColorPlugin.getInstance().getMysqlConnection().prepareStatement("SELECT * FROM playerdata WHERE uuid=?");
+                        Connection connection = ChatColorPlugin.getInstance().getConnectionPool().getConnection();
+                        PreparedStatement statement = connection.prepareStatement("SELECT * FROM playerdata WHERE uuid=?");
                         statement.setString(1, player.getUniqueId().toString());
                         ResultSet resultSet = statement.executeQuery();
                         if (resultSet.next()) {
                             BasePattern basePattern = plugin.getPatternManager().getPatternByName(resultSet.getString("pattern"));
                             plugin.getDataMap().put(player.getUniqueId(), new CPlayer(player, basePattern));
                         } else plugin.getDataMap().put(player.getUniqueId(), new CPlayer(player, null));
+                        statement.close();
+                        connection.close();
                     } catch (SQLException e) {
                         Bukkit.getServer().getConsoleSender().sendMessage(
                                 Util.color(

@@ -1,5 +1,7 @@
 package me.mattyhd0.chatcolor;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import me.mattyhd0.chatcolor.command.ChatColorAdminCommand;
 import me.mattyhd0.chatcolor.configuration.ConfigurationManager;
 import me.mattyhd0.chatcolor.configuration.SimpleYMLConfiguration;
@@ -7,7 +9,6 @@ import me.mattyhd0.chatcolor.gui.GuiListener;
 import me.mattyhd0.chatcolor.pattern.manager.PatternManager;
 import me.mattyhd0.chatcolor.updatechecker.UpdateChecker;
 import me.mattyhd0.chatcolor.util.Util;
-import me.mattyhd0.chatcolor.util.Version;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.command.ConsoleCommandSender;
 import me.mattyhd0.chatcolor.placeholderapi.ChatColorPlaceholders;
@@ -37,7 +38,7 @@ public class ChatColorPlugin extends JavaPlugin {
 
     private String prefix;
     private Metrics metrics;
-    private Connection mysqlConnection;
+    private HikariDataSource hikariConnectionPool;
     private HashMap<UUID,CPlayer> dataMap = new HashMap<>();
 
     public void onEnable() {
@@ -56,11 +57,9 @@ public class ChatColorPlugin extends JavaPlugin {
     public void reload(){
         configurationManager = new ConfigurationManager();
         patternManager = new PatternManager();
-        if(mysqlConnection != null){
-            try {
-                mysqlConnection.close();
-                mysqlConnection = null;
-            } catch (SQLException ignored){}
+        if(hikariConnectionPool != null){
+            hikariConnectionPool.close();
+            hikariConnectionPool = null;
         }
         if(configurationManager.getConfig().getBoolean("config.mysql.enable")) openMysqlConnection();
     }
@@ -70,12 +69,8 @@ public class ChatColorPlugin extends JavaPlugin {
         for (CPlayer cPlayer: dataMap.values()){
             cPlayer.saveData();
         }
-        if(mysqlConnection != null) {
-            try {
-                mysqlConnection.close();
-            } catch (SQLException e){
-                e.printStackTrace();
-            }
+        if(hikariConnectionPool != null) {
+            hikariConnectionPool.close();
         }
     }
 
@@ -174,14 +169,16 @@ public class ChatColorPlugin extends JavaPlugin {
                     .replaceAll("\\{password}", password)
                     .replaceAll("\\{database}", database);
 
-            mysqlConnection = DriverManager.getConnection(urlConnection);
+            HikariConfig hikariConfig = new HikariConfig();
+            hikariConfig.setJdbcUrl(urlConnection);
 
-            if(mysqlConnection == null) Bukkit.getServer().getConsoleSender().sendMessage(
-                    Util.color("&c[ChatColor] There was an error connecting to the MySQL Database")
-            );
+            this.hikariConnectionPool = new HikariDataSource(hikariConfig);
 
-            Statement statement = mysqlConnection.createStatement();
-            statement.execute("CREATE TABLE IF NOT EXISTS playerdata ( uuid varchar(36) NOT NULL, pattern varchar(45) NOT NULL, PRIMARY KEY (uuid) );");
+            Connection connection = this.hikariConnectionPool.getConnection();
+            try (Statement statement = connection.createStatement()){
+                statement.execute("CREATE TABLE IF NOT EXISTS playerdata ( uuid varchar(36) NOT NULL, pattern varchar(45) NOT NULL, PRIMARY KEY (uuid) );");
+            }
+            connection.close();
 
         } catch (SQLException e){
             Bukkit.getServer().getConsoleSender().sendMessage(
@@ -201,8 +198,8 @@ public class ChatColorPlugin extends JavaPlugin {
         return INSTANCE;
     }
 
-    public Connection getMysqlConnection() {
-        return mysqlConnection;
+    public HikariDataSource getConnectionPool() {
+        return this.hikariConnectionPool;
     }
 
     public ConfigurationManager getConfigurationManager() {

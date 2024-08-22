@@ -83,6 +83,13 @@
             <version>33.2.1-jre</version>
             <scope>provided</scope>
         </dependency>
+        <!-- HikariCP -->
+        <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>5.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -116,6 +123,11 @@
                             <pattern>org.bstats</pattern>
                             <shadedPattern>me.mattyhd0.chatcolor.lib.bstats</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>com.zaxxer.hikari</pattern>
+                            <shadedPattern>me.mattyhd0.chatcolor.lib.hikaricp</shadedPattern>
+                        </relocation>
+
                         <!--<relocation>
                             <pattern>com.mojang.authlib</pattern>
                             <shadedPattern>me.mattyhd0.chatcolor.mojang-authlib</shadedPattern>
